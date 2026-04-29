@@ -7,6 +7,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class Main extends Application {
     private StackPane root;
     @Override

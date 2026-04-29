@@ -1,0 +1,8 @@
+.root {
+    -fx-background-color: #1b1b1b;
+}
+.root .app-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}

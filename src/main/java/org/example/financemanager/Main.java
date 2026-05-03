@@ -27,7 +27,11 @@ public class Main extends Application {
 
         primaryStage.setFullScreenExitHint("");
 
-        setPane(new ProfileChooserView());
+//        FileManager.save(new Profile("susik"), FileManager.profilesPath);
+//        FileManager.save(new Profile("amognus"), FileManager.profilesPath);
+//        FileManager.save(new Profile("doktorsusik"), FileManager.profilesPath);
+
+        setPane(new ProfileChooserView(this));
 
         primaryStage.show();
     }

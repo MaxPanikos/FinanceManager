@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class ProfileCell extends VBox {
     private Profile profile;
+    private Main main;
 
     @FXML
     private ImageView profileImage;
@@ -38,9 +39,10 @@ public class ProfileCell extends VBox {
         usernameLabel.setText(profile.getUsername());
     }
 
-    public ProfileCell(Profile profile) {
+    public ProfileCell(Profile profile, Main main) {
         try {
             this.profile = profile;
+            this.main = main;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-cell.fxml"));
             fxmlLoader.setRoot(this);
             fxmlLoader.setController(this);
@@ -48,5 +50,10 @@ public class ProfileCell extends VBox {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    private void clickedOnProfile () {
+        main.setPane(new AppView(profile));
     }
 }

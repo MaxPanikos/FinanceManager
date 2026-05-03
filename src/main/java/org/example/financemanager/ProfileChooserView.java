@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class ProfileChooserView extends VBox {
     private ArrayList<Profile> profiles;
+    private Main main;
 
     @FXML
     private TilePane profilesPane;
@@ -22,15 +23,16 @@ public class ProfileChooserView extends VBox {
         try {
             profiles = FileManager.loadProfiles(FileManager.profilesPath);
             for (Profile profile : profiles) {
-                profilesPane.getChildren().add(new ProfileCell(profile));
+                profilesPane.getChildren().add(new ProfileCell(profile, main));
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public ProfileChooserView() {
+    public ProfileChooserView(Main main) {
         super();
+        this.main = main;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-chooser-view.fxml"));
             fxmlLoader.setRoot(this);

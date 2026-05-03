@@ -8,4 +8,6 @@
 
 <fx:root type="org.example.financemanager.ProfileChooserView" stylesheets="@profilechooser.css" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" alignment="CENTER">
     <Label text="Finanční manažer" styleClass="app-title" />
+    <Region minHeight="20" />
+    <TilePane fx:id="profilesPane" styleClass="tile-pane"/>
 </fx:root>

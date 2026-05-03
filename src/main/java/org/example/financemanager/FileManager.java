@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileManager {
+    public static final String profilesPath = "profiles";
+    public static final String profilePicturesPath= "profilePictures/";
+
     public static void save (Profile profile, String directoryPath) throws Exception {
         try {
             File directory = new File(directoryPath);

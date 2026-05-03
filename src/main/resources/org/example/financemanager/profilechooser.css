@@ -6,3 +6,17 @@
     -fx-font-weight: bold;
     -fx-font-size: 30px;
 }
+
+.root .tile-pane {
+    -fx-padding: 20;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+    -fx-alignment: center;
+    -fx-tile-alignment: center;
+    -fx-background-color: #1b1b1b;
+    -fx-background-radius: 5;
+}
+
+.root .tile-pane .label {
+    -fx-text-fill: white;
+}

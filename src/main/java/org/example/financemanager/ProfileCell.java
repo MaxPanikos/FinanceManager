@@ -37,6 +37,7 @@ public class ProfileCell extends VBox {
             profileImage.setImage(new Image(getClass().getResourceAsStream("defaults/DefaultProfilePicture.png")));
         }
         usernameLabel.setText(profile.getUsername());
+        
     }
 
     public ProfileCell(Profile profile, Main main) {

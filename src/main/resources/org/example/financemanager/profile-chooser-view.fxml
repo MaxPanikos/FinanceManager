@@ -6,8 +6,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <fx:root type="org.example.financemanager.ProfileChooserView" stylesheets="@profilechooser.css" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" alignment="CENTER">
-    <Label text="Finanční manažer" styleClass="app-title" />
-    <Region minHeight="20" />
-    <TilePane fx:id="profilesPane" styleClass="tile-pane"/>
+    <padding>
+        <Insets top="30" bottom="0" left="0" right="0"/>
+    </padding>
+    <Region VBox.vgrow="ALWAYS" maxHeight="150" />
+    <Label text="Finanční manažer" styleClass="app-title" VBox.vgrow="NEVER"/>
+    <Region prefHeight="40" minHeight="40" VBox.vgrow="NEVER"/>
+    <AnchorPane VBox.vgrow="ALWAYS">
+        <ScrollPane hbarPolicy="NEVER"
+                    AnchorPane.topAnchor="0.0"
+                    AnchorPane.bottomAnchor="20.0"
+                    AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0"
+                    fitToWidth="true"
+                    styleClass="scroll-pane">
+            <TilePane fx:id="profilesPane" styleClass="tile-pane" alignment="CENTER"/>
+        </ScrollPane>
+    </AnchorPane>
 </fx:root>

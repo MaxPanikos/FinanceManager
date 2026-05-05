@@ -1,19 +1,20 @@
 .root {
-    -fx-background-color: #1b1b1b;
+    -fx-background-color: linear-gradient(to top, #043905, #0b7c13);
 }
 .root .app-title {
     -fx-text-fill: white;
+    -fx-font-family: "Calibri Light";
     -fx-font-weight: bold;
-    -fx-font-size: 30px;
+    -fx-font-size: 60px;
 }
 
 .root .tile-pane {
-    -fx-padding: 20;
+    -fx-background-color: transparent;
+    -fx-padding: 50, 0, 0, 0;
     -fx-hgap: 15;
     -fx-vgap: 15;
     -fx-alignment: center;
     -fx-tile-alignment: center;
-    -fx-background-color: #1b1b1b;
     -fx-background-radius: 5;
 }
 

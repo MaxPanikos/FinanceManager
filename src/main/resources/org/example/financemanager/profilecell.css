@@ -23,4 +23,6 @@
 
 .profile-cell .image {
     -fx-cursor: hand;
+    -fx-background-image-radius: 5;
+    -fx-image-radius: 5;
 }

@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: linear-gradient(to top, #043905, #0b7c13);
+    -fx-background-color: linear-gradient(to top, #021903, #0a470e);
 }
 .root .app-title {
     -fx-text-fill: white;
@@ -66,4 +66,23 @@
 .scroll-bar .decrement-arrow {
     -fx-shape: null;
     -fx-padding: 0;
+}
+
+.overlay {
+    -fx-background-color: rgba(25, 25, 25, 0.3);
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-border-color: #555555;
+    -fx-border-width: 0 0 1.5 0;
+    -fx-padding: 3px 5px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #e1e1e1;
+    -fx-prompt-text-fill: #e1e1e1;
+}
+.text-field:hover {
+}
+.text-field:focused {
+    -fx-border-color: #3b82f6;
 }

@@ -9,5 +9,5 @@
 <?import javafx.scene.image.ImageView?>
 <fx:root type="org.example.financemanager.ProfileCell" stylesheets="@profilecell.css" styleClass="profile-cell" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <ImageView fx:id="profileImage" fitWidth="80" fitHeight="80" onMouseClicked="#clickedOnProfile" styleClass="image"/>
-    <Label fx:id="usernameLabel" onMouseClicked="#clickedOnProfile" styleClass="label"/>
+    <Label fx:id="usernameLabel" onMouseClicked="#clickedOnProfile" styleClass="username"/>
 </fx:root>

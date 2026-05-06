@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="org.example.financemanager.CreateProfilePopup" stylesheets="@createprofile.css" styleClass="createprofile" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <Label text="Nový profil" styleClass="popup-title" />
+    <Region minHeight="10" VBox.vgrow="ALWAYS" />
+    <TextField fx:id="usernameField" promptText="Zadejte uživatelské jméno" maxWidth="300"/>
+    <Label fx:id="responseLabel" text="" styleClass="response-label" />
+    <Region minHeight="10" VBox.vgrow="ALWAYS" />
+    <HBox spacing="5" alignment="CENTER_RIGHT">
+        <Button text="Zrušit" onAction="#closePopup" styleClass="close-button"/>
+        <Button text="Vytvořit" onAction="#createProfile" styleClass="create-button"/>
+    </HBox>
+</fx:root>

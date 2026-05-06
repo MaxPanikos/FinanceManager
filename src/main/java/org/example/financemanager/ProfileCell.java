@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class ProfileCell extends VBox {
     private Profile profile;
-    private Main main;
+    private ProfileChooserView page;
 
     @FXML
     private ImageView profileImage;
@@ -41,10 +41,10 @@ public class ProfileCell extends VBox {
         
     }
 
-    public ProfileCell(Profile profile, Main main) {
+    public ProfileCell(Profile profile, ProfileChooserView page) {
         try {
             this.profile = profile;
-            this.main = main;
+            this.page = page;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("profile-cell.fxml"));
             fxmlLoader.setRoot(this);
             fxmlLoader.setController(this);
@@ -56,6 +56,6 @@ public class ProfileCell extends VBox {
 
     @FXML
     private void clickedOnProfile () {
-        main.setPane(new AppView(profile));
+        page.login(profile);
     }
 }

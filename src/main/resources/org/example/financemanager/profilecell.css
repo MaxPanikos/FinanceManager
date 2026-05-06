@@ -1,6 +1,12 @@
 .profile-cell {
+    -fx-padding: 5px;
     -fx-alignment: center;
-    -fx-background-color: transparent;
+    -fx-background-color: rgba(255, 255, 255, 0.25);
+    -fx-border-width: 1px;
+    -fx-border-color: rgba(255, 255, 255, 0.4);
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(gaussian, black , 15, 0.5, 0, 0);
 }
 
 .profile-cell:hover {
@@ -11,13 +17,13 @@
     -fx-font-weight: bold;
 }
 
-.profile-cell .label {
+.profile-cell .username {
     -fx-text-fill: white;
     -fx-font-size: 12;
-    -fx-font-family: "Inter";
+    -fx-font-family: "Inter Semi Bold";
     -fx-cursor: hand;
 }
-.profile-cell .label:hover {
+.profile-cell .username:hover {
     -fx-underline: true;
 }
 
@@ -25,4 +31,12 @@
     -fx-cursor: hand;
     -fx-background-image-radius: 5;
     -fx-image-radius: 5;
+}
+
+.profile-cell .add {
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-size: 50;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
 }

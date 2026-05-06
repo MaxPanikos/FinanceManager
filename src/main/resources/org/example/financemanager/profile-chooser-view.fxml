@@ -9,21 +9,25 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Text?>
 <fx:root type="org.example.financemanager.ProfileChooserView" stylesheets="@profilechooser.css" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" alignment="CENTER">
-    <padding>
-        <Insets top="30" bottom="0" left="0" right="0"/>
-    </padding>
-    <Region VBox.vgrow="ALWAYS" maxHeight="150" />
-    <StackPane>
+    <VBox alignment="CENTER">
         <padding>
-            <Insets left="20" right="20"/>
+            <Insets top="30" bottom="0" left="0" right="0"/>
         </padding>
-        <Label text="Finanční manažer" styleClass="app-title" VBox.vgrow="NEVER"/>
-    </StackPane>
-    <Region prefHeight="40" minHeight="40" VBox.vgrow="NEVER"/>
-    <Separator maxWidth="500"/>
-    <AnchorPane VBox.vgrow="ALWAYS">
-        <ScrollPane hbarPolicy="NEVER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" fitToWidth="true" styleClass="scroll-pane">
-            <TilePane fx:id="profilesPane" styleClass="tile-pane" alignment="CENTER"/>
-        </ScrollPane>
-    </AnchorPane>
+        <Region VBox.vgrow="ALWAYS" maxHeight="150" />
+        <StackPane>
+            <padding>
+                <Insets left="20" right="20"/>
+            </padding>
+            <Label text="Finanční manažer" styleClass="app-title" VBox.vgrow="NEVER"/>
+        </StackPane>
+        <Region prefHeight="40" minHeight="40" VBox.vgrow="NEVER"/>
+        <Separator maxWidth="500"/>
+        <AnchorPane VBox.vgrow="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" fitToWidth="true" styleClass="scroll-pane">
+                <TilePane fx:id="profilesPane" styleClass="tile-pane" alignment="CENTER"/>
+            </ScrollPane>
+        </AnchorPane>
+    </VBox>
+    <StackPane fx:id="overlay" visible="false" styleClass="overlay" onMouseClicked="#closePopup"/>
+    <StackPane fx:id="popupPane" visible="false"/>
 </fx:root>

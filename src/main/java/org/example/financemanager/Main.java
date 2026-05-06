@@ -2,6 +2,7 @@ package org.example.financemanager;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -27,11 +28,15 @@ public class Main extends Application {
 
         primaryStage.setFullScreenExitHint("");
 
+        //primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("appicon.png")));
+
 //        FileManager.save(new Profile("susik"), FileManager.profilesPath);
 //        FileManager.save(new Profile("amognus"), FileManager.profilesPath);
 //        FileManager.save(new Profile("doktorsusik"), FileManager.profilesPath);
 
         setPane(new ProfileChooserView(this));
+
+        primaryStage.setMinWidth(300);
 
         primaryStage.show();
     }

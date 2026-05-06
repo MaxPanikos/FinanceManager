@@ -28,7 +28,7 @@ public class Main extends Application {
 
         primaryStage.setFullScreenExitHint("");
 
-        //primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("appicon.png")));
+        primaryStage.getIcons().add(new Image("file:src/main/resources/org/example/financemanager/defaults/appicon.png"));
 
 //        FileManager.save(new Profile("susik"), FileManager.profilesPath);
 //        FileManager.save(new Profile("amognus"), FileManager.profilesPath);

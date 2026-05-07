@@ -35,9 +35,13 @@ public class FileManager {
             ArrayList<Profile> profiles = new ArrayList<>();
             for (String name : files) {
                 if (name != null ) {
-                    ObjectInputStream in = new ObjectInputStream(new FileInputStream(directoryPath + "/" + name));
-                    Profile profile = (Profile) in.readObject();
-                    profiles.add(profile);
+                    try {
+                        ObjectInputStream in = new ObjectInputStream(new FileInputStream(directoryPath + "/" + name));
+                        Profile profile = (Profile) in.readObject();
+                        profiles.add(profile);
+                    } catch (Exception e) {
+                        System.err.println("Unexpected file in " + directoryPath + " directory (" + name + ")");
+                    }
                 }
             }
             return profiles;

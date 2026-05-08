@@ -8,7 +8,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.text.Text?>
-<fx:root type="org.example.financemanager.ProfileChooserView" stylesheets="@profilechooser.css" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" alignment="CENTER">
+<fx:root type="org.example.financemanager.ProfileChooserView" stylesheets="@profilechooser.css, @style.css" styleClass="root" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" alignment="CENTER">
     <VBox alignment="CENTER">
         <padding>
             <Insets top="30" bottom="0" left="0" right="0"/>

@@ -1,0 +1,6 @@
+.main-root {
+    -fx-background-color: #454545;
+}
+.main-root .overlay {
+    -fx-background-color: rgba(34, 34, 34, 0.5);
+}

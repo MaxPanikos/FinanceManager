@@ -8,10 +8,18 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<fx:root type="org.example.financemanager.AppView" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="org.example.financemanager.AppView" stylesheets="@main-app-view.css" styleClass="main-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <BorderPane >
+      <top>
 
+      </top>
+      <left>
+
+      </left>
+      <center>
+
+      </center>
    </BorderPane>
-   <StackPane />
-   <StackPane />
+   <StackPane fx:id="overlayPane" visible="false"/>
+   <StackPane fx:id="popupPane" visible="false"/>
 </fx:root>

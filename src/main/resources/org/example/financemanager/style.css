@@ -61,3 +61,36 @@
 .text-field:focused {
     -fx-border-color: #3b82f6;
 }
+
+.context-menu {
+    -fx-background-color: #2b2b2b;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #444444;
+    -fx-border-width: 1px;
+    -fx-padding: 6px 0px 6px 0px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 15, 0, 0, 4);
+}
+.context-menu .menu-item {
+    -fx-padding: 8px 25px 8px 15px;
+    -fx-background-color: transparent;
+}
+.context-menu .menu-item > .label {
+    -fx-text-fill: #cccccc;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 13px;
+}
+.context-menu .menu-item .accelerator-text {
+    -fx-text-fill: #888888;
+}
+.context-menu .menu-item:focused {
+    -fx-background-color: #3d82c2;
+}
+.context-menu .menu-item:focused > .label,
+.context-menu .menu-item:focused .accelerator-text {
+    -fx-text-fill: #ffffff;
+}
+.context-menu .separator:horizontal .line {
+    -fx-border-color: #444444 transparent transparent transparent;
+    -fx-border-insets: 4px 10px 4px 10px;
+}

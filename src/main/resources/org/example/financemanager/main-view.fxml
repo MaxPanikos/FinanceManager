@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
+<?import javafx.scene.control.ScrollPane?>
 <fx:root type="org.example.financemanager.AppView" stylesheets="@main-app-view.css" styleClass="main-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <BorderPane >
       <top>
@@ -17,9 +18,11 @@
 
       </left>
       <center>
-
+         <ScrollPane styleClass="scroll-pane">
+            <StackPane fx:id="contentPane" VBox.vgrow="ALWAYS"/>
+         </ScrollPane>
       </center>
    </BorderPane>
-   <StackPane fx:id="overlayPane" visible="false"/>
+   <StackPane fx:id="overlayPane" visible="false" onMouseClicked="#hidePopup"/>
    <StackPane fx:id="popupPane" visible="false"/>
 </fx:root>

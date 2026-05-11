@@ -17,15 +17,14 @@ public class AppView extends StackPane {
     @FXML
     private Label usernameLabel;
     @FXML
-    private Button addTxButton;
+    private Button settingsButton, addTxButton;
 
     @FXML
     public void initialize () {
-        this.usernameLabel.setText(profile.getUsername());
-        setPage(new HomepageView());
+        usernameLabel.setText(profile.getUsername());
     }
 
-    public AppView(Profile profile) {
+    public AppView(Profile profile, Main main) {
         this.profile = profile;
 
         try {

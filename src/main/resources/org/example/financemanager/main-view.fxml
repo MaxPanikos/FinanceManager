@@ -15,9 +15,9 @@
 <fx:root type="org.example.financemanager.AppView" stylesheets="@main-app-view.css" styleClass="main-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <BorderPane >
       <top>
-         <AnchorPane >
-             <Label fx:id="usernameLabel" AnchorPane.leftAnchor="5"/>
-             <Button fx:id="addTxButton" styleClass="add-transaction-button" AnchorPane.rightAnchor="5"/>
+         <AnchorPane>
+            <Label fx:id="usernameLabel" AnchorPane.leftAnchor="5"/>
+            <Button fx:id="addTxButton" text="Přidat transakci" AnchorPane.rightAnchor="5"/>
          </AnchorPane>
       </top>
       <left>

@@ -42,7 +42,7 @@ public class ProfileChooserView extends StackPane {
     }
 
     public void login (Profile p) {
-        main.setPane(new AppView(p));
+        main.setPane(new AppView(p, main));
     }
 
     public ProfileChooserView(Main main) {

@@ -25,7 +25,7 @@ public class Main extends Application {
         });
         primaryStage.setScene(scene);
         primaryStage.setFullScreenExitHint("");
-        primaryStage.getIcons().add(new Image("file:src/main/resources/org/example/financemanager/defaults/appicon.png"));
+        primaryStage.getIcons().add(new Image("file:src/main/resources/org/example/financemanager/defaults/appicon2.png"));
 
 //        FileManager.save(new Profile("susik"), FileManager.profilesPath);
 //        FileManager.save(new Profile("amognus"), FileManager.profilesPath);

@@ -53,4 +53,9 @@ public class FileManager {
             throw new Exception("Unexpected exception! " + e.getMessage());
         }
     }
+
+    public static boolean exists (String username, String directoryPath) {
+        File file = new File(directoryPath, username);
+        return file.exists() && file.isFile();
+    }
 }

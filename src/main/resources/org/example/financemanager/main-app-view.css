@@ -5,5 +5,74 @@
     -fx-background-color: rgba(34, 34, 34, 0.5);
 }
 
-.main-root .add-transaction-button {
+.main-root {
+    -fx-background-color: #1e1e1e;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.main-root .label {
+    -fx-text-fill: #e1e1e1;
+    -fx-font-size: 16;
+}
+
+.topbar {
+    -fx-spacing: 10;
+    -fx-background-color: #1e1e1e;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-padding: 15 25;
+    -fx-alignment: center;
+}
+.topbar .label {
+    -fx-text-fill: #13831c;
+    -fx-font-size: 40;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, #1c551c, 5, 0.1, 0, 0);
+}
+
+.sidebar {
+    -fx-alignment: center;
+    -fx-background-color: #252525;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+    -fx-pref-width: 140;
+    -fx-max-width: 200;
+}
+
+.menu-button {
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-text-fill: #d5d5d5;
+    -fx-font-size: 16px;
+    -fx-cursor: hand;
+    -fx-padding: 10 15;
+    -fx-background-radius: 5;
+    -fx-min-width: 100;
+    -fx-max-width: Infinity;
+}
+
+.menu-button:hover {
+    -fx-background-color: #353535;
+    -fx-text-fill: white;
+}
+
+.menu-button:pressed {
+    -fx-background-color: #404040;
+}
+
+.add-transaction-button {
+    -fx-background-color: #13831c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, green, 15, 0.5, 0, 0);
+}
+.add-transaction-button:hover {
+    -fx-background-color: #178e2a;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+.add-transaction-button:pressed {
+    -fx-background-color: #0e731f;
 }

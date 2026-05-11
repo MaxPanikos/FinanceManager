@@ -4,8 +4,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -18,10 +21,30 @@ public class AppView extends StackPane {
     private Label usernameLabel;
     @FXML
     private Button settingsButton, addTxButton;
+    @FXML
+    private VBox pagesBox, sidebar;
+    @FXML
+    private ImageView userImage;
 
     @FXML
     public void initialize () {
         usernameLabel.setText(profile.getUsername());
+        sidebar.prefWidthProperty().bind(this.widthProperty().multiply(0.20));
+        userImage.setImage(new Image(getClass().getResourceAsStream("defaults/DefaultProfilePicture.png")));
+
+
+
+        Button homepageButton = new Button("Domů");
+        homepageButton.getStyleClass().add("menu-button");
+        pagesBox.getChildren().add(homepageButton);
+
+        Button graphsButton = new Button("Grafy");
+        graphsButton.getStyleClass().add("menu-button");
+        pagesBox.getChildren().add(graphsButton);
+
+        Button investButton = new Button("Investice");
+        investButton.getStyleClass().add("menu-button");
+        pagesBox.getChildren().add(investButton);
     }
 
     public AppView(Profile profile, Main main) {

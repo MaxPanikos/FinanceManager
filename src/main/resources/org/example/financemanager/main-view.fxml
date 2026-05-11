@@ -12,19 +12,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Circle?>
 <fx:root type="org.example.financemanager.AppView" stylesheets="@main-app-view.css" styleClass="main-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
    <BorderPane >
       <top>
-         <AnchorPane>
-            <Label fx:id="usernameLabel" AnchorPane.leftAnchor="5"/>
-            <Button fx:id="addTxButton" text="Přidat transakci" AnchorPane.rightAnchor="5"/>
-         </AnchorPane>
+         <HBox styleClass="topbar">
+            <ImageView fx:id="userImage" fitHeight="50" fitWidth="50">
+               <clip>
+                  <Circle centerX="25" centerY="25" radius="25" />
+               </clip>
+            </ImageView>
+            <Label fx:id="usernameLabel"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="addTxButton" text="Přidat transakci" styleClass="add-transaction-button"/>
+         </HBox>
       </top>
       <left>
-          <AnchorPane >
-             <VBox AnchorPane.topAnchor="5" VBox.vgrow="ALWAYS"/>
-             <Button fx:id="settingsButton" text="Nastavení" AnchorPane.bottomAnchor="5"/>
-          </AnchorPane>
+          <VBox fx:id="sidebar" styleClass="sidebar" alignment="CENTER">
+             <VBox fx:id="pagesBox" VBox.vgrow="ALWAYS" spacing="5" alignment="TOP_CENTER"/>
+             <Region VBox.vgrow="ALWAYS"/>
+             <Button fx:id="settingsButton" text="Nastavení" styleClass="menu-button"/>
+          </VBox>
       </left>
       <center>
          <ScrollPane styleClass="scroll-pane">

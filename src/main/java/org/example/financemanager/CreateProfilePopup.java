@@ -31,16 +31,18 @@ public class CreateProfilePopup extends VBox {
     @FXML
     protected void createProfile () {
         String username = usernameField.getText();
-        if (!username.isEmpty()) {
-            Profile p = new Profile(username);
-            page.login(p);
-        } else {
+        if (username.isBlank()) {
             responseLabel.setText("Zadejte prosím uživatelské jméno");
+            return;
+        } else if (FileManager.exists(username, FileManager.profilesPath)) {
+            responseLabel.setText("Uživatel s tímto jménem již existuje");
+            return;
         }
+        Profile p = new Profile(username);
+        page.login(p);
     }
     @FXML
     protected void closePopup () {
         page.closePopup();
     }
-
 }

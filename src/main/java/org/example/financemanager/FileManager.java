@@ -32,6 +32,7 @@ public class FileManager {
             if (!file.exists()) {
                 Path path = Paths.get(directoryPath);
                 Files.createDirectory(path);
+                return new ArrayList<>();
             }
             String[] files = file.list();
 

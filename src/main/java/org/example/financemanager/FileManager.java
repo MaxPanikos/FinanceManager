@@ -1,6 +1,8 @@
 package org.example.financemanager;
 
 import java.io.*;
+import java.net.URI;
+import java.nio.file.*;
 import java.util.ArrayList;
 
 public class FileManager {
@@ -28,7 +30,8 @@ public class FileManager {
         try {
             File file = new File(directoryPath);
             if (!file.exists()) {
-                throw new Exception("Directory does not exist!");
+                Path path = Paths.get(directoryPath);
+                Files.createDirectory(path);
             }
             String[] files = file.list();
 

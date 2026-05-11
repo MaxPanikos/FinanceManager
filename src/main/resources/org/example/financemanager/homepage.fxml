@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<fx:root type="org.example.financemanager.HomepageView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" >
+    <padding >
+        <Insets top="10" left="5" right="5" bottom="10"/>
+    </padding>
+    <TilePane fx:id="tilePane" />
+</fx:root>

@@ -20,7 +20,7 @@ public class FileManager {
             out.flush();
             out.close();
         } catch (Exception e) {
-            throw new Exception("Unexpected exception!");
+            throw new Exception("Unexpected exception! ");
         }
     }
 
@@ -46,7 +46,7 @@ public class FileManager {
             }
             return profiles;
         } catch (Exception e) {
-            throw new Exception("Unexpected exception!" + e.getMessage());
+            throw new Exception("Unexpected exception! " + e.getMessage());
         }
     }
 }

@@ -2,6 +2,8 @@ package org.example.financemanager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
@@ -12,6 +14,16 @@ public class AppView extends StackPane {
 
     @FXML
     private StackPane overlayPane, popupPane, contentPane;
+    @FXML
+    private Label usernameLabel;
+    @FXML
+    private Button addTxButton;
+
+    @FXML
+    public void initialize () {
+        this.usernameLabel.setText(profile.getUsername());
+        setPage(new HomepageView());
+    }
 
     public AppView(Profile profile) {
         this.profile = profile;

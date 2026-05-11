@@ -4,3 +4,6 @@
 .main-root .overlay {
     -fx-background-color: rgba(34, 34, 34, 0.5);
 }
+
+.main-root .add-transaction-button {
+}

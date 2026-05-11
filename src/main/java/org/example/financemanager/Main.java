@@ -15,9 +15,8 @@ public class Main extends Application {
     private StackPane root;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Finance Manager");
-
         this.root = new StackPane();
+        primaryStage.setTitle("Finance Manager");
         Scene scene = new Scene(root, 900, 600);
         scene.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.F11) {
@@ -25,9 +24,7 @@ public class Main extends Application {
             }
         });
         primaryStage.setScene(scene);
-
         primaryStage.setFullScreenExitHint("");
-
         primaryStage.getIcons().add(new Image("file:src/main/resources/org/example/financemanager/defaults/appicon.png"));
 
 //        FileManager.save(new Profile("susik"), FileManager.profilesPath);

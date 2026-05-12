@@ -77,4 +77,9 @@ public class AppView extends StackPane {
         this.contentPane.getChildren().clear();
         this.contentPane.getChildren().add(pane);
     }
+
+    @FXML
+    public void addTransaction () {
+        //showPopup();
+    }
 }

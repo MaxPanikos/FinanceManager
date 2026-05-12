@@ -7,12 +7,14 @@ import java.io.Serializable;
 public class Profile implements Serializable {
     private String username;
     private String imagePath;
+    private Ledger ledger;
 
     private static final long serialVersionUID = 1L;
 
     public Profile(String username) {
         this.username = username;
         this.imagePath = null;
+        this.ledger = new Ledger();
     }
 
     public String getUsername() {
@@ -21,6 +23,10 @@ public class Profile implements Serializable {
 
     public String getImagePath() {
         return imagePath;
+    }
+
+    public Ledger getLedger() {
+        return ledger;
     }
 
     @Override

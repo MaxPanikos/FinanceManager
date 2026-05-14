@@ -1,0 +1,150 @@
+.default-popup {
+    -fx-padding: 10;
+    -fx-alignment: top-left;
+    -fx-spacing: 10;
+    -fx-background-color: rgb(50, 50, 50);
+    -fx-border-width: 3;
+    -fx-border-color: #272727;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-max-width: 300;
+    -fx-max-height: 150;
+}
+.default-popup .popup-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+}
+
+.default-popup .create-button {
+    -fx-min-width: 60;
+    -fx-min-height: 30;
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.default-popup .create-button:hover {
+    -fx-background-color: #dfdfdf;
+}
+
+.default-popup .close-button {
+    -fx-min-width: 60;
+    -fx-min-height: 30;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-background-radius: 15;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.default-popup .close-button:hover {
+    -fx-background-color: #535353;
+}
+
+.default-popup .response-label {
+    -fx-text-fill: #bc0000;
+    -fx-font-size: 14;
+}
+
+.default-popup .side-text {
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+
+.default-popup .combo-box {
+    -fx-background-color: white;
+    -fx-border-color: lightgray;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 2;
+}
+
+.default-popup .combo-box:focused {
+    -fx-border-color: green;
+    -fx-border-width: 1.5;
+}
+
+.default-popup .combo-box .list-cell:selected {
+    -fx-text-fill: green;
+    -fx-font-weight: bold;
+}
+
+.default-popup .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: gray;
+    -fx-border-radius: 5;
+}
+
+.default-popup .date-picker .button {
+    -fx-background-color: green;
+    -fx-background-radius: 0 5 5 0;
+}
+
+.default-popup .date-picker .button:hover {
+    -fx-background-color: green;
+}
+
+.default-popup .date-picker-popup .month-year-pane {
+    -fx-background-color: green;
+}
+
+.default-popup .date-picker-popup .day-cell:selected {
+    -fx-background-color: green;
+}
+
+.default-popup .spinner {
+    -fx-background-color: white;
+    -fx-border-color: green;
+    -fx-border-radius: 5;
+}
+
+.default-popup .spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: green;
+}
+
+.default-popup .spinner .increment-arrow-button, .spinner .decrement-arrow-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: green;
+}
+
+.default-popup .spinner .increment-arrow-button:hover, .spinner .decrement-arrow-button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.default-popup .radio-button .radio {
+    -fx-border-color: gray;
+    -fx-background-color: white;
+    -fx-border-radius: 10;
+}
+
+.default-popup .radio-button:selected .radio .dot {
+    -fx-background-color: green;
+}
+
+.default-popup .radio-button:hover .radio {
+    -fx-border-color: green;
+}
+
+.toggle-switch {
+    -fx-cursor: hand;
+}
+.toggle-switch .thumb-area {
+    -fx-background-color: #48aa4e;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-color: transparent;
+}
+.toggle-switch:selected .thumb-area {
+    -fx-background-color: #aa2c2c;
+}
+.toggle-switch .thumb {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+.toggle-switch .label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}

@@ -1,0 +1,96 @@
+package org.example.financemanager;
+
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.util.StringConverter;
+import org.controlsfx.control.ToggleSwitch;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+public class AddTransactionView extends VBox {
+    private AppView appView;
+    @FXML
+    private Spinner<Double> amountSpinner;
+    @FXML
+    private DatePicker datePicker;
+    @FXML
+    private ToggleSwitch typeSwitch;
+    @FXML
+    private ComboBox<TransactionTypes> typeComboBox;
+
+    @FXML
+    public void initialize () {
+        datePicker.getEditor().setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+
+        amountSpinner.setEditable(true);
+        SpinnerValueFactory<Double> factory = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 1_000_000_000.0, 0.0, 10.0);
+        amountSpinner.setValueFactory(factory);
+
+        TextField editor = amountSpinner.getEditor();
+        editor.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("-?([0-9]*[\\.,]?[0-9]*)")) {
+                return change;
+            }
+            return null;
+        }));
+        editor.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.contains(",")) {
+                editor.setText(newVal.replace(",", "."));
+            }
+        });
+
+
+        typeComboBox.setConverter(new StringConverter<TransactionTypes>() {
+            @Override
+            public String toString(TransactionTypes t) { return (t == null) ? "" : t.getLabel(); }
+            @Override
+            public TransactionTypes fromString(String s) { return null; }
+        });
+        typeSwitch.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            updateCategory(newVal);
+        });
+        updateCategory(false);
+    }
+    public AddTransactionView(AppView appView) {
+        super();
+        this.appView = appView;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-transaction-view.fxml"));
+            fxmlLoader.setRoot(this);
+            fxmlLoader.setController(this);
+            fxmlLoader.load();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //AI
+    private void updateCategory (boolean isExpense) {
+        String hledanyTyp = isExpense ? "Výdaj" : "Příjem";
+        var vyfiltrovano = Arrays.stream(TransactionTypes.values())
+                .filter(t -> t.getType().equals(hledanyTyp))
+                .collect(Collectors.toList());
+
+        typeComboBox.setItems(FXCollections.observableArrayList(vyfiltrovano));
+        if (!vyfiltrovano.isEmpty()) {
+            typeComboBox.getSelectionModel().selectFirst();
+        }
+    }
+
+    @FXML
+    protected void closePopup () {
+        appView.hidePopup();
+    }
+
+    @FXML
+    protected void addTx () {
+
+    }
+}

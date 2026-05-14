@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import org.controlsfx.control.ToggleSwitch?>
+<fx:root type="org.example.financemanager.AddTransactionView" stylesheets="@defaultpopupstyle.css" styleClass="default-popup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <Label text="Přidat transakci" styleClass="popup-title" />
+    <Region minHeight="10" VBox.vgrow="ALWAYS" />
+    <VBox>
+        <Label text="Částka: " styleClass="side-text"/>
+        <Spinner fx:id="amountSpinner" promptText="Zadejte částku" maxWidth="300"/>
+    </VBox>
+    <VBox>
+        <Label text="Datum: " styleClass="side-text"/>
+        <DatePicker fx:id="datePicker"/>
+    </VBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Příjem" />
+        <ToggleSwitch fx:id="typeSwitch" selected="false" styleClass="toggle-switch"/>
+        <Label text="Výdaj" />
+    </HBox>
+    <ComboBox fx:id="typeComboBox" />
+    <Region minHeight="10" VBox.vgrow="ALWAYS" />
+    <HBox spacing="5" alignment="CENTER_RIGHT">
+        <Button text="Zrušit" styleClass="close-button" onAction="#closePopup"/>
+        <Button text="Přidat" styleClass="create-button"/>
+    </HBox>
+</fx:root>

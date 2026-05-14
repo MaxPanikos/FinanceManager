@@ -1,6 +1,8 @@
 package org.example.financemanager;
 
 public enum TransactionTypes {
+    OTHER_INCOME("Příjem", "Ostatní / Nezařazeno"),
+    OTHER_EXPENSE("Výdaj", "Ostatní / Nezařazeno"),
     SALARY("Příjem", "Mzda"),
     GIFT("Příjem", "Dar"),
     FOOD("Výdaj", "Potraviny"),

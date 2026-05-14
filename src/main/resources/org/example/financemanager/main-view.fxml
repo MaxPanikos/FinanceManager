@@ -42,6 +42,6 @@
          </ScrollPane>
       </center>
    </BorderPane>
-   <StackPane fx:id="overlayPane" visible="false" onMouseClicked="#hidePopup"/>
+   <StackPane fx:id="overlayPane" visible="false" onMouseClicked="#hidePopup" styleClass="overlay"/>
    <StackPane fx:id="popupPane" visible="false"/>
 </fx:root>

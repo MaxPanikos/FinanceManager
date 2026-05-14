@@ -80,6 +80,6 @@ public class AppView extends StackPane {
 
     @FXML
     public void addTransaction () {
-        //showPopup();
+        showPopup(new AddTransactionView(this));
     }
 }

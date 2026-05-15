@@ -1,19 +1,24 @@
 package org.example.financemanager;
 
+import javafx.scene.shape.CubicCurveTo;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Currency;
 
 public class Ledger implements Serializable {
     private ArrayList<Transaction> transactions;
     private double balance;
+    private Currency currency;
 
     private final static long serialVersionUID = 1L;
 
-    public Ledger () {
+    public Ledger (Currency currency) {
         this.transactions = new ArrayList<>();
         this.balance = 0;
+        this.currency = currency;
     }
 
     public boolean addWithDuplicityCheck (Transaction transaction) {
@@ -65,6 +70,10 @@ public class Ledger implements Serializable {
 
     public double getBalance () {
         return balance;
+    }
+
+    public Currency getCurrency () {
+        return currency;
     }
 
     private boolean isDuplicate(int foundIndex, Transaction newTx) {

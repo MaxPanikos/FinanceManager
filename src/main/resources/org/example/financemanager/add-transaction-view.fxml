@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <?import org.controlsfx.control.ToggleSwitch?>
-<fx:root type="org.example.financemanager.AddTransactionView" stylesheets="@defaultpopupstyle.css" styleClass="default-popup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="org.example.financemanager.AddTransactionView" stylesheets="@defaultpopupstyle.css" styleClass="default-popup" minWidth="250" maxWidth="350" maxHeight="350" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <Label text="Přidat transakci" styleClass="popup-title" />
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <VBox>
@@ -27,7 +27,7 @@
         <Label text="Typ: " styleClass="side-text"/>
         <ComboBox fx:id="typeComboBox" />
     </VBox>
-    <Label fx:id="responseLabel"/>
+    <Label fx:id="responseLabel" styleClass="response-label"/>
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <HBox spacing="5" alignment="CENTER_RIGHT">
         <Button text="Zrušit" styleClass="close-button" onAction="#closePopup"/>

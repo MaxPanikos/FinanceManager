@@ -24,7 +24,9 @@
                   <Circle centerX="25" centerY="25" radius="25" />
                </clip>
             </ImageView>
-            <Label fx:id="usernameLabel"/>
+            <Label fx:id="usernameLabel" styleClass="username-label"/>
+            <Region HBox.hgrow="ALWAYS" maxWidth="50"/>
+            <Label fx:id="balanceLabel" styleClass="label"/>
             <Region HBox.hgrow="ALWAYS"/>
             <Button fx:id="addTxButton" text="Přidat transakci" styleClass="add-transaction-button" onAction="#addTransaction"/>
          </HBox>

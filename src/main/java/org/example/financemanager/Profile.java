@@ -1,8 +1,10 @@
 package org.example.financemanager;
 
+import javafx.scene.Cursor;
 import javafx.scene.control.ProgressIndicator;
 
 import java.io.Serializable;
+import java.util.Currency;
 
 public class Profile implements Serializable {
     private String username;
@@ -11,10 +13,10 @@ public class Profile implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Profile(String username) {
+    public Profile(String username, String currencyCode) {
         this.username = username;
         this.imagePath = null;
-        this.ledger = new Ledger();
+        this.ledger = new Ledger(Currency.getInstance(currencyCode));
     }
 
     public String getUsername() {

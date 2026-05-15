@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
+import org.controlsfx.control.Notifications;
 import org.controlsfx.control.ToggleSwitch;
 
 import java.time.LocalDate;
@@ -113,17 +114,22 @@ public class AddTransactionView extends VBox {
     @FXML
     protected void addTx () {
         try {
-            double amount = amountSpinner.getValue();
+            Double amount = amountSpinner.getValue();
+            if (amount == null || amount == 0.0) {
+                responseLabel.setText("Zadejte prosím částku");
+                return;
+            }
+
             if (amount >= 0.0 && typeSwitch.isSelected()) {
                 amount = amount * -1;
             }
             LocalDate date = datePicker.getValue();
             TransactionTypes type = typeComboBox.getValue();
 
-            if (date != null) {
+            if (date == null) {
                 responseLabel.setText("Prosim vyberte datum");
+                return;
             }
-
             LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.MIDNIGHT);
             Transaction tx = new Transaction(amount, type, dateTime);
             appView.getProfile().getLedger().add(tx);

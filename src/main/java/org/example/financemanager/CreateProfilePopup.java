@@ -38,7 +38,7 @@ public class CreateProfilePopup extends VBox {
             responseLabel.setText("Uživatel s tímto jménem již existuje");
             return;
         }
-        Profile p = new Profile(username);
+        Profile p = new Profile(username, "CZK");
         page.login(p);
     }
     @FXML

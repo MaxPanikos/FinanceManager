@@ -12,7 +12,9 @@
 
 .main-root .label {
     -fx-text-fill: #e1e1e1;
-    -fx-font-size: 16;
+    -fx-font-size: 20;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-weight: bold;
 }
 
 .topbar {
@@ -22,11 +24,10 @@
     -fx-padding: 15 25;
     -fx-alignment: center;
 }
-.topbar .label {
-    -fx-text-fill: #13831c;
+.topbar .username-label {
+    -fx-text-fill: #167a1d;
     -fx-font-size: 40;
     -fx-font-weight: bold;
-    -fx-effect: dropshadow(three-pass-box, #1c551c, 5, 0.1, 0, 0);
 }
 
 .sidebar {
@@ -60,8 +61,11 @@
 }
 
 .add-transaction-button {
-    -fx-background-color: #13831c;
+    -fx-min-width: 120;
+    -fx-min-height: 40;
+    -fx-background-color: #209c28;
     -fx-text-fill: white;
+    -fx-font-size: 16;
     -fx-font-weight: bold;
     -fx-background-radius: 20;
     -fx-padding: 10;
@@ -69,10 +73,10 @@
     -fx-effect: dropshadow(gaussian, green, 15, 0.5, 0, 0);
 }
 .add-transaction-button:hover {
-    -fx-background-color: #178e2a;
+    -fx-background-color: #2bae40;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 .add-transaction-button:pressed {
-    -fx-background-color: #0e731f;
+    -fx-background-color: #0e8524;
 }

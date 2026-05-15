@@ -4,11 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -18,7 +20,7 @@ public class AppView extends StackPane {
     @FXML
     private StackPane overlayPane, popupPane, contentPane;
     @FXML
-    private Label usernameLabel;
+    private Label usernameLabel, balanceLabel;
     @FXML
     private Button settingsButton, addTxButton;
     @FXML
@@ -29,10 +31,15 @@ public class AppView extends StackPane {
     @FXML
     public void initialize () {
         usernameLabel.setText(profile.getUsername());
+        balanceLabel.setText("Zůstatek: " + profile.getLedger().getBalance() + " " + profile.getLedger().getCurrency().getSymbol());
         sidebar.prefWidthProperty().bind(this.widthProperty().multiply(0.20));
         userImage.setImage(new Image(getClass().getResourceAsStream("defaults/DefaultProfilePicture.png")));
+        userImage.setEffect(new DropShadow(10, Color.BLACK));
 
-
+        popupPane.maxWidthProperty().bind(this.widthProperty().divide(3));
+        popupPane.maxHeightProperty().bind(this.heightProperty().divide(3));
+        popupPane.prefWidthProperty().bind(this.widthProperty().divide(3));
+        popupPane.prefHeightProperty().bind(this.heightProperty().divide(3));
 
         Button homepageButton = new Button("Domů");
         homepageButton.getStyleClass().add("menu-button");
@@ -45,6 +52,12 @@ public class AppView extends StackPane {
         Button investButton = new Button("Investice");
         investButton.getStyleClass().add("menu-button");
         pagesBox.getChildren().add(investButton);
+
+
+        Glow glow = new Glow(5);
+        InnerShadow innerShadow = new InnerShadow(3, Color.GREENYELLOW);
+        Blend blend = new Blend(BlendMode.ADD, innerShadow, glow);
+        usernameLabel.setEffect(blend);
 
         setPage(new HomepageView());
     }

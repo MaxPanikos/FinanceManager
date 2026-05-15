@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="org.example.financemanager.CreateProfilePopup" stylesheets="@defaultpopupstyle.css" styleClass="default-popup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<fx:root type="org.example.financemanager.CreateProfilePopup" stylesheets="@defaultpopupstyle.css" styleClass="default-popup" maxWidth="300" maxHeight="300" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <Label text="Nový profil" styleClass="popup-title" />
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <TextField fx:id="usernameField" promptText="Zadejte uživatelské jméno" maxWidth="300"/>

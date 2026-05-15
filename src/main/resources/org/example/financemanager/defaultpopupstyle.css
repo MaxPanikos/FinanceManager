@@ -7,8 +7,6 @@
     -fx-border-color: #272727;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
-    -fx-max-width: 300;
-    -fx-max-height: 150;
 }
 .default-popup .popup-title {
     -fx-text-fill: white;

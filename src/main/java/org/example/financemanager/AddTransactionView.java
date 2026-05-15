@@ -129,8 +129,10 @@ public class AddTransactionView extends VBox {
             appView.getProfile().getLedger().add(tx);
             closePopup();
         } catch (Exception e) {
+            responseLabel.setText("Nastala neocekavana chyba");
             System.err.println(e.getMessage());
         }
         System.out.println(appView.getProfile().getLedger()); //debug
+        System.out.println(appView.getProfile().getLedger().getBalance());
     }
 }

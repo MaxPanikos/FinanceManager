@@ -39,6 +39,10 @@ public class Transaction implements Serializable, Comparable<Transaction> {
         return date;
     }
 
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
     @Override
     public int compareTo(Transaction o) {
         return this.date.compareTo(o.getDate());

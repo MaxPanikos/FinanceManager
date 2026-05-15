@@ -11,5 +11,5 @@
     <padding >
         <Insets top="10" left="5" right="5" bottom="10"/>
     </padding>
-    <TilePane fx:id="tilePane" />
+    <TilePane fx:id="tilePane" hgap="15" vgap="15" prefColumns="2" alignment="TOP_CENTER"/>
 </fx:root>

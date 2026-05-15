@@ -45,6 +45,8 @@ public class AppView extends StackPane {
         Button investButton = new Button("Investice");
         investButton.getStyleClass().add("menu-button");
         pagesBox.getChildren().add(investButton);
+
+        setPage(new HomepageView());
     }
 
     public AppView(Profile profile, Main main) {

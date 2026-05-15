@@ -7,35 +7,47 @@ import java.util.Comparator;
 
 public class Ledger implements Serializable {
     private ArrayList<Transaction> transactions;
+    private double balance;
 
     private final static long serialVersionUID = 1L;
 
     public Ledger () {
         this.transactions = new ArrayList<>();
+        this.balance = 0;
     }
 
     public boolean addWithDuplicityCheck (Transaction transaction) {
+        if (transaction.getType().getType().equals("Výdaj") && transaction.getAmount() >= 0.0) {
+            transaction.setAmount(transaction.getAmount() * -1);
+        }
         int index = Collections.binarySearch(transactions, transaction);
         if (index >= 0) {
             if (isDuplicate(index, transaction)) {
                 return false;
             }
             transactions.add(index, transaction);
+            balance += transaction.getAmount();
             return true;
         } else {
             transactions.add(-index - 1, transaction);
+            balance += transaction.getAmount();
             return true;
         }
     }
 
     public boolean add (Transaction transaction) {
         try {
+            if (transaction.getType().getType().equals("Výdaj") && transaction.getAmount() >= 0.0) {
+                transaction.setAmount(transaction.getAmount() * -1);
+            }
             int index = Collections.binarySearch(transactions, transaction);
             if (index >= 0) {
                 transactions.add(index, transaction);
+                balance += transaction.getAmount();
                 return true;
             } else {
                 transactions.add(-index - 1, transaction);
+                balance += transaction.getAmount();
                 return true;
             }
         } catch (Exception e) {
@@ -49,6 +61,10 @@ public class Ledger implements Serializable {
 
     public void remove (int index) {
         transactions.remove(index);
+    }
+
+    public double getBalance () {
+        return balance;
     }
 
     private boolean isDuplicate(int foundIndex, Transaction newTx) {

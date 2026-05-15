@@ -14,7 +14,7 @@ public class Ledger implements Serializable {
         this.transactions = new ArrayList<>();
     }
 
-    public boolean add (Transaction transaction) {
+    public boolean addWithDuplicityCheck (Transaction transaction) {
         int index = Collections.binarySearch(transactions, transaction);
         if (index >= 0) {
             if (isDuplicate(index, transaction)) {
@@ -25,6 +25,21 @@ public class Ledger implements Serializable {
         } else {
             transactions.add(-index - 1, transaction);
             return true;
+        }
+    }
+
+    public boolean add (Transaction transaction) {
+        try {
+            int index = Collections.binarySearch(transactions, transaction);
+            if (index >= 0) {
+                transactions.add(index, transaction);
+                return true;
+            } else {
+                transactions.add(-index - 1, transaction);
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
         }
     }
 
@@ -46,5 +61,10 @@ public class Ledger implements Serializable {
             if (transactions.get(i).getHash() == newTx.getHash()) return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return transactions.toString();
     }
 }

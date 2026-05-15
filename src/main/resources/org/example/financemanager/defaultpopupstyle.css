@@ -53,78 +53,72 @@
 }
 
 .default-popup .combo-box {
-    -fx-background-color: white;
-    -fx-border-color: lightgray;
+    -fx-background-color: #474747;
+    -fx-border-color: #232323;
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-padding: 2;
+    -fx-cursor: hand;
 }
-
-.default-popup .combo-box:focused {
-    -fx-border-color: green;
-    -fx-border-width: 1.5;
+.default-popup .combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #474747;
+    -fx-cursor: hand;
 }
-
+.default-popup .combo-box .list-cell:hover {
+    -fx-background-color: #5a5a5a;
+}
 .default-popup .combo-box .list-cell:selected {
-    -fx-text-fill: green;
     -fx-font-weight: bold;
 }
 
 .default-popup .date-picker {
-    -fx-background-color: white;
-    -fx-border-color: gray;
+    -fx-background-color: #474747;
+    -fx-border-color: #292929;
     -fx-border-radius: 5;
 }
 
-.default-popup .date-picker .button {
-    -fx-background-color: green;
-    -fx-background-radius: 0 5 5 0;
+.default-popup .date-picker .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
 }
 
+.default-popup .date-picker .button {
+    -fx-background-color: #494949;
+    -fx-background-radius: 5;
+    -fx-alignment: center;
+}
 .default-popup .date-picker .button:hover {
-    -fx-background-color: green;
+    -fx-background-color: #62755d;
 }
 
 .default-popup .date-picker-popup .month-year-pane {
-    -fx-background-color: green;
+    -fx-background-color: #2e2e2e;
 }
 
 .default-popup .date-picker-popup .day-cell:selected {
-    -fx-background-color: green;
+    -fx-background-color: #68a368;
 }
 
 .default-popup .spinner {
-    -fx-background-color: white;
-    -fx-border-color: green;
+    -fx-background-color: #474747;
+    -fx-border-color: #292929;
     -fx-border-radius: 5;
 }
 
 .default-popup .spinner .text-field {
     -fx-background-color: transparent;
-    -fx-text-fill: green;
+    -fx-text-fill: white;
 }
 
 .default-popup .spinner .increment-arrow-button, .spinner .decrement-arrow-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: green;
+    -fx-background-color: rgba(85, 85, 85, 0.5);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
 }
 
-.default-popup .spinner .increment-arrow-button:hover, .spinner .decrement-arrow-button:hover {
-    -fx-background-color: #f0f0f0;
-}
-
-.default-popup .radio-button .radio {
-    -fx-border-color: gray;
-    -fx-background-color: white;
-    -fx-border-radius: 10;
-}
-
-.default-popup .radio-button:selected .radio .dot {
-    -fx-background-color: green;
-}
-
-.default-popup .radio-button:hover .radio {
-    -fx-border-color: green;
+.default-popup .spinner .increment-arrow-button:pressed, .spinner .decrement-arrow-button:pressed {
+    -fx-background-color: rgba(85, 85, 85, 0.7);
 }
 
 .toggle-switch {
@@ -145,6 +139,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
 }
 .toggle-switch .label {
-    -fx-text-fill: #333333;
+    -fx-text-fill: white;
     -fx-font-size: 14px;
 }

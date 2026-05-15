@@ -9,6 +9,8 @@ import javafx.util.StringConverter;
 import org.controlsfx.control.ToggleSwitch;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -23,10 +25,12 @@ public class AddTransactionView extends VBox {
     private ToggleSwitch typeSwitch;
     @FXML
     private ComboBox<TransactionTypes> typeComboBox;
+    @FXML
+    private Label responseLabel;
 
     @FXML
     public void initialize () {
-        datePicker.getEditor().setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        datePicker.setValue(LocalDate.now());
 
         amountSpinner.setEditable(true);
         SpinnerValueFactory<Double> factory = new SpinnerValueFactory.DoubleSpinnerValueFactory(0.0, 1_000_000_000.0, 0.0, 10.0);
@@ -53,6 +57,7 @@ public class AddTransactionView extends VBox {
             @Override
             public TransactionTypes fromString(String s) { return null; }
         });
+
         typeSwitch.selectedProperty().addListener((obs, oldVal, newVal) -> {
             updateCategory(newVal);
         });
@@ -73,13 +78,10 @@ public class AddTransactionView extends VBox {
 
     //AI
     private void updateCategory (boolean isExpense) {
-        String hledanyTyp = isExpense ? "Výdaj" : "Příjem";
-        var vyfiltrovano = Arrays.stream(TransactionTypes.values())
-                .filter(t -> t.getType().equals(hledanyTyp))
-                .collect(Collectors.toList());
-
-        typeComboBox.setItems(FXCollections.observableArrayList(vyfiltrovano));
-        if (!vyfiltrovano.isEmpty()) {
+        String type = isExpense ? "Výdaj" : "Příjem";
+        var filtred = Arrays.stream(TransactionTypes.values()).filter(t -> t.getType().equals(type)).collect(Collectors.toList());
+        typeComboBox.setItems(FXCollections.observableArrayList(filtred));
+        if (!filtred.isEmpty()) {
             typeComboBox.getSelectionModel().selectFirst();
         }
     }
@@ -91,6 +93,22 @@ public class AddTransactionView extends VBox {
 
     @FXML
     protected void addTx () {
+        try {
+            double amount = amountSpinner.getValue();
+            LocalDate date = datePicker.getValue();
+            TransactionTypes type = typeComboBox.getValue();
 
+            if (date != null) {
+                responseLabel.setText("Prosim vyberte datum");
+            }
+
+            LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.MIDNIGHT);
+            Transaction tx = new Transaction(amount, type, dateTime);
+            appView.getProfile().getLedger().add(tx);
+            closePopup();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        System.out.println(appView.getProfile().getLedger()); //debug
     }
 }

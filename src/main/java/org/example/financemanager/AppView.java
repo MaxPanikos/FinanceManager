@@ -82,4 +82,8 @@ public class AppView extends StackPane {
     public void addTransaction () {
         showPopup(new AddTransactionView(this));
     }
+
+    public Profile getProfile () {
+        return profile;
+    }
 }

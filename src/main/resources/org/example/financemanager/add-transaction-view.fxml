@@ -23,10 +23,14 @@
         <ToggleSwitch fx:id="typeSwitch" selected="false" styleClass="toggle-switch"/>
         <Label text="Výdaj" />
     </HBox>
-    <ComboBox fx:id="typeComboBox" />
+    <VBox>
+        <Label text="Typ: " styleClass="side-text"/>
+        <ComboBox fx:id="typeComboBox" />
+    </VBox>
+    <Label fx:id="responseLabel"/>
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <HBox spacing="5" alignment="CENTER_RIGHT">
         <Button text="Zrušit" styleClass="close-button" onAction="#closePopup"/>
-        <Button text="Přidat" styleClass="create-button"/>
+        <Button text="Přidat" styleClass="create-button" onAction="#addTx"/>
     </HBox>
 </fx:root>

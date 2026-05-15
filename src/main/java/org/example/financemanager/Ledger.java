@@ -53,12 +53,12 @@ public class Ledger implements Serializable {
 
     private boolean isDuplicate(int foundIndex, Transaction newTx) {
         Transaction existing = transactions.get(foundIndex);
-        if (existing.getHash() == newTx.getHash() && existing.getAmount() == newTx.getAmount()) return true;
+        if (existing.equals(newTx) && existing.getAmount() == newTx.getAmount()) return true;
         for (int i = foundIndex - 1; i >= 0 && transactions.get(i).getDate().equals(newTx.getDate()); i--) {
-            if (transactions.get(i).getHash() == newTx.getHash()) return true;
+            if (transactions.get(i).equals(newTx)) return true;
         }
         for (int i = foundIndex + 1; i < transactions.size() && transactions.get(i).getDate().equals(newTx.getDate()); i++) {
-            if (transactions.get(i).getHash() == newTx.getHash()) return true;
+            if (transactions.get(i).equals(newTx)) return true;
         }
         return false;
     }

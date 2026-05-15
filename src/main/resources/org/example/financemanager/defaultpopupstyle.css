@@ -112,13 +112,13 @@
 }
 
 .default-popup .spinner .increment-arrow-button, .spinner .decrement-arrow-button {
-    -fx-background-color: rgba(85, 85, 85, 0.5);
+    -fx-background-color: rgba(117, 117, 117, 0.5);
     -fx-text-fill: white;
     -fx-cursor: hand;
 }
 
 .default-popup .spinner .increment-arrow-button:pressed, .spinner .decrement-arrow-button:pressed {
-    -fx-background-color: rgba(85, 85, 85, 0.7);
+    -fx-background-color: rgba(99, 99, 99, 0.7);
 }
 
 .toggle-switch {

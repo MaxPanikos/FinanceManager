@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Currency;
 
 public class Main extends Application {
     private StackPane root;
@@ -31,6 +32,7 @@ public class Main extends Application {
 //        FileManager.save(new Profile("amongus", "CZK"), FileManager.profilesPath);
 //        FileManager.save(new Profile("doktorsusik", "CZK"), FileManager.profilesPath);
 
+        System.out.println(Currency.getAvailableCurrencies());
         setPane(new ProfileChooserView(this));
 
         primaryStage.setMinWidth(300);

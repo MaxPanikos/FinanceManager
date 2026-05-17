@@ -3,16 +3,17 @@ package org.example.financemanager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.*;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
 public class HomepageView extends VBox {
     @FXML
-    private TilePane tilePane;
+    private FlowPane flowPane;
 
     @FXML
     public void initialize () {
-        tilePane.getChildren().addAll(createPieChartPanel("Výdaje podle kategorií"), createBarChartPanel("Měsíční přehled"));
+        flowPane.getChildren().addAll(createPieChartPanel("Výdaje podle kategorií"), createBarChartPanel("Měsíční přehled"));
     }
 
     public HomepageView() {

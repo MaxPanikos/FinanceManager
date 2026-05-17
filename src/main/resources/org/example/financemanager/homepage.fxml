@@ -11,5 +11,7 @@
     <padding >
         <Insets top="10" left="5" right="5" bottom="10"/>
     </padding>
-    <TilePane fx:id="tilePane" hgap="15" vgap="15" prefColumns="2" alignment="TOP_CENTER"/>
+    <FlowPane fx:id="flowPane" hgap="15" vgap="15" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+
+    </FlowPane>
 </fx:root>

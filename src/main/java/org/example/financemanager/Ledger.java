@@ -3,10 +3,9 @@ package org.example.financemanager;
 import javafx.scene.shape.CubicCurveTo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Currency;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 
 public class Ledger implements Serializable {
     private ArrayList<Transaction> transactions;
@@ -58,6 +57,34 @@ public class Ledger implements Serializable {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public ArrayList<Transaction> getTransactionsInRange (LocalDateTime start, LocalDateTime end) {
+        if (transactions.isEmpty()) {
+            return new ArrayList<>();
+        }
+        if (start.isAfter(end)) {
+            throw new IllegalArgumentException();
+        }
+        Transaction startTx = new Transaction(0.0, TransactionTypes.OTHER_INCOME, start);
+        int startingIndex = Collections.binarySearch(transactions, startTx);
+        if (startingIndex < 0) {
+            startingIndex = -startingIndex - 1;
+        } else {
+            while (startingIndex > 0 && transactions.get(startingIndex - 1).getDate().isEqual(start)) {
+                startingIndex--;
+            }
+        }
+
+        ArrayList<Transaction> inRangeTransactions = new ArrayList<>();
+        for (int i = startingIndex; i < transactions.size(); i++) {
+            Transaction transaction = transactions.get(i);
+            if (transaction.getDate().isAfter(end)) {
+                break;
+            }
+            inRangeTransactions.add(transaction);
+        }
+        return inRangeTransactions;
     }
 
     public Transaction get (int index) {

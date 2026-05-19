@@ -1,0 +1,54 @@
+.transaction-cell {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #eef2f5;
+    -fx-border-width: 0 0 1 0;
+    -fx-alignment: center-left;
+}
+.transaction-cell:hover {
+    -fx-background-color: #f8fafc;
+}
+.transaction-cell:selected {
+    -fx-background-color: #e2e8f0;
+}
+.transaction-cell .label {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: #334155;
+}
+
+.tx-index {
+    -fx-font-size: 11px !important;
+    -fx-text-fill: #94a3b8 !important;
+    -fx-font-weight: bold;
+}
+
+.tx-type {
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e293b !important;
+}
+
+.tx-amount {
+    -fx-font-weight: bold;
+    -fx-alignment: center-right;
+    -fx-text-fill: #0f172a;
+}
+.tx-date {
+    -fx-text-fill: #64748b !important;
+    -fx-alignment: center-right;
+}
+
+.tx-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-text-fill: #64748b;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.tx-button:hover {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #1e293b;
+    -fx-border-color: #94a3b8;
+}

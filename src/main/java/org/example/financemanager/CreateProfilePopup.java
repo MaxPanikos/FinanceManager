@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.io.IOException;
 
 public class CreateProfilePopup extends VBox {
@@ -39,6 +40,11 @@ public class CreateProfilePopup extends VBox {
             return;
         }
         Profile p = new Profile(username, "CZK");
+        try {
+            FileManager.save(p, FileManager.profilesPath);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
         page.login(p);
     }
     @FXML

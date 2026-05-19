@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="org.example.financemanager.TransactionView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@transactionview.css" styleClass="transaction-page">
+    <VBox fx:id="contentBox" styleClass="content-box">
+        <HBox styleClass="header-box">
+            <Label text="Transakce" styleClass="page-title"/>
+            <Label fx:id="rangeLabel" styleClass="range-label"/>
+        </HBox>
+        <ScrollPane styleClass="scroll-pane">
+            <VBox fx:id="txList" VBox.vgrow="ALWAYS"/>
+        </ScrollPane>
+    </VBox>
+    <Label fx:id="noTxLabel" text="Zatím nemáte žádnou transakci..." visible="false"/>
+</fx:root>

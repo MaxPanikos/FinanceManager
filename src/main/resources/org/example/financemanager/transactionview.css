@@ -1,0 +1,28 @@
+.transaction-page {
+    -fx-alignment: center;
+    -fx-background-color: #f8fafc;
+    -fx-padding: 20px;
+}
+
+.transaction-page .content-box {
+    -fx-spacing: 15px;
+}
+
+.transaction-page .header-box {
+    -fx-alignment: center-left;
+    -fx-spacing: 15px;
+}
+
+.transaction-page .page-title {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0f172a;
+}
+
+.transaction-page .range-label {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748b;
+    -fx-padding: 6px 0 0 0;
+}

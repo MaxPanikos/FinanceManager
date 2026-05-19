@@ -87,6 +87,10 @@ public class Ledger implements Serializable {
         return inRangeTransactions;
     }
 
+    public int getSize () {
+        return transactions.size();
+    }
+
     public Transaction get (int index) {
         return transactions.get(index);
     }

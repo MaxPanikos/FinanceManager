@@ -43,6 +43,9 @@ public class AppView extends StackPane {
 
         Button homepageButton = new Button("Domů");
         homepageButton.getStyleClass().add("menu-button");
+        homepageButton.setOnAction(event -> {
+            setPage(new HomepageView());
+        });
         pagesBox.getChildren().add(homepageButton);
 
         Button graphsButton = new Button("Grafy");
@@ -52,6 +55,13 @@ public class AppView extends StackPane {
         Button investButton = new Button("Investice");
         investButton.getStyleClass().add("menu-button");
         pagesBox.getChildren().add(investButton);
+
+        Button ledgerButton = new Button("Transakce");
+        ledgerButton.getStyleClass().add("menu-button");
+        ledgerButton.setOnAction(event -> {
+           setPage(new TransactionView(profile.getLedger()));
+        });
+        pagesBox.getChildren().add(ledgerButton);
 
 
         Glow glow = new Glow(5);

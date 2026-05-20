@@ -22,6 +22,12 @@ public class TransactionCell extends GridPane {
         typeLabel.setText(transaction.getType().getLabel());
         amountLabel.setText(transaction.getAmount() + "");
         dateLabel.setText(transaction.getDate().toString());
+
+        if (transaction.getAmount() < 0) {
+            this.setStyle("-fx-background-color: rgba(255,0,0,0.1)");
+        } else {
+            this.setStyle("-fx-background-color: rgba(97,223,104,0.1)");
+        }
     }
 
     public TransactionCell(Transaction transaction, int index) {

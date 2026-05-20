@@ -5,22 +5,28 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.geometry.Insets?>
-<fx:root type="org.example.financemanager.TransactionCell" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@transactioncell.css" styleClass="transaction-cell">
+
+<fx:root type="org.example.financemanager.TransactionCell" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@transactioncell.css" styleClass="transaction-cell" HBox.hgrow="ALWAYS" maxWidth="Infinity">
     <padding>
         <Insets top="5" bottom="5" left="5" right="5"/>
     </padding>
+
     <columnConstraints>
-        <ColumnConstraints prefWidth="40.0" minWidth="40.0" />
-        <ColumnConstraints prefWidth="120.0" minWidth="120.0" />
-        <ColumnConstraints prefWidth="80.0" minWidth="80.0" />
-        <ColumnConstraints prefWidth="40.0" minWidth="40.0" />
+        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" />
+
+        <ColumnConstraints percentWidth="35.0" />
+
+        <ColumnConstraints percentWidth="30.0" />
+
+        <ColumnConstraints percentWidth="35.0" />
+
+        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" />
     </columnConstraints>
 
     <Label fx:id="indexLabel" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="tx-index"/>
-    <Label fx:id="typeLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"  styleClass="tx-type"/>
-    <Label fx:id="amountLabel" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="tx-amount"/>
-    <Label fx:id="dateLabel" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="tx-date"/>
-    <Button fx:id="moreButton" text="⋮" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="tx-button" />
- </fx:root>
+    <Label fx:id="typeLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="tx-type" />
+    <Label fx:id="amountLabel" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="tx-amount" />
+    <Label fx:id="dateLabel" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="tx-date" />
+    <Button fx:id="moreButton" text="⋮" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="tx-button" GridPane.halignment="CENTER" />
+</fx:root>

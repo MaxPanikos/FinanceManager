@@ -52,9 +52,9 @@ public class AppView extends StackPane {
         graphsButton.getStyleClass().add("menu-button");
         pagesBox.getChildren().add(graphsButton);
 
-        Button investButton = new Button("Investice");
-        investButton.getStyleClass().add("menu-button");
-        pagesBox.getChildren().add(investButton);
+        Button calcButton = new Button("Kalkulačka");
+        calcButton.getStyleClass().add("menu-button");
+        pagesBox.getChildren().add(calcButton);
 
         Button ledgerButton = new Button("Transakce");
         ledgerButton.getStyleClass().add("menu-button");

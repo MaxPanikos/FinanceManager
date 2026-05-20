@@ -6,10 +6,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import org.controlsfx.control.SearchableComboBox?>
 <fx:root type="org.example.financemanager.CreateProfilePopup" stylesheets="@defaultpopupstyle.css" styleClass="default-popup" maxWidth="300" maxHeight="300" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <Label text="Nový profil" styleClass="popup-title" />
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <TextField fx:id="usernameField" promptText="Zadejte uživatelské jméno" maxWidth="300" onAction="#createProfile"/>
+    <SearchableComboBox fx:id="currencyBox" styleClass="combo-box"/>
     <Label fx:id="responseLabel" text="" styleClass="response-label" />
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <HBox spacing="5" alignment="CENTER_RIGHT">

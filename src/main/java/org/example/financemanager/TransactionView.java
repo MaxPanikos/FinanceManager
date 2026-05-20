@@ -11,7 +11,7 @@ public class TransactionView extends StackPane {
     @FXML
     private Label rangeLabel, noTxLabel;
     @FXML
-    private VBox contentBox;
+    private VBox contentBox, txList;
 
     @FXML
     public void initialize() {
@@ -24,6 +24,12 @@ public class TransactionView extends StackPane {
             rangeLabel.setText(firstTx.getDate() + " - " + lastTx.getDate());
         }
 
+        int i = 0;
+        for (Transaction tx : ledger.getTransactions()) {
+            TransactionCell cell = new TransactionCell(tx, i);
+            txList.getChildren().add(cell);
+            i++;
+        }
     }
 
     public TransactionView(Ledger ledger) {

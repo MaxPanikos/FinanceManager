@@ -26,3 +26,9 @@
     -fx-text-fill: #b3cad8;
     -fx-padding: 6px 0 0 0;
 }
+
+.transaction-page .no-tx-label {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}

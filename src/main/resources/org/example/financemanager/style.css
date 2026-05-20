@@ -23,6 +23,10 @@
     -fx-background-insets: 0 !important;
     -fx-padding: 0 !important;
 }
+.scroll-pane .corner {
+    -fx-background-color: transparent !important;
+}
+
 
 .scroll-bar:vertical .track,
 .scroll-bar:horizontal .track {

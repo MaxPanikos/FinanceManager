@@ -14,5 +14,5 @@
         </HBox>
         <VBox fx:id="txList" VBox.vgrow="ALWAYS"/>
     </VBox>
-    <Label fx:id="noTxLabel" text="Zatím nemáte žádnou transakci..." visible="false"/>
+    <Label fx:id="noTxLabel" text="Zatím nemáte žádnou transakci..." visible="false" styleClass="no-tx-label" wrapText="true"/>
 </fx:root>

@@ -107,6 +107,10 @@ public class Ledger implements Serializable {
         return currency;
     }
 
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
     private boolean isDuplicate(int foundIndex, Transaction newTx) {
         Transaction existing = transactions.get(foundIndex);
         if (existing.equals(newTx) && existing.getAmount() == newTx.getAmount()) return true;

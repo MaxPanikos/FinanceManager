@@ -1,13 +1,9 @@
 .main-root {
-    -fx-background-color: #454545;
+    -fx-background-color: #1e1e1e;
+    -fx-font-family: "Segoe UI", sans-serif;
 }
 .main-root .overlay {
     -fx-background-color: rgba(34, 34, 34, 0.5);
-}
-
-.main-root {
-    -fx-background-color: #1e1e1e;
-    -fx-font-family: "Segoe UI", sans-serif;
 }
 
 .main-root .label {

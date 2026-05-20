@@ -39,7 +39,7 @@
           </VBox>
       </left>
       <center>
-         <ScrollPane styleClass="scroll-pane">
+         <ScrollPane styleClass="scroll-pane" fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity" focusTraversable="false">
             <StackPane fx:id="contentPane" VBox.vgrow="ALWAYS"/>
          </ScrollPane>
       </center>

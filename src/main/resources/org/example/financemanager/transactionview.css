@@ -1,6 +1,6 @@
 .transaction-page {
     -fx-alignment: center;
-    -fx-background-color: #f8fafc;
+    -fx-background-color: #404040;
     -fx-padding: 20px;
 }
 
@@ -17,12 +17,12 @@
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #0f172a;
+    -fx-text-fill: #ffffff;
 }
 
 .transaction-page .range-label {
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: #64748b;
+    -fx-text-fill: #b3cad8;
     -fx-padding: 6px 0 0 0;
 }

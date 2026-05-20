@@ -1,10 +1,27 @@
-.scroll-pane {
-    -fx-background-color: transparent;
-    -fx-padding: 0;
+.scroll-pane,
+.scroll-pane:focused,
+.scroll-pane:hover {
+    -fx-background-color: transparent !important;
+    -fx-border-color: transparent !important;
+    -fx-border-width: 0 !important;
+    -fx-background-insets: 0 !important;
+    -fx-box-border: transparent !important;
+    -fx-padding: 0 !important;
 }
-
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
+.scroll-pane > .viewport,
+.scroll-pane:focused .viewport,
+.scroll-pane:hover .viewport,
+.scroll-pane .content,
+.scroll-pane:focused .content,
+.scroll-pane:hover .content {
+    -fx-background-color: transparent !important;
+    -fx-background-insets: 0 !important;
+    -fx-padding: 0 !important;
+}
+.scroll-pane > .content {
+    -fx-background-color: transparent !important;
+    -fx-background-insets: 0 !important;
+    -fx-padding: 0 !important;
 }
 
 .scroll-bar:vertical .track,

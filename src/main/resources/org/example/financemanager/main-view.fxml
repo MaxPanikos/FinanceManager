@@ -35,7 +35,7 @@
           <VBox fx:id="sidebar" styleClass="sidebar" alignment="CENTER">
              <VBox fx:id="pagesBox" VBox.vgrow="ALWAYS" spacing="5" alignment="TOP_CENTER"/>
              <Region VBox.vgrow="ALWAYS"/>
-             <Button fx:id="settingsButton" text="Nastavení" styleClass="menu-button"/>
+             <Button fx:id="settingsButton" text="Nastavení" styleClass="menu-button" onAction="#openSettings"/>
           </VBox>
       </left>
       <center>

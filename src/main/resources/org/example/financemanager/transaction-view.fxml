@@ -12,7 +12,7 @@
             <Label text="Transakce" styleClass="page-title"/>
             <Label fx:id="rangeLabel" styleClass="range-label"/>
         </HBox>
-        <VBox fx:id="txList" VBox.vgrow="ALWAYS"/>
+        <VBox fx:id="txList" VBox.vgrow="ALWAYS" styleClass="box"/>
     </VBox>
     <Label fx:id="noTxLabel" text="Zatím nemáte žádnou transakci..." visible="false" styleClass="no-tx-label" wrapText="true"/>
 </fx:root>

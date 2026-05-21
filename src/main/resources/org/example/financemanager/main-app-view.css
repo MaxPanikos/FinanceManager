@@ -19,6 +19,8 @@
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-padding: 15 25;
     -fx-alignment: center;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #474747;
 }
 .topbar .username-label {
     -fx-text-fill: #167a1d;
@@ -33,6 +35,8 @@
     -fx-spacing: 10;
     -fx-pref-width: 140;
     -fx-max-width: 200;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #474747;
 }
 
 .menu-button {

@@ -108,6 +108,11 @@ public class AppView extends StackPane {
         showPopup(new AddTransactionView(this));
     }
 
+    @FXML
+    private void openSettings () {
+        showPopup(new SettingsPopup(this));
+    }
+
     public Profile getProfile () {
         return profile;
     }

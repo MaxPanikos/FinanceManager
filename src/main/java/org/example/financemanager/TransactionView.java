@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import java.time.format.DateTimeFormatter;
+
 public class TransactionView extends StackPane {
     private Ledger ledger;
     @FXML
@@ -21,7 +23,9 @@ public class TransactionView extends StackPane {
         } else {
             Transaction firstTx = ledger.get(0);
             Transaction lastTx = ledger.get(ledger.getSize() - 1);
-            rangeLabel.setText(firstTx.getDate() + " - " + lastTx.getDate());
+            String firstDate = firstTx.getDate().toLocalDate().format(DateTimeFormatter.ofPattern("d. M. yyyy"));
+            String lastDate = lastTx.getDate().toLocalDate().format(DateTimeFormatter.ofPattern("d. M. yyyy"));
+            rangeLabel.setText(firstDate + " - " + lastDate);
         }
 
         int i = 0;

@@ -11,10 +11,13 @@
     <Label text="Nový profil" styleClass="popup-title" />
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <TextField fx:id="usernameField" promptText="Zadejte uživatelské jméno" maxWidth="300" onAction="#createProfile"/>
-    <SearchableComboBox fx:id="currencyBox" styleClass="combo-box"/>
+    <VBox>
+        <Label text="Měna" styleClass="side-text"/>
+        <SearchableComboBox fx:id="currencyBox" styleClass="combo-box"/>
+    </VBox>
     <Label fx:id="responseLabel" text="" styleClass="response-label" />
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
-    <HBox spacing="5" alignment="CENTER_RIGHT">
+    <HBox spacing="5" alignment="BOTTOM_RIGHT">
         <Button text="Zrušit" onAction="#closePopup" styleClass="close-button"/>
         <Button text="Vytvořit" onAction="#createProfile" styleClass="create-button"/>
     </HBox>

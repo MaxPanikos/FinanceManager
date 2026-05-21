@@ -1,6 +1,6 @@
 .transaction-page {
     -fx-alignment: center;
-    -fx-background-color: #404040;
+    -fx-background-color: transparent;
     -fx-padding: 20px;
 }
 
@@ -23,7 +23,7 @@
 .transaction-page .range-label {
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: #b3cad8;
+    -fx-text-fill: #5fa665;
     -fx-padding: 6px 0 0 0;
 }
 
@@ -31,4 +31,14 @@
     -fx-font-size: 30px;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
+}
+
+.transaction-page .box {
+    -fx-background-color: rgba(74, 74, 74, 0.4);
+    -fx-border-color: #2c2c2c;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, black, 15, 0.5, 0, 0);
 }

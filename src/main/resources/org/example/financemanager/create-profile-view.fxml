@@ -19,6 +19,6 @@
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <HBox spacing="5" alignment="BOTTOM_RIGHT">
         <Button text="Zrušit" onAction="#closePopup" styleClass="close-button"/>
-        <Button text="Vytvořit" onAction="#createProfile" styleClass="create-button"/>
+        <Button text="Vytvořit" onAction="#createProfile" styleClass="apply-button"/>
     </HBox>
 </fx:root>

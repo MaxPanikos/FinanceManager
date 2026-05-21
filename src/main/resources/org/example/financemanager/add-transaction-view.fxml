@@ -31,6 +31,6 @@
     <Region minHeight="10" VBox.vgrow="ALWAYS" />
     <HBox spacing="5" alignment="CENTER_RIGHT">
         <Button text="Zrušit" styleClass="close-button" onAction="#closePopup"/>
-        <Button text="Přidat" styleClass="create-button" onAction="#addTx"/>
+        <Button text="Přidat" styleClass="apply-button" onAction="#addTx"/>
     </HBox>
 </fx:root>

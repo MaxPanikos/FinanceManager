@@ -58,4 +58,13 @@ public class FileManager {
         File file = new File(directoryPath, username);
         return file.exists() && file.isFile();
     }
+
+    public static boolean removeProfile (String username, String directoryPath) {
+        try {
+            Path path = Paths.get(directoryPath, username);
+            return Files.deleteIfExists(path);
+        } catch (IOException e) {
+            return false;
+        }
+    }
 }

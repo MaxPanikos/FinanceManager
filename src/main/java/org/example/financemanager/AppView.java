@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class AppView extends StackPane {
     private Profile profile;
+    private Main main;
 
     @FXML
     private StackPane overlayPane, popupPane, contentPane;
@@ -74,7 +75,7 @@ public class AppView extends StackPane {
 
     public AppView(Profile profile, Main main) {
         this.profile = profile;
-
+        this.main = main;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -110,7 +111,7 @@ public class AppView extends StackPane {
 
     @FXML
     private void openSettings () {
-        showPopup(new SettingsPopup(this));
+        showPopup(new SettingsPopup(this, main));
     }
 
     public Profile getProfile () {

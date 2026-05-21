@@ -14,7 +14,7 @@
     -fx-font-size: 20;
 }
 
-.default-popup .create-button {
+.default-popup .apply-button {
     -fx-min-width: 60;
     -fx-min-height: 30;
     -fx-text-fill: black;
@@ -23,7 +23,7 @@
     -fx-font-weight: bold;
     -fx-cursor: hand;
 }
-.default-popup .create-button:hover {
+.default-popup .apply-button:hover {
     -fx-background-color: #dfdfdf;
 }
 

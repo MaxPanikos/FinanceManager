@@ -120,5 +120,7 @@ public class AppView extends StackPane {
 
     public void resetPage () {
         balanceLabel.setText("Zůstatek: " + profile.getLedger().getBalance() + " " + profile.getLedger().getCurrency().getSymbol());
+        Page page = (Page) contentPane.getChildren().getFirst();
+        page.update();
     }
 }

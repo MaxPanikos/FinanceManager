@@ -15,15 +15,15 @@
 
 .transaction-page .page-title {
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 22px;
+    -fx-font-size: 30;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
 }
 
 .transaction-page .range-label {
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 13px;
-    -fx-text-fill: #5fa665;
+    -fx-font-size: 20;
+    -fx-text-fill: #3abc45;
     -fx-padding: 6px 0 0 0;
 }
 
@@ -41,4 +41,31 @@
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-effect: dropshadow(gaussian, black, 15, 0.5, 0, 0);
+}
+
+.transaction-page .list-header {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.transaction-page .range-button {
+    -fx-padding: 10;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #008a00;
+    -fx-background-color: #0faf0f;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-effect: innershadow(gaussian, yellow, 15, 0.5, 0, 0);
+}
+.transaction-page .range-button:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: innershadow(gaussian, greenyellow, 10, 0.5, 0, 0);
+}
+.transaction-page .range-button:pressed {
+    -fx-effect: innershadow(gaussian, lawngreen, 10, 0.7, 0, 0);
 }

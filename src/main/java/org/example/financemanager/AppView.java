@@ -60,7 +60,7 @@ public class AppView extends StackPane {
         Button ledgerButton = new Button("Transakce");
         ledgerButton.getStyleClass().add("menu-button");
         ledgerButton.setOnAction(event -> {
-           setPage(new TransactionView(profile.getLedger()));
+           setPage(new TransactionView(this, profile.getLedger()));
         });
         pagesBox.getChildren().add(ledgerButton);
 

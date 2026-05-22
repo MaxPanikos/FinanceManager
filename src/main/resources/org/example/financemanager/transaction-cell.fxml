@@ -9,24 +9,24 @@
 
 <fx:root type="org.example.financemanager.TransactionCell" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@transactioncell.css" styleClass="transaction-cell" HBox.hgrow="ALWAYS" maxWidth="Infinity">
     <padding>
-        <Insets top="5" bottom="5" left="5" right="5"/>
+        <Insets top="8" bottom="8" left="12" right="12"/>
     </padding>
 
     <columnConstraints>
-        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" />
-
-        <ColumnConstraints percentWidth="35.0" />
-
-        <ColumnConstraints percentWidth="30.0" />
-
-        <ColumnConstraints percentWidth="35.0" />
-
-        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" />
+        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" halignment="LEFT" />
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="30.0" halignment="LEFT" />
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
+        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" halignment="CENTER" />
     </columnConstraints>
+
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS" fillHeight="true" />
+    </rowConstraints>
 
     <Label fx:id="indexLabel" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="tx-index"/>
     <Label fx:id="typeLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="tx-type" />
     <Label fx:id="amountLabel" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="tx-amount" />
     <Label fx:id="dateLabel" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="tx-date" />
-    <Button fx:id="moreButton" text="⋮" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="tx-button" GridPane.halignment="CENTER" />
+    <Button fx:id="moreButton" text="⋮" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="tx-more-button"/>
 </fx:root>

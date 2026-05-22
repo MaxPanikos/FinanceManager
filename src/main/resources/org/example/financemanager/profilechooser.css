@@ -1,5 +1,5 @@
 .root {
-    -fx-background-color: linear-gradient(to top, #081908, #216e30);
+    -fx-background-color: linear-gradient(to top, #062b06, #18ac01);
 }
 .root .app-title {
     -fx-text-fill: white;

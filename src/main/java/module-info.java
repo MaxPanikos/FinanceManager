@@ -5,6 +5,7 @@ module org.example.financemanager {
 
     requires org.controlsfx.controls;
     requires eu.hansolo.tilesfx;
+    requires java.desktop;
 
     opens org.example.financemanager to javafx.fxml;
     exports org.example.financemanager;

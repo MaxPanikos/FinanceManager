@@ -42,6 +42,15 @@ public class SettingsPopup extends VBox {
     }
 
     @FXML
+    private void saveProfile () {
+        try {
+            FileManager.save(appView.getProfile(), FileManager.profilesPath);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
     private void saveSettings() {
     }
 }

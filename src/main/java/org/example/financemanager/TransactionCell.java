@@ -8,9 +8,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
+import java.time.format.DateTimeFormatter;
+
 public class TransactionCell extends GridPane {
     private int index;
     private Transaction transaction;
+    private Ledger ledger;
     @FXML
     private Label indexLabel, typeLabel, amountLabel, dateLabel;
     @FXML
@@ -20,8 +23,8 @@ public class TransactionCell extends GridPane {
     public void initialize() {
         indexLabel.setText(index + "");
         typeLabel.setText(transaction.getType().getLabel());
-        amountLabel.setText(transaction.getAmount() + "");
-        dateLabel.setText(transaction.getDate().toString());
+        amountLabel.setText(transaction.getAmount() + " " + ledger.getCurrency().getSymbol());
+        dateLabel.setText(transaction.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
 
         if (transaction.getAmount() < 0) {
             this.setStyle("-fx-background-color: rgba(255,0,0,0.1)");
@@ -30,9 +33,10 @@ public class TransactionCell extends GridPane {
         }
     }
 
-    public TransactionCell(Transaction transaction, int index) {
+    public TransactionCell(Transaction transaction, Ledger ledger, int index) {
         this.transaction = transaction;
         this.index = index;
+        this.ledger = ledger;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("transaction-cell.fxml"));
             fxmlLoader.setRoot(this);

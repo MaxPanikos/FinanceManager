@@ -6,13 +6,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import impl.org.controlsfx.skin.GridRow?>
+<?import javafx.geometry.Insets?>
 <fx:root type="org.example.financemanager.TransactionView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@transactionview.css" styleClass="transaction-page">
     <VBox fx:id="contentBox" styleClass="content-box">
         <HBox styleClass="header-box">
             <Label text="Transakce" styleClass="page-title"/>
             <Label fx:id="rangeLabel" styleClass="range-label"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="rangeButton" styleClass="range-button" text="Změnit rozmezí" onAction="#rangePicker"/>
         </HBox>
-        <VBox fx:id="txList" VBox.vgrow="ALWAYS" styleClass="box"/>
+        <VBox fx:id="txList" VBox.vgrow="ALWAYS" styleClass="box">
+            <GridPane styleClass="transaction-cell">
+                <padding>
+                    <Insets top="8" bottom="8" left="12" right="12"/>
+                </padding>
+
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" halignment="LEFT" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30.0" halignment="LEFT" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
+                    <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" />
+                </columnConstraints>
+
+                <rowConstraints>
+                    <RowConstraints vgrow="ALWAYS" valignment="CENTER" />
+                </rowConstraints>
+
+                <Label text="#" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="list-header" />
+                <Label text="Typ transakce" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="list-header" />
+                <Label text="Částka" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="list-header" />
+                <Label text="Datum" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="list-header" />
+            </GridPane>
+        </VBox>
     </VBox>
     <Label fx:id="noTxLabel" text="Zatím nemáte žádnou transakci..." visible="false" styleClass="no-tx-label" wrapText="true"/>
 </fx:root>

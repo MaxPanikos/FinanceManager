@@ -63,20 +63,20 @@
 .add-transaction-button {
     -fx-min-width: 120;
     -fx-min-height: 40;
-    -fx-background-color: #209c28;
+    -fx-background-color: #23b801;
     -fx-text-fill: white;
     -fx-font-size: 16;
     -fx-font-weight: bold;
     -fx-background-radius: 20;
     -fx-padding: 10;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, green, 15, 0.5, 0, 0);
+    -fx-effect: dropshadow(gaussian, #1bca1b, 15, 0.5, 0, 0);
 }
 .add-transaction-button:hover {
-    -fx-background-color: #2bae40;
+    -fx-background-color: #03dd07;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
 .add-transaction-button:pressed {
-    -fx-background-color: #0e8524;
+    -fx-background-color: #10af2d;
 }

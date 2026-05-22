@@ -1,19 +1,33 @@
 package org.example.financemanager;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+import javax.swing.plaf.basic.BasicGraphicsUtils;
+import javax.swing.text.PlainDocument;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class TransactionView extends StackPane {
     private Ledger ledger;
+    private AppView appView;
+
+    private LocalDate fromDate;
+    private LocalDate toDate;
+
     @FXML
     private Label rangeLabel, noTxLabel;
     @FXML
     private VBox contentBox, txList;
+    @FXML
+    private Button rangeButton;
 
     @FXML
     public void initialize() {
@@ -21,23 +35,15 @@ public class TransactionView extends StackPane {
             contentBox.setVisible(false);
             noTxLabel.setVisible(true);
         } else {
-            Transaction firstTx = ledger.get(0);
-            Transaction lastTx = ledger.get(ledger.getSize() - 1);
-            String firstDate = firstTx.getDate().toLocalDate().format(DateTimeFormatter.ofPattern("d. M. yyyy"));
-            String lastDate = lastTx.getDate().toLocalDate().format(DateTimeFormatter.ofPattern("d. M. yyyy"));
-            rangeLabel.setText(firstDate + " - " + lastDate);
-        }
-
-        int i = 0;
-        for (Transaction tx : ledger.getTransactions()) {
-            TransactionCell cell = new TransactionCell(tx, i);
-            txList.getChildren().add(cell);
-            i++;
+            fromDate = ledger.get(0).getDate().toLocalDate();
+            toDate = ledger.get(ledger.getSize() - 1).getDate().toLocalDate();
+            setPage();
         }
     }
 
-    public TransactionView(Ledger ledger) {
+    public TransactionView(AppView appView, Ledger ledger) {
         this.ledger = ledger;
+        this.appView = appView;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("transaction-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -46,5 +52,34 @@ public class TransactionView extends StackPane {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setPage () {
+        String firstDate = fromDate.format(DateTimeFormatter.ofPattern("d. M. yyyy"));
+        String lastDate = toDate.format(DateTimeFormatter.ofPattern("d. M. yyyy"));
+        rangeLabel.setText(firstDate + " - " + lastDate);
+
+        txList.getChildren().clear();
+        ArrayList<Transaction> transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
+        int i = 1;
+        for (Transaction tx : transactions) {
+            TransactionCell cell = new TransactionCell(tx, ledger, i);
+            txList.getChildren().add(cell);
+            i++;
+        }
+    }
+
+    protected void setRange (LocalDate start, LocalDate end) {
+        if (start.isAfter(end)) {
+            return;
+        }
+        this.fromDate = start;
+        this.toDate = end;
+        Platform.runLater(() -> setPage());
+    }
+
+    @FXML
+    private void rangePicker () {
+        appView.showPopup(new DateRangePopup(appView, this));
     }
 }

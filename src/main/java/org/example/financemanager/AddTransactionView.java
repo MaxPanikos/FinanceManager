@@ -17,8 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class AddTransactionView extends VBox {
-    private AppView appView;
+public class AddTransactionView extends DefaultPopup {
     private boolean userChoice;
 
     @FXML
@@ -83,8 +82,7 @@ public class AddTransactionView extends VBox {
         updateCategory(false);
     }
     public AddTransactionView(AppView appView) {
-        super();
-        this.appView = appView;
+        super(appView);
         this.userChoice = true;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-transaction-view.fxml"));
@@ -104,11 +102,6 @@ public class AddTransactionView extends VBox {
         if (!filtred.isEmpty()) {
             typeComboBox.getSelectionModel().selectFirst();
         }
-    }
-
-    @FXML
-    protected void closePopup () {
-        appView.hidePopup();
     }
 
     @FXML

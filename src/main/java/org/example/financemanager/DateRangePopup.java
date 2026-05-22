@@ -10,8 +10,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class DateRangePopup extends VBox {
-    private AppView appView;
+public class DateRangePopup extends DefaultPopup {
     private TransactionView transactionView;
     @FXML
     private DatePicker fromPicker, toPicker;
@@ -25,8 +24,7 @@ public class DateRangePopup extends VBox {
     }
 
     public DateRangePopup(AppView appView, TransactionView transactionView) {
-        super();
-        this.appView = appView;
+        super(appView);
         this.transactionView = transactionView;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("date-range-view.fxml"));
@@ -47,11 +45,6 @@ public class DateRangePopup extends VBox {
             return;
         }
         transactionView.setRange(from, to);
-        appView.hidePopup();
-    }
-
-    @FXML
-    private void closePopup () {
         appView.hidePopup();
     }
 }

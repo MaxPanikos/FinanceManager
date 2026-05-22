@@ -8,13 +8,11 @@ import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.IOException;
 
-public class SettingsPopup extends VBox {
-    private AppView appView;
+public class SettingsPopup extends DefaultPopup {
     private Main main;
 
     public SettingsPopup(AppView appView, Main main) {
-        super();
-        this.appView = appView;
+        super(appView);
         this.main = main;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
@@ -24,11 +22,6 @@ public class SettingsPopup extends VBox {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    @FXML
-    private void closePopup() {
-        appView.hidePopup();
     }
 
     @FXML

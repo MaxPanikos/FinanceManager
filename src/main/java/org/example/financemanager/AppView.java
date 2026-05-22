@@ -86,9 +86,9 @@ public class AppView extends StackPane {
         }
     }
 
-    public void showPopup (Pane pane) {
+    public void showPopup (DefaultPopup popup) {
         this.popupPane.getChildren().clear();
-        this.popupPane.getChildren().add(pane);
+        this.popupPane.getChildren().add(popup);
         this.overlayPane.setVisible(true);
         this.popupPane.setVisible(true);
     }

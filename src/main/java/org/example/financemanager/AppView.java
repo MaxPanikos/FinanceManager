@@ -45,7 +45,7 @@ public class AppView extends StackPane {
         Button homepageButton = new Button("Domů");
         homepageButton.getStyleClass().add("menu-button");
         homepageButton.setOnAction(event -> {
-            setPage(new HomepageView());
+            setPage(new HomepageView(this));
         });
         pagesBox.getChildren().add(homepageButton);
 
@@ -70,7 +70,7 @@ public class AppView extends StackPane {
         Blend blend = new Blend(BlendMode.ADD, innerShadow, glow);
         usernameLabel.setEffect(blend);
 
-        setPage(new HomepageView());
+        setPage(new HomepageView(this));
     }
 
     public AppView(Profile profile, Main main) {
@@ -99,9 +99,9 @@ public class AppView extends StackPane {
         this.popupPane.setVisible(false);
     }
 
-    public void setPage (Pane pane) {
+    public void setPage (Page page) {
         this.contentPane.getChildren().clear();
-        this.contentPane.getChildren().add(pane);
+        this.contentPane.getChildren().add(page);
     }
 
     @FXML
@@ -116,5 +116,9 @@ public class AppView extends StackPane {
 
     public Profile getProfile () {
         return profile;
+    }
+
+    public void resetPage () {
+        balanceLabel.setText("Zůstatek: " + profile.getLedger().getBalance() + " " + profile.getLedger().getCurrency().getSymbol());
     }
 }

@@ -8,9 +8,11 @@
 
 <?import javafx.geometry.Insets?>
 <fx:root type="org.example.financemanager.HomepageView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <padding >
-        <Insets top="10" left="5" right="5" bottom="10"/>
-    </padding>
-    <FlowPane fx:id="flowPane" hgap="15" vgap="15" VBox.vgrow="ALWAYS">
-    </FlowPane>
+    <VBox>
+        <padding >
+            <Insets top="10" left="5" right="5" bottom="10"/>
+        </padding>
+        <FlowPane fx:id="flowPane" hgap="15" vgap="15" VBox.vgrow="ALWAYS">
+        </FlowPane>
+    </VBox>
 </fx:root>

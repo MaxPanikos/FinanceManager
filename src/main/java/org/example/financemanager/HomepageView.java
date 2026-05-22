@@ -1,5 +1,6 @@
 package org.example.financemanager;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.*;
@@ -7,7 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
-public class HomepageView extends VBox {
+public class HomepageView extends Page {
     @FXML
     private FlowPane flowPane;
 
@@ -16,7 +17,13 @@ public class HomepageView extends VBox {
         flowPane.getChildren().addAll(createPieChartPanel("Výdaje podle kategorií"), createBarChartPanel("Měsíční přehled"));
     }
 
-    public HomepageView() {
+    @Override
+    public void update() {
+        //TODO
+    }
+
+    public HomepageView(AppView appView) {
+        super(appView);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
             fxmlLoader.setController(this);

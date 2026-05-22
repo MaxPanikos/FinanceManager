@@ -15,9 +15,8 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class TransactionView extends StackPane {
+public class TransactionView extends Page {
     private Ledger ledger;
-    private AppView appView;
 
     private LocalDate fromDate;
     private LocalDate toDate;
@@ -42,8 +41,8 @@ public class TransactionView extends StackPane {
     }
 
     public TransactionView(AppView appView, Ledger ledger) {
+        super(appView);
         this.ledger = ledger;
-        this.appView = appView;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("transaction-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -81,5 +80,10 @@ public class TransactionView extends StackPane {
     @FXML
     private void rangePicker () {
         appView.showPopup(new DateRangePopup(appView, this));
+    }
+
+    @Override
+    public void update() {
+        setPage();
     }
 }

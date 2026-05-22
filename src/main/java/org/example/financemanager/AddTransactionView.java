@@ -133,6 +133,7 @@ public class AddTransactionView extends VBox {
             LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.MIDNIGHT);
             Transaction tx = new Transaction(amount, type, dateTime);
             appView.getProfile().getLedger().add(tx);
+            appView.resetPage();
             closePopup();
         } catch (Exception e) {
             responseLabel.setText("Nastala neocekavana chyba");

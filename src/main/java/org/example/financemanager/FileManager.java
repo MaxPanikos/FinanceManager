@@ -1,9 +1,11 @@
 package org.example.financemanager;
 
+import javax.crypto.spec.OAEPParameterSpec;
 import java.io.*;
 import java.net.URI;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class FileManager {
     public static final String profilesPath = "profiles";
@@ -66,5 +68,33 @@ public class FileManager {
         } catch (IOException e) {
             return false;
         }
+    }
+
+    public static String saveProfilePicture (File profilePicture, String directoryPath) throws Exception {
+        Path path = Paths.get(directoryPath);
+        if (!Files.exists(path)) {
+            Files.createDirectories(path);
+        }
+
+        String originalFileName = profilePicture.getName();
+        String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+        String newFileName = UUID.randomUUID() + ext;
+        Path targetPath = path.resolve(newFileName);
+        Files.copy(profilePicture.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+        return newFileName;
+    }
+
+    public static File loadProfilePicture (String name, String directoryPath) throws Exception {
+        Path path = Paths.get(directoryPath, name);
+        if (!Files.exists(path)) {
+            return null;
+        }
+        File file = new File(path.toString());
+        String ext = file.getName().substring(file.getName().lastIndexOf("."));
+        if (ext.equals(".jpg") || ext.equals(".jpeg") || ext.equals(".png")) {
+            return file;
+        }
+        return null;
     }
 }

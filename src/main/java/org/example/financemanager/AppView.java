@@ -11,7 +11,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class AppView extends StackPane {
     private Profile profile;
@@ -33,7 +37,7 @@ public class AppView extends StackPane {
         usernameLabel.setText(profile.getUsername());
         balanceLabel.setText("Zůstatek: " + profile.getLedger().getBalance() + " " + profile.getLedger().getCurrency().getSymbol());
         sidebar.prefWidthProperty().bind(this.widthProperty().multiply(0.20));
-        userImage.setImage(new Image(getClass().getResourceAsStream("defaults/DefaultProfilePicture.png")));
+        updateProfilePicture();
         userImage.setEffect(new DropShadow(10, Color.BLACK));
 
         popupPane.maxWidthProperty().bind(this.widthProperty().divide(3));
@@ -118,6 +122,15 @@ public class AppView extends StackPane {
 
     public Profile getProfile () {
         return profile;
+    }
+
+    public void updateProfilePicture () {
+        if (profile.getImagePath() != null && Files.exists(Path.of(FileManager.profilePicturesPath + profile.getImagePath()))) {
+            File file = new File(FileManager.profilePicturesPath + profile.getImagePath());
+            userImage.setImage(new Image(file.toURI().toString()));
+        } else {
+            userImage.setImage(new Image(getClass().getResourceAsStream("defaults/DefaultProfilePicture.png")));
+        }
     }
 
     public void update() {

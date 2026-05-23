@@ -8,6 +8,7 @@
 
 <fx:root type="org.example.financemanager.SettingsPopup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" minWidth="250" maxWidth="350" maxHeight="350" stylesheets="@defaultpopupstyle.css" styleClass="default-popup">
     <Label text="Nastavení" styleClass="popup-title" />
+    <Button text="Vybrat profilovou fotku" onAction="#chooseProfilePicture" />
     <Button text="Uložit" onAction="#saveProfile" />
     <Button text="Smazat účet" onAction="#removeAccount" />
     <Button text="Odhlásit se" onAction="#logout" />

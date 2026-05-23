@@ -6,9 +6,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="org.example.financemanager.CalculatorView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <GridPane>
+<fx:root type="org.example.financemanager.CalculatorView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@calculator-view.css, @page-view.css" styleClass="page">
+    <VBox spacing="10" VBox.vgrow="ALWAYS">
+        <HBox styleClass="header-box">
+            <Label text="Kalkulačky" styleClass="page-title"/>
+        </HBox>
+        <GridPane hgap="20" vgap="20" VBox.vgrow="ALWAYS">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50.0" />
+                <ColumnConstraints percentWidth="50.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="140.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="140.0" prefHeight="160.0" vgrow="SOMETIMES" />
+            </rowConstraints>
 
-    </GridPane>
+            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Úroková kalkulačka" />
+            </VBox>
+            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Inflační kalkulačka" />
+            </VBox>
+            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                <Label text="Splátková kalkulačka" />
+            </VBox>
+        </GridPane>
+    </VBox>
 </fx:root>
 

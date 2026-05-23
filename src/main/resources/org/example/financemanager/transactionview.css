@@ -1,24 +1,4 @@
-.transaction-page {
-    -fx-alignment: center;
-    -fx-background-color: transparent;
-    -fx-padding: 20px;
-}
-
-.transaction-page .content-box {
-    -fx-spacing: 15px;
-}
-
-.transaction-page .header-box {
-    -fx-alignment: center-left;
-    -fx-spacing: 15px;
-}
-
-.transaction-page .page-title {
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 30;
-    -fx-font-weight: bold;
-    -fx-text-fill: #ffffff;
-}
+.transaction-page {}
 
 .transaction-page .range-label {
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;

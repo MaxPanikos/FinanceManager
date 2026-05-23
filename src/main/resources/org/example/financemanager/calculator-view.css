@@ -1,0 +1,12 @@
+.calculator-tile {
+    -fx-background-color: #474747;
+    -fx-border-width: 1;
+    -fx-border-color: #2e2e2e;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-family: "JetBrains Mono Thin";
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, black, 10, 0.2, 0, 0);
+    -fx-min-width: 200;
+}

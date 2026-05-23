@@ -3,7 +3,7 @@
     -fx-font-family: "Segoe UI", sans-serif;
 }
 .main-root .overlay {
-    -fx-background-color: rgba(34, 34, 34, 0.5);
+    -fx-background-color: rgba(0, 0, 0, 0.4);
 }
 
 .main-root .label {

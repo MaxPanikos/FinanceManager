@@ -8,7 +8,7 @@
 
 <?import impl.org.controlsfx.skin.GridRow?>
 <?import javafx.geometry.Insets?>
-<fx:root type="org.example.financemanager.TransactionView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@transactionview.css" styleClass="transaction-page">
+<fx:root type="org.example.financemanager.TransactionView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@transactionview.css, @page-view.css" styleClass="page, transaction-page">
     <VBox fx:id="contentBox" styleClass="content-box">
         <HBox styleClass="header-box">
             <Label text="Transakce" styleClass="page-title"/>

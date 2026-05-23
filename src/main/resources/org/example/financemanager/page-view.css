@@ -1,0 +1,21 @@
+.page {
+    -fx-alignment: center;
+    -fx-background-color: transparent;
+    -fx-padding: 20px;
+}
+
+.page .content-box {
+    -fx-spacing: 15px;
+}
+
+.page .header-box {
+    -fx-alignment: center-left;
+    -fx-spacing: 15px;
+}
+
+.page .page-title {
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 30;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}

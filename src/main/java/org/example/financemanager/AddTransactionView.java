@@ -5,15 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
-import org.controlsfx.control.Notifications;
 import org.controlsfx.control.ToggleSwitch;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -126,7 +123,7 @@ public class AddTransactionView extends DefaultPopup {
             LocalDateTime dateTime = LocalDateTime.of(date, LocalTime.MIDNIGHT);
             Transaction tx = new Transaction(amount, type, dateTime);
             appView.getProfile().getLedger().add(tx);
-            appView.resetPage();
+            appView.update();
             closePopup();
         } catch (Exception e) {
             responseLabel.setText("Nastala neocekavana chyba");

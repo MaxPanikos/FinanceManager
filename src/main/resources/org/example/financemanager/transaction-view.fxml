@@ -16,22 +16,22 @@
             <Region HBox.hgrow="ALWAYS"/>
             <Button fx:id="rangeButton" styleClass="range-button" text="Změnit rozmezí" onAction="#rangePicker"/>
         </HBox>
-        <VBox fx:id="txList" VBox.vgrow="ALWAYS" styleClass="box">
-            <GridPane styleClass="transaction-cell">
+        <VBox VBox.vgrow="ALWAYS" styleClass="box">
+            <GridPane minHeight="40.0" prefHeight="40.0">
                 <padding>
                     <Insets top="8" bottom="8" left="12" right="12"/>
                 </padding>
 
                 <columnConstraints>
-                    <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" halignment="LEFT" />
-                    <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
-                    <ColumnConstraints hgrow="ALWAYS" percentWidth="30.0" halignment="LEFT" />
-                    <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
-                    <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" />
+                    <ColumnConstraints prefWidth="40.0" percentWidth="5.0" maxWidth="40.0" hgrow="NEVER" halignment="LEFT" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="32.0" halignment="LEFT" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="26.0" halignment="LEFT" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="32.0" halignment="LEFT" />
+                    <ColumnConstraints prefWidth="40.0" percentWidth="5.0" maxWidth="40.0" hgrow="NEVER" halignment="CENTER"/>
                 </columnConstraints>
 
                 <rowConstraints>
-                    <RowConstraints vgrow="ALWAYS" valignment="CENTER" />
+                    <RowConstraints vgrow="ALWAYS" fillHeight="true" valignment="CENTER" />
                 </rowConstraints>
 
                 <Label text="#" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="list-header" />
@@ -39,6 +39,7 @@
                 <Label text="Částka" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="list-header" />
                 <Label text="Datum" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="list-header" />
             </GridPane>
+            <VBox fx:id="txList"/>
         </VBox>
     </VBox>
     <Label fx:id="noTxLabel" text="Zatím nemáte žádnou transakci..." visible="false" styleClass="no-tx-label" wrapText="true"/>

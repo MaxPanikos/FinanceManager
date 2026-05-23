@@ -7,6 +7,7 @@
     -fx-background-insets: 0 !important;
     -fx-box-border: transparent !important;
     -fx-padding: 0 !important;
+    -fx-alignment: center !important;
 }
 .scroll-pane > .viewport,
 .scroll-pane:focused .viewport,
@@ -17,6 +18,7 @@
     -fx-background-color: transparent !important;
     -fx-background-insets: 0 !important;
     -fx-padding: 0 !important;
+    -fx-alignment: center !important;
 }
 .scroll-pane > .content {
     -fx-background-color: transparent !important;

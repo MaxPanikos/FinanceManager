@@ -40,9 +40,9 @@ public class TransactionView extends Page {
         }
     }
 
-    public TransactionView(AppView appView, Ledger ledger) {
+    public TransactionView(AppView appView) {
         super(appView);
-        this.ledger = ledger;
+        this.ledger = appView.getProfile().getLedger();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("transaction-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -54,10 +54,12 @@ public class TransactionView extends Page {
     }
 
     private void setPage () {
+        if (fromDate == null || toDate == null) {
+            return;
+        }
         String firstDate = fromDate.format(DateTimeFormatter.ofPattern("d. M. yyyy"));
         String lastDate = toDate.format(DateTimeFormatter.ofPattern("d. M. yyyy"));
         rangeLabel.setText(firstDate + " - " + lastDate);
-
         txList.getChildren().clear();
         ArrayList<Transaction> transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
         int i = 1;

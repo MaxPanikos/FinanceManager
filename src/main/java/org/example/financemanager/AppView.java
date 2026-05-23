@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -55,12 +54,15 @@ public class AppView extends StackPane {
 
         Button calcButton = new Button("Kalkulačka");
         calcButton.getStyleClass().add("menu-button");
+        calcButton.setOnAction(event -> {
+            setPage(new CalculatorView(this));
+        });
         pagesBox.getChildren().add(calcButton);
 
         Button ledgerButton = new Button("Transakce");
         ledgerButton.getStyleClass().add("menu-button");
         ledgerButton.setOnAction(event -> {
-           setPage(new TransactionView(this, profile.getLedger()));
+           setPage(new TransactionView(this));
         });
         pagesBox.getChildren().add(ledgerButton);
 
@@ -118,7 +120,7 @@ public class AppView extends StackPane {
         return profile;
     }
 
-    public void resetPage () {
+    public void update() {
         balanceLabel.setText("Zůstatek: " + profile.getLedger().getBalance() + " " + profile.getLedger().getCurrency().getSymbol());
         Page page = (Page) contentPane.getChildren().getFirst();
         page.update();

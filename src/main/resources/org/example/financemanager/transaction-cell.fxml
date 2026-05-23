@@ -13,11 +13,11 @@
     </padding>
 
     <columnConstraints>
-        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" halignment="LEFT" />
-        <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
-        <ColumnConstraints hgrow="ALWAYS" percentWidth="30.0" halignment="LEFT" />
-        <ColumnConstraints hgrow="ALWAYS" percentWidth="35.0" halignment="LEFT" />
-        <ColumnConstraints prefWidth="40.0" minWidth="40.0" maxWidth="40.0" hgrow="NEVER" halignment="CENTER" />
+        <ColumnConstraints prefWidth="40.0" percentWidth="5.0" maxWidth="40.0" hgrow="NEVER" halignment="LEFT" />
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="32.0" halignment="LEFT" />
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="26.0" halignment="LEFT" />
+        <ColumnConstraints hgrow="ALWAYS" percentWidth="32.0" halignment="LEFT" />
+        <ColumnConstraints prefWidth="40.0" percentWidth="5.0" maxWidth="40.0" hgrow="NEVER" halignment="CENTER"/>
     </columnConstraints>
 
     <rowConstraints>

@@ -19,9 +19,9 @@
    <BorderPane >
       <top>
          <HBox styleClass="topbar">
-            <ImageView fx:id="userImage" fitHeight="50" fitWidth="50">
+            <ImageView fx:id="userImage" fitHeight="60" fitWidth="60">
                <clip>
-                  <Circle centerX="25" centerY="25" radius="25" />
+                  <Circle centerX="30" centerY="30" radius="30" />
                </clip>
             </ImageView>
             <Label fx:id="usernameLabel" styleClass="username-label"/>

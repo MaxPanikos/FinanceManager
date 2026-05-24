@@ -52,6 +52,9 @@ public class CreateProfilePopup extends VBox {
         if (username.isBlank()) {
             responseLabel.setText("Zadejte prosím uživatelské jméno");
             return;
+        } else if (username.length() >= 16) {
+            responseLabel.setText("Jméno nemůže být delší než 16 znaků");
+            return;
         } else if (FileManager.exists(username, FileManager.profilesPath)) {
             responseLabel.setText("Uživatel s tímto jménem již existuje");
             return;

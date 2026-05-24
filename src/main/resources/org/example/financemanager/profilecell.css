@@ -1,5 +1,5 @@
 .profile-cell {
-    -fx-padding: 5px;
+    -fx-padding: 5;
     -fx-alignment: center;
     -fx-background-color: rgba(255, 255, 255, 0.25);
     -fx-border-width: 1px;
@@ -9,6 +9,8 @@
     -fx-effect: dropshadow(gaussian, black , 15, 0.5, 0, 0);
     -fx-min-width: 80;
     -fx-min-height: 100;
+    -fx-max-width: 100;
+    -fx-max-height: 120;
 }
 
 .profile-cell:hover {
@@ -21,8 +23,7 @@
 
 .profile-cell .username {
     -fx-text-fill: white;
-    -fx-font-size: 12;
-    -fx-font-family: "Inter Semi Bold";
+    -fx-font-size: 14;
     -fx-cursor: hand;
 }
 .profile-cell .username:hover {

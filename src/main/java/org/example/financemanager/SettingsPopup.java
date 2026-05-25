@@ -58,9 +58,11 @@ public class SettingsPopup extends DefaultPopup {
                 profile.setImagePath(FileManager.saveProfilePicture(selectedFile, FileManager.profilePicturesPath));
                 FileManager.save(profile, FileManager.profilesPath);
                 appView.updateProfilePicture();
-                Path lastPath = Path.of(FileManager.profilePicturesPath, lastImagePath);
-                if (lastImagePath != null && Files.exists(lastPath)) {
-                    Files.delete(lastPath);
+                if (lastImagePath != null && !lastImagePath.isBlank()) {
+                    Path lastPath = Path.of(FileManager.profilePicturesPath, lastImagePath);
+                    if (Files.exists(lastPath)) {
+                        Files.delete(lastPath);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

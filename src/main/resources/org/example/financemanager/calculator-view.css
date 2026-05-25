@@ -6,7 +6,27 @@
     -fx-background-radius: 10;
     -fx-text-fill: white;
     -fx-font-family: "JetBrains Mono Thin";
-    -fx-padding: 10;
+    -fx-padding: 5 10 5 10;
     -fx-effect: dropshadow(gaussian, black, 10, 0.2, 0, 0);
     -fx-min-width: 200;
+    -fx-spacing: 5;
+}
+
+.calculate-button {
+    -fx-background-color: #06ae06;
+    -fx-border-color: #05ac05;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-font-size: 14;
+    -fx-text-fill: white;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, greenyellow, 10, 0.3, 0, 0);
+}
+.calculate-button:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+.calculate-button:pressed {
+    -fx-background-color: #029f02;
 }

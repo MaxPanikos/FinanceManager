@@ -54,6 +54,9 @@ public class AppView extends StackPane {
 
         Button graphsButton = new Button("Grafy");
         graphsButton.getStyleClass().add("menu-button");
+        graphsButton.setOnAction(event -> {
+            setPage(new GraphsView(this));
+        });
         pagesBox.getChildren().add(graphsButton);
 
         Button calcButton = new Button("Kalkulačka");

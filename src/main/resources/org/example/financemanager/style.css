@@ -44,6 +44,7 @@
 .scroll-bar:horizontal .thumb {
     -fx-background-color: #4CAF50;
     -fx-background-radius: 8px;
+    -fx-cursor: hand;
 }
 .scroll-bar:vertical .thumb:hover,
 .scroll-bar:horizontal .thumb:hover {
@@ -52,6 +53,7 @@
 .scroll-bar:vertical .thumb:pressed,
 .scroll-bar:horizontal .thumb:pressed {
     -fx-background-color: #2E7D32;
+    -fx-cursor: closed-hand;
 }
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {

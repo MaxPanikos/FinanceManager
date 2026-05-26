@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -81,7 +82,19 @@ public class TransactionView extends Page {
 
     @FXML
     private void rangePicker () {
-        appView.showPopup(new DateRangePopup(appView, this));
+        appView.showPopup(new DateRangePopup(appView, this){
+            @Override
+            public void save (DatePicker fromPicker, DatePicker toPicker, Label responseLabel) {
+                LocalDate from = fromPicker.getValue();
+                LocalDate to = toPicker.getValue();
+                if (from.isAfter(to)) {
+                    responseLabel.setText("Špatně zadané rozmezí");
+                    return;
+                }
+                setRange(from, to);
+                appView.hidePopup();
+            }
+        });
     }
 
     @Override

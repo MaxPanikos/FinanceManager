@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class DateRangePopup extends DefaultPopup {
-    private TransactionView transactionView;
+    private Page page;
     @FXML
     private DatePicker fromPicker, toPicker;
     @FXML
@@ -23,9 +23,9 @@ public class DateRangePopup extends DefaultPopup {
         this.toPicker.setValue(LocalDate.now());
     }
 
-    public DateRangePopup(AppView appView, TransactionView transactionView) {
+    public DateRangePopup(AppView appView, Page page) {
         super(appView);
-        this.transactionView = transactionView;
+        this.page = page;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("date-range-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -38,13 +38,16 @@ public class DateRangePopup extends DefaultPopup {
 
     @FXML
     private void saveSettings () {
+        save(fromPicker, toPicker, responseLabel);
+    }
+
+    public void save (DatePicker fromPicker, DatePicker toPicker, Label responseLabel) {
         LocalDate from = fromPicker.getValue();
         LocalDate to = toPicker.getValue();
         if (from.isAfter(to)) {
             responseLabel.setText("Špatně zadané rozmezí");
             return;
         }
-        transactionView.setRange(from, to);
         appView.hidePopup();
     }
 }

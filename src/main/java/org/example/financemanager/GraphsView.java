@@ -7,7 +7,13 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class GraphsView extends Page{
+    private Ledger ledger;
+
     @FXML
     private PieChart categoryPieChart;
     @FXML
@@ -17,6 +23,7 @@ public class GraphsView extends Page{
 
     public GraphsView(AppView appView) {
         super(appView);
+        this.ledger = appView.getProfile().getLedger();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("graphs-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -38,13 +45,27 @@ public class GraphsView extends Page{
     }
 
     private void loadGraphsData() {
-        categoryPieChart.getData().addAll(
-                new PieChart.Data("Potraviny", 4500),
-                new PieChart.Data("Bydlení", 12000),
-                new PieChart.Data("Zábava", 2500),
-                new PieChart.Data("Doprava", 1800)
-        );
+        loadPieChart();
+        loadBarChart();
+        loadLineChart();
+    }
 
+    private void loadPieChart () {
+        //ArrayList<Transaction> transactions = ledger.getTransactionsInRange();
+
+        for (Transaction transaction : ledger.getTransactions()) {
+            categoryPieChart.getData().add(new PieChart.Data(transaction.getType().getLabel(), transaction.getAmount()));
+        }
+//        categoryPieChart.getData().addAll(
+//                new PieChart.Data("Potraviny", 4500),
+//                new PieChart.Data("Bydlení", 12000),
+//                new PieChart.Data("Zábava", 2500),
+//                new PieChart.Data("Doprava", 1800)
+//        );
+
+    }
+
+    private void loadBarChart () {
         XYChart.Series<String, Number> prijmy = new XYChart.Series<>();
         prijmy.setName("Příjmy");
         prijmy.getData().add(new XYChart.Data<>("Leden", 35000));
@@ -54,11 +75,13 @@ public class GraphsView extends Page{
         XYChart.Series<String, Number> vydaje = new XYChart.Series<>();
         vydaje.setName("Výdaje");
         vydaje.getData().add(new XYChart.Data<>("Leden", 22000));
-        vydaje.getData().add(new XYChart.Data<>("Únor", 28000)); // v únoru se utrácelo víc...
+        vydaje.getData().add(new XYChart.Data<>("Únor", 28000));
         vydaje.getData().add(new XYChart.Data<>("Březen", 20800));
 
         incomeExpenseBarChart.getData().addAll(prijmy, vydaje);
+    }
 
+    private void loadLineChart () {
         XYChart.Series<String, Number> zustatek = new XYChart.Series<>();
         zustatek.setName("Stav účtu");
         zustatek.getData().add(new XYChart.Data<>("1.1.", 50000));
@@ -67,5 +90,10 @@ public class GraphsView extends Page{
         zustatek.getData().add(new XYChart.Data<>("15.2.", 71000));
 
         balanceLineChart.getData().add(zustatek);
+    }
+
+    @FXML
+    private void setPieChartRange (){
+
     }
 }

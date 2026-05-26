@@ -12,81 +12,64 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.control.Button?>
 <fx:root type="org.example.financemanager.GraphsView" stylesheets="@style.css, @charts.css, @page-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="20.0" styleClass="page">
-        <VBox spacing="5.0" styleClass="page-title">
-            <Label text="Finanční Přehled"/>
+        <VBox spacing="5" styleClass="page-title">
             <Label text="Vizualizace vašich příjmů, výdajů a úspor" textFill="#767676"/>
         </VBox>
 
         <GridPane hgap="20.0" vgap="20.0">
             <columnConstraints>
-                <javafx.scene.layout.ColumnConstraints hgrow="ALWAYS" minWidth="400.0" percentWidth="50.0" />
-                <javafx.scene.layout.ColumnConstraints hgrow="ALWAYS" minWidth="400.0" percentWidth="50.0" />
+                <javafx.scene.layout.ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
+                <javafx.scene.layout.ColumnConstraints hgrow="ALWAYS" minWidth="100.0" percentWidth="50.0" />
             </columnConstraints>
             <rowConstraints>
                 <javafx.scene.layout.RowConstraints minHeight="350.0" vgrow="ALWAYS" />
                 <javafx.scene.layout.RowConstraints minHeight="350.0" vgrow="ALWAYS" />
             </rowConstraints>
-            <children>
+            <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <HBox>
+                    <Label text="Struktura výdajů"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Změnit rozmezí"/>
+                </HBox>
+                <PieChart fx:id="categoryPieChart" legendSide="BOTTOM" title="Kategorie" VBox.vgrow="ALWAYS" />
+            </VBox>
 
-                <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                    <children>
-                        <Label text="Struktura výdajů">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" left="10.0" />
-                            </VBox.margin>
-                        </Label>
-                        <PieChart fx:id="categoryPieChart" legendSide="BOTTOM" title="Kategorie" VBox.vgrow="ALWAYS" />
-                    </children>
-                </VBox>
+            <VBox styleClass="chart-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <HBox>
+                    <Label text="Příjmy vs Výdaje"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Změnit rozmezí"/>
+                </HBox>
+                <BarChart fx:id="incomeExpenseBarChart" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <CategoryAxis label="Měsíc" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Částka (Kč)" side="LEFT" />
+                    </yAxis>
+                </BarChart>
+            </VBox>
 
-                <VBox styleClass="chart-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                    <children>
-                        <Label text="Příjmy vs. Výdaje">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" left="10.0" />
-                            </VBox.margin>
-                        </Label>
-                        <BarChart fx:id="incomeExpenseBarChart" VBox.vgrow="ALWAYS">
-                            <xAxis>
-                                <CategoryAxis label="Měsíc" side="BOTTOM" />
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis label="Částka (Kč)" side="LEFT" />
-                            </yAxis>
-                        </BarChart>
-                    </children>
-                </VBox>
-
-                <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                    <children>
-                        <Label text="Vývoj celkového zůstatku">
-                            <font>
-                                <Font name="System Bold" size="16.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="10.0" left="10.0" />
-                            </VBox.margin>
-                        </Label>
-                        <LineChart fx:id="balanceLineChart" VBox.vgrow="ALWAYS">
-                            <xAxis>
-                                <CategoryAxis label="Datum / Období" side="BOTTOM" />
-                            </xAxis>
-                            <yAxis>
-                                <NumberAxis label="Zůstatek (Kč)" side="LEFT" />
-                            </yAxis>
-                        </LineChart>
-                    </children>
-                </VBox>
-
-            </children>
+            <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                <HBox>
+                    <Label text="Vývoj celkového zůstatku"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Změnit rozmezí"/>
+                </HBox>
+                <LineChart fx:id="balanceLineChart" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                        <CategoryAxis label="Datum / Období" side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Zůstatek (Kč)" side="LEFT" />
+                    </yAxis>
+                </LineChart>
+            </VBox>
         </GridPane>
     </VBox>
 </fx:root>

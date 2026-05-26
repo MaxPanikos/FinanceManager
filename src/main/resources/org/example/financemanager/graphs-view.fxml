@@ -17,9 +17,11 @@
 <?import javafx.scene.control.Button?>
 <fx:root type="org.example.financemanager.GraphsView" stylesheets="@style.css, @charts.css, @page-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="20.0" styleClass="page">
-        <VBox spacing="5" styleClass="page-title">
-            <Label text="Vizualizace vašich příjmů, výdajů a úspor" textFill="#767676"/>
-        </VBox>
+        <HBox spacing="5">
+            <Label text="Vizualizace vašich transakcí" wrapText="true" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button text="Změnit rozmezí" onAction="#changeRange"/>
+        </HBox>
 
         <GridPane hgap="20.0" vgap="20.0">
             <columnConstraints>
@@ -31,21 +33,13 @@
                 <javafx.scene.layout.RowConstraints minHeight="350.0" vgrow="ALWAYS" />
             </rowConstraints>
             <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                <HBox>
-                    <Label text="Struktura výdajů"/>
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button text="Změnit rozmezí"/>
-                </HBox>
+                <Label text="Struktura příjmů"/>
                 <PieChart fx:id="categoryPieChart" legendSide="BOTTOM" title="Kategorie" VBox.vgrow="ALWAYS" />
             </VBox>
 
             <VBox styleClass="chart-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <HBox>
-                    <Label text="Příjmy vs Výdaje"/>
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button text="Změnit rozmezí"/>
-                </HBox>
-                <BarChart fx:id="incomeExpenseBarChart" VBox.vgrow="ALWAYS">
+                <Label text="Příjmy vs Výdaje"/>
+                <BarChart fx:id="incomeBarChart" VBox.vgrow="ALWAYS">
                     <xAxis>
                         <CategoryAxis label="Měsíc" side="BOTTOM" />
                     </xAxis>
@@ -56,11 +50,7 @@
             </VBox>
 
             <VBox styleClass="chart-card" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                <HBox>
-                    <Label text="Vývoj celkového zůstatku"/>
-                    <Region HBox.hgrow="ALWAYS" />
-                    <Button text="Změnit rozmezí"/>
-                </HBox>
+                <Label text="Vývoj celkového zůstatku"/>
                 <LineChart fx:id="balanceLineChart" VBox.vgrow="ALWAYS">
                     <xAxis>
                         <CategoryAxis label="Datum / Období" side="BOTTOM" />

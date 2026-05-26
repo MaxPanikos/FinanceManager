@@ -7,17 +7,18 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GraphsView extends Page{
     private Ledger ledger;
+    private LocalDate fromDate, toDate;
 
     @FXML
     private PieChart categoryPieChart;
     @FXML
-    private BarChart<String, Number> incomeExpenseBarChart;
+    private BarChart<String, Number> incomeBarChart;
     @FXML
     private LineChart<String, Number> balanceLineChart;
 
@@ -51,18 +52,34 @@ public class GraphsView extends Page{
     }
 
     private void loadPieChart () {
-        //ArrayList<Transaction> transactions = ledger.getTransactionsInRange();
-
-        for (Transaction transaction : ledger.getTransactions()) {
-            categoryPieChart.getData().add(new PieChart.Data(transaction.getType().getLabel(), transaction.getAmount()));
+        ArrayList<Transaction> transactions;
+        if (fromDate == null || toDate == null) {
+            transactions = ledger.getTransactions();
+        } else {
+            transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
         }
-//        categoryPieChart.getData().addAll(
-//                new PieChart.Data("Potraviny", 4500),
-//                new PieChart.Data("Bydlení", 12000),
-//                new PieChart.Data("Zábava", 2500),
-//                new PieChart.Data("Doprava", 1800)
-//        );
 
+        HashMap<TransactionTypes, PieChart.Data> dataMap = new HashMap<>();
+
+        for (TransactionTypes type : TransactionTypes.values()) {
+            if (type.getType().equals("Příjem")) {
+                dataMap.put(type, new PieChart.Data(type.getLabel(), 0.0));
+            }
+        }
+
+        for (Transaction transaction : transactions) {
+            TransactionTypes type = transaction.getType();
+            if (dataMap.containsKey(type)) {
+                double currentAmount = dataMap.get(type).getPieValue();
+                dataMap.get(type).setPieValue(currentAmount + transaction.getAmount());
+            }
+        }
+        categoryPieChart.getData().clear();
+        for (PieChart.Data data : dataMap.values()) {
+            if (data.getPieValue() > 0.0) {
+                categoryPieChart.getData().add(data);
+            }
+        }
     }
 
     private void loadBarChart () {
@@ -78,7 +95,7 @@ public class GraphsView extends Page{
         vydaje.getData().add(new XYChart.Data<>("Únor", 28000));
         vydaje.getData().add(new XYChart.Data<>("Březen", 20800));
 
-        incomeExpenseBarChart.getData().addAll(prijmy, vydaje);
+        incomeBarChart.getData().addAll(prijmy, vydaje);
     }
 
     private void loadLineChart () {
@@ -93,7 +110,7 @@ public class GraphsView extends Page{
     }
 
     @FXML
-    private void setPieChartRange (){
+    private void changeRange (){
 
     }
 }

@@ -1,6 +1,7 @@
 package org.example.financemanager;
 
 import javafx.scene.chart.*;
+import javafx.scene.control.Tooltip;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -36,8 +37,16 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
         for (LocalDate date : dates) {
             String formatedDay = date.format(formatter);
             double balance = ledger.getFloorBalance(date);
-
-            balanceSeries.getData().add(new XYChart.Data<>(formatedDay, balance));
+            XYChart.Data<String, Number> data = new XYChart.Data<>(formatedDay, balance);
+            balanceSeries.getData().add(data);
+            data.nodeProperty().addListener((observable, oldNode, newNode) -> {
+                //AI
+                if (newNode != null) {
+                    Tooltip tooltip = new Tooltip(formatedDay + ": " + balance + " Kč");
+                    tooltip.setShowDelay(javafx.util.Duration.millis(100));
+                    Tooltip.install(newNode, tooltip);
+                }
+            });
         }
 
         this.getData().add(balanceSeries);

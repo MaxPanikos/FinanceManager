@@ -65,9 +65,4 @@ public class GraphsView extends Page{
         this.balanceLineChart = new CustomLineChart(fromDate, toDate, ledger);
         lineChartVBox.getChildren().add(balanceLineChart);
     }
-
-    @FXML
-    private void changeRange (){
-
-    }
 }

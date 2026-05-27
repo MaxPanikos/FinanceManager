@@ -4,8 +4,9 @@ import javafx.scene.chart.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class CustomLineChart extends LineChart implements CustomChart {
+public class CustomLineChart extends LineChart<String, Number> implements CustomChart {
     private LocalDate fromDate, toDate;
     private Ledger ledger;
     public CustomLineChart(LocalDate fromDate, LocalDate toDate, Ledger ledger) {
@@ -24,6 +25,16 @@ public class CustomLineChart extends LineChart implements CustomChart {
             transactions = ledger.getTransactions();
         } else {
             transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
+        }
+
+        HashMap<LocalDate, Double> map = new HashMap<>();
+        for (Transaction t : transactions) {
+            LocalDate localDate = t.getDate().toLocalDate();
+            if (!map.containsKey(localDate)) {
+                map.put(localDate, t.getAmount());
+            } else {
+                map.put(localDate, map.get(localDate) + t.getAmount());
+            }
         }
         XYChart.Series<String, Number> balance = new XYChart.Series<>();
         balance.setName("Stav účtu");

@@ -11,6 +11,7 @@ public class Ledger implements Serializable {
     private ArrayList<Transaction> transactions;
     private double balance;
     private Currency currency;
+    private TreeMap<LocalDate, Double> dayBalance;
 
     private final static long serialVersionUID = 1L;
 
@@ -18,24 +19,29 @@ public class Ledger implements Serializable {
         this.transactions = new ArrayList<>();
         this.balance = 0;
         this.currency = currency;
+        this.dayBalance = new TreeMap<>();
     }
 
     public boolean addWithDuplicityCheck (Transaction transaction) {
-        if (transaction.getType().getType().equals("Výdaj") && transaction.getAmount() >= 0.0) {
-            transaction.setAmount(transaction.getAmount() * -1);
-        }
-        int index = Collections.binarySearch(transactions, transaction);
-        if (index >= 0) {
-            if (isDuplicate(index, transaction)) {
-                return false;
+        try {
+            if (transaction.getType().getType().equals("Výdaj") && transaction.getAmount() >= 0.0) {
+                transaction.setAmount(transaction.getAmount() * -1);
             }
-            transactions.add(index, transaction);
-            balance += transaction.getAmount();
-            return true;
-        } else {
-            transactions.add(-index - 1, transaction);
-            balance += transaction.getAmount();
-            return true;
+            int index = Collections.binarySearch(transactions, transaction);
+            if (index >= 0) {
+                if (isDuplicate(index, transaction)) {
+                    return false;
+                }
+                transactions.add(index, transaction);
+                balance += transaction.getAmount();
+                return true;
+            } else {
+                transactions.add(-index - 1, transaction);
+                balance += transaction.getAmount();
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
         }
     }
 
@@ -47,13 +53,19 @@ public class Ledger implements Serializable {
             int index = Collections.binarySearch(transactions, transaction);
             if (index >= 0) {
                 transactions.add(index, transaction);
-                balance += transaction.getAmount();
-                return true;
             } else {
                 transactions.add(-index - 1, transaction);
-                balance += transaction.getAmount();
-                return true;
             }
+            balance += transaction.getAmount();
+
+            LocalDate localDate = transaction.getDate().toLocalDate();
+            if (dayBalance.containsKey(localDate)) {
+                dayBalance.remove(localDate);
+                dayBalance.put(localDate, balance);
+            } else {
+                dayBalance.put(localDate, balance);
+            }
+            return true;
         } catch (Exception e) {
             return false;
         }
@@ -109,6 +121,21 @@ public class Ledger implements Serializable {
 
     public ArrayList<Transaction> getTransactions() {
         return transactions;
+    }
+
+    public double getFloorBalance (LocalDate date) {
+        if (dayBalance.containsKey(date)) {
+            return dayBalance.get(date);
+        } else {
+            return dayBalance.floorEntry(date).getValue();
+        }
+    }
+    public double getCeilingBalance (LocalDate date) {
+        if (dayBalance.containsKey(date)) {
+            return dayBalance.get(date);
+        } else {
+            return dayBalance.ceilingEntry(date).getValue();
+        }
     }
 
     private boolean isDuplicate(int foundIndex, Transaction newTx) {

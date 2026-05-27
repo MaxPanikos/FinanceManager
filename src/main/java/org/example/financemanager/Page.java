@@ -9,5 +9,9 @@ public abstract class Page extends StackPane {
         this.appView = appView;
     }
 
+    public AppView getAppView() {
+        return appView;
+    }
+
     public abstract void update();
 }

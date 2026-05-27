@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="org.example.financemanager.TimeSelectorView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <fx:define>
+        <ToggleGroup fx:id="group" />
+    </fx:define>
+    <ToggleButton fx:id="oneMonthButton" text="1 měsíc" toggleGroup="$group" onAction="#onButtonClicked"/>
+    <ToggleButton fx:id="threeMonthsButton" text="3 měsíce" toggleGroup="$group" onAction="#onButtonClicked"/>
+    <ToggleButton fx:id="halfYearButton" text="Půl rok" toggleGroup="$group" onAction="#onButtonClicked"/>
+    <ToggleButton fx:id="oneYearButton" text="1 rok" toggleGroup="$group" onAction="#onButtonClicked"/>
+    <ToggleButton fx:id="threeYearsButton" text="3 roky" toggleGroup="$group" onAction="#onButtonClicked"/>
+    <ToggleButton fx:id="customRangeButton" text="Vlastní" toggleGroup="$group" onAction="#onButtonClicked"/>
+</fx:root>

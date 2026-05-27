@@ -24,8 +24,9 @@
 
         <FlowPane alignment="CENTER" vgap="10" hgap="15" VBox.vgrow="ALWAYS" styleClass="charts-background">
             <VBox fx:id="pieChartVBox" styleClass="chart-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                <HBox>
+                <HBox fx:id="pieChartHBox">
                     <Label text="Struktura příjmů"/>
+                    <Region HBox.hgrow="ALWAYS" />
                 </HBox>
             </VBox>
 

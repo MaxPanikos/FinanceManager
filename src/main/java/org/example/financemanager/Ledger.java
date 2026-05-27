@@ -1,8 +1,5 @@
 package org.example.financemanager;
 
-import javafx.scene.chart.PieChart;
-import javafx.scene.shape.CubicCurveTo;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -60,7 +57,7 @@ public class Ledger implements Serializable {
             balance += transaction.getAmount();
 
             LocalDate localDate = transaction.getDate().toLocalDate();
-            updateDayBalance(transaction.getAmount(), localDate);
+            addToDayBalance(transaction.getAmount(), localDate);
             return true;
         } catch (Exception e) {
             return false;
@@ -95,16 +92,25 @@ public class Ledger implements Serializable {
         return inRangeTransactions;
     }
 
+    public boolean remove (int index) {
+        try {
+            Transaction transaction = transactions.remove(index);
+            if (transaction == null) {
+                return false;
+            }
+            removeFromDayBalance(transaction.getAmount(), transaction.getDate().toLocalDate());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public int getSize () {
         return transactions.size();
     }
 
     public Transaction get (int index) {
         return transactions.get(index);
-    }
-
-    public void remove (int index) {
-        transactions.remove(index);
     }
 
     public double getBalance () {
@@ -156,7 +162,7 @@ public class Ledger implements Serializable {
         return false;
     }
 
-    private void updateDayBalance (double balance, LocalDate date) {
+    private void addToDayBalance(double balance, LocalDate date) {
         if (dayBalance.containsKey(date)) {
             dayBalance.put(date, balance);
         } else {
@@ -165,6 +171,18 @@ public class Ledger implements Serializable {
         Map<LocalDate, Double> future = dayBalance.tailMap(date, false);
         for (Map.Entry<LocalDate, Double> entry : future.entrySet()) {
             entry.setValue(entry.getValue() + balance);
+        }
+    }
+
+    private void removeFromDayBalance(double balance, LocalDate date) {
+        if (dayBalance.containsKey(date)) {
+            dayBalance.put(date, balance);
+        } else {
+            dayBalance.put(date, getFloorBalance(date) - balance);
+        }
+        Map<LocalDate, Double> future = dayBalance.tailMap(date, false);
+        for (Map.Entry<LocalDate, Double> entry : future.entrySet()) {
+            entry.setValue(entry.getValue() - balance);
         }
     }
 

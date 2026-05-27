@@ -6,6 +6,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
@@ -22,6 +23,8 @@ public class GraphsView extends Page{
 
     @FXML
     private VBox pieChartVBox, barChartVBox, lineChartVBox;
+    @FXML
+    private HBox pieChartHBox;
 
     public GraphsView(AppView appView) {
         super(appView);
@@ -54,6 +57,7 @@ public class GraphsView extends Page{
     private void loadPieChart () {
         this.categoryPieChart = new CustomPieChart(fromDate, toDate, ledger, "Příjem");
         pieChartVBox.getChildren().add(categoryPieChart);
+        pieChartHBox.getChildren().add(new TimeSelectorView(this));
     }
 
     private void loadBarChart () {

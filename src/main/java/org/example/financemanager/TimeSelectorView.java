@@ -100,6 +100,7 @@ public class TimeSelectorView extends HBox {
                 setSelected(button);
                 break;
         }
+        //TODO
         if (!prevFromDate.isEqual(fromDate) && !prevToDate.isEqual(toDate)) {
             page.update();
         }

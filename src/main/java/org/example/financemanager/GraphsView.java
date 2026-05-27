@@ -18,7 +18,7 @@ public class GraphsView extends Page{
 
     private CustomPieChart categoryPieChart;
     private CustomBarChart incomeBarChart;
-    private LineChart<String, Number> balanceLineChart;
+    private CustomLineChart balanceLineChart;
 
     @FXML
     private VBox pieChartVBox, barChartVBox, lineChartVBox;
@@ -40,6 +40,7 @@ public class GraphsView extends Page{
     public void update() {
         categoryPieChart.update();
         incomeBarChart.update();
+        balanceLineChart.update();
     }
 
     @FXML

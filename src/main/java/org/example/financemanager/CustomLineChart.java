@@ -45,38 +45,9 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
 
     private ArrayList<LocalDate> getDates() {
         ArrayList<LocalDate> dates = new ArrayList<>();
-
-        LocalDate start = fromDate;
-        LocalDate end = toDate;
-
-        if (start == null || end == null) {
-            if (ledger.getTransactions() == null || ledger.getTransactions().isEmpty()) {
-                return dates;
-            }
-            start = ledger.getTransactions().getFirst().getDate().toLocalDate();
-            end = LocalDate.now();
-        }
-
-        Period difference = Period.between(start, end);
-        int years = difference.getYears();
-        int oneInMonths;
-
-        if (years < 2) {
-            oneInMonths = 3;
-        } else if (years < 5) {
-            oneInMonths = 6;
-        } else {
-            oneInMonths = 12;
-        }
-        LocalDate actual = start;
-        while (!actual.isAfter(end)) {
-            dates.add(actual);
-            actual = actual.plusMonths(oneInMonths);
-        }
-        if (!dates.contains(end)) {
-            dates.add(end);
-        }
-
+        ledger.getTransactions().forEach(transaction -> {
+            dates.add(transaction.getDate().toLocalDate());
+        });
         return dates;
     }
 }

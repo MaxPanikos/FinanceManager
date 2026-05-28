@@ -85,4 +85,12 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
     public LocalDate getToDate() {
         return toDate;
     }
+
+    public void setFromDate(LocalDate fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public void setToDate(LocalDate toDate) {
+        this.toDate = toDate;
+    }
 }

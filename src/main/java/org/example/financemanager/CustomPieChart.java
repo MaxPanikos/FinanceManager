@@ -1,5 +1,7 @@
 package org.example.financemanager;
 
+import javafx.application.Platform;
+import javafx.scene.Node;
 import javafx.scene.chart.Chart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
@@ -52,20 +54,22 @@ public class CustomPieChart extends PieChart implements CustomChart {
             }
         }
 
-        this.getData().clear();
         for (PieChart.Data data : dataMap.values()) {
             if (data.getPieValue() > 0.0) {
                 this.getData().add(data);
-                //TODO (not working)
-                data.nodeProperty().addListener((observable, oldNode, newNode) -> {
-                    if (newNode != null) {
-                        Tooltip tooltip = new Tooltip(data.getPieValue() + " " + ledger.getCurrency().getSymbol());
-                        tooltip.setShowDelay(javafx.util.Duration.millis(100));
-                        Tooltip.install(newNode, tooltip);
-                    }
-                });
             }
         }
+
+        Platform.runLater(() -> {
+            for (PieChart.Data data : this.getData()) {
+                Node node = data.getNode();
+                if (node != null) {
+                    Tooltip tooltip = new Tooltip(data.getPieValue() + " " + ledger.getCurrency().getSymbol());
+                    tooltip.setShowDelay(javafx.util.Duration.millis(100));
+                    Tooltip.install(node, tooltip);
+                }
+            }
+        });
     }
 
     public LocalDate getFromDate() {
@@ -74,5 +78,13 @@ public class CustomPieChart extends PieChart implements CustomChart {
 
     public LocalDate getToDate() {
         return toDate;
+    }
+
+    public void setFromDate(LocalDate fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public void setToDate(LocalDate toDate) {
+        this.toDate = toDate;
     }
 }

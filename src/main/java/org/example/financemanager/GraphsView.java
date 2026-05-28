@@ -15,6 +15,10 @@ public class GraphsView extends Page{
     private CustomBarChart barChart;
     private CustomLineChart lineChart;
 
+    private TimeSelectorView pieSelector;
+    private TimeSelectorView barSelector;
+    private TimeSelectorView lineSelector;
+
     @FXML
     private VBox pieChartVBox, barChartVBox, lineChartVBox;
     @FXML
@@ -38,6 +42,18 @@ public class GraphsView extends Page{
 
     @Override
     public void update() {
+        if (pieSelector != null) {
+            pieChart.setFromDate(pieSelector.getFromDate());
+            pieChart.setToDate(pieSelector.getToDate());
+        }
+        if (barSelector != null) {
+            barChart.setFromDate(barSelector.getFromDate());
+            barChart.setToDate(barSelector.getToDate());
+        }
+        if (lineSelector != null) {
+            lineChart.setFromDate(lineSelector.getFromDate());
+            lineChart.setToDate(lineSelector.getToDate());
+        }
         pieChart.update();
         barChart.update();
         lineChart.update();
@@ -54,18 +70,21 @@ public class GraphsView extends Page{
     private void loadPieChart () {
         this.pieChart = new CustomPieChart(ledger, "Příjem");
         pieChartVBox.getChildren().add(pieChart);
-        pieChartHBox.getChildren().add(new TimeSelectorView(this, pieChart.getFromDate(), pieChart.getToDate()));
+        this.pieSelector = new TimeSelectorView(this, pieChart.getFromDate(), pieChart.getToDate(), true, true);
+        pieChartHBox.getChildren().add(pieSelector);
     }
 
     private void loadBarChart () {
         this.barChart = new CustomBarChart(ledger);
         barChartVBox.getChildren().add(barChart);
-        barChartHBox.getChildren().add(new TimeSelectorView(this, barChart.getFromDate(), barChart.getToDate()));
+        this.barSelector = new TimeSelectorView(this, barChart.getFromDate(), barChart.getToDate(), false, false);
+        barChartHBox.getChildren().add(barSelector);
     }
 
     private void loadLineChart () {
         this.lineChart = new CustomLineChart(ledger);
         lineChartVBox.getChildren().add(lineChart);
-        lineChartHBox.getChildren().add(new TimeSelectorView(this, lineChart.getFromDate(), lineChart.getToDate()));
+        this.lineSelector = new TimeSelectorView(this, lineChart.getFromDate(), lineChart.getToDate(), true, true);
+        lineChartHBox.getChildren().add(lineSelector);
     }
 }

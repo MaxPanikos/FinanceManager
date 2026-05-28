@@ -18,7 +18,7 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.ledger = ledger;
-        this.formatter = DateTimeFormatter.ofPattern("d.M.");
+        this.formatter = DateTimeFormatter.ofPattern("d.M. yyyy");
         update();
     }
 

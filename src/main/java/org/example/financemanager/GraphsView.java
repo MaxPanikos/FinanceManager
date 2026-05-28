@@ -6,6 +6,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -24,7 +25,10 @@ public class GraphsView extends Page{
     @FXML
     private VBox pieChartVBox, barChartVBox, lineChartVBox;
     @FXML
-    private HBox pieChartHBox;
+    private HBox pieChartHBox, barChartHBox, lineChartHBox;
+
+    @FXML
+    private Label rangeLabel;
 
     public GraphsView(AppView appView) {
         super(appView);
@@ -63,10 +67,12 @@ public class GraphsView extends Page{
     private void loadBarChart () {
         this.incomeBarChart = new CustomBarChart(fromDate, toDate, ledger);
         barChartVBox.getChildren().add(incomeBarChart);
+        barChartHBox.getChildren().add(new TimeSelectorView(this));
     }
 
     private void loadLineChart () {
         this.balanceLineChart = new CustomLineChart(fromDate, toDate, ledger);
         lineChartVBox.getChildren().add(balanceLineChart);
+        lineChartHBox.getChildren().add(new TimeSelectorView(this));
     }
 }

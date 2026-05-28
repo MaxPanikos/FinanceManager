@@ -6,10 +6,7 @@ import org.w3c.dom.Text;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class CustomBarChart extends BarChart<String, Number> implements CustomChart{
     private LocalDate fromDate, toDate;
@@ -28,12 +25,12 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
         this.getData().clear();
         ArrayList<Transaction> transactions;
         if (fromDate == null || toDate == null) {
-            transactions = ledger.getTransactions();
+            transactions = ledger.getTransactionsInRange(LocalDate.now().atStartOfDay().minusYears(1), LocalDate.now().atStartOfDay());
         } else {
             transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
         }
-        HashMap<Month, Double> incomeData = new HashMap<>();
-        HashMap<Month, Double> expenseData = new HashMap<>();
+        LinkedHashMap<Month, Double> incomeData = new LinkedHashMap<>();
+        LinkedHashMap<Month, Double> expenseData = new LinkedHashMap<>();
         for (Transaction transaction : transactions) {
             Month month = transaction.getDate().toLocalDate().getMonth();
             if (transaction.getType().getType().equals("Příjem")) {

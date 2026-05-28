@@ -13,30 +13,17 @@ import java.util.ArrayList;
 public class TimeSelectorView extends HBox {
     private Page page;
     private LocalDate fromDate, toDate;
-    boolean enableWholeButton, enableCustomRangeButton;
 
     @FXML
     private ToggleGroup group;
     @FXML
     private ToggleButton threeMonthsButton, halfYearButton, oneYearButton, wholeButton, customRangeButton;
 
-    @FXML
-    private void initialize() {
-        if (!enableWholeButton) {
-            wholeButton.setVisible(false);
-        }
-        if (!enableCustomRangeButton) {
-            customRangeButton.setVisible(false);
-        }
-    }
-
-    public TimeSelectorView(Page page, LocalDate fromDate, LocalDate toDate, boolean enableWholeButton, boolean enableCustomRangeButton) {
+    public TimeSelectorView(Page page, LocalDate fromDate, LocalDate toDate) {
         super();
         this.page = page;
         this.fromDate = fromDate;
         this.toDate = toDate;
-        this.enableWholeButton = enableWholeButton;
-        this.enableCustomRangeButton = enableCustomRangeButton;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("time-selector-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -45,6 +32,33 @@ public class TimeSelectorView extends HBox {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void setButtonVisibility(ToggleButton button, boolean visible) {
+        if (button != null) {
+            button.setVisible(visible);
+            button.setManaged(visible);
+        }
+    }
+
+    public void setThreeMonthsButtonVisible(boolean visible) {
+        setButtonVisibility(threeMonthsButton, visible);
+    }
+
+    public void setHalfYearButtonVisible(boolean visible) {
+        setButtonVisibility(halfYearButton, visible);
+    }
+
+    public void setOneYearButtonVisible(boolean visible) {
+        setButtonVisibility(oneYearButton, visible);
+    }
+
+    public void setWholeButtonVisible(boolean visible) {
+        setButtonVisibility(wholeButton, visible);
+    }
+
+    public void setCustomRangeButtonVisible(boolean visible) {
+        setButtonVisibility(customRangeButton, visible);
     }
 
     private void setSelected (ToggleButton button) {
@@ -93,6 +107,7 @@ public class TimeSelectorView extends HBox {
                         fromDate = from;
                         toDate = to;
                         appView.hidePopup();
+                        page.update();
                     }
                 });
                 break;

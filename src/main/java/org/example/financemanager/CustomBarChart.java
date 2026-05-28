@@ -18,6 +18,7 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
         this.fromDate = LocalDate.now().minusYears(1);
         this.toDate = LocalDate.now();
         this.ledger = ledger;
+        setAnimated(false);
         update();
     }
 
@@ -48,6 +49,9 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
                 }
             }
         }
+
+        layout();
+
         XYChart.Series<String, Number> income = new XYChart.Series<>();
         income.setName("Příjmy");
         for (Map.Entry<Month, Double> entry : incomeData.entrySet()) {

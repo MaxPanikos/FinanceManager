@@ -70,21 +70,23 @@ public class GraphsView extends Page{
     private void loadPieChart () {
         this.pieChart = new CustomPieChart(ledger, "Příjem");
         pieChartVBox.getChildren().add(pieChart);
-        this.pieSelector = new TimeSelectorView(this, pieChart.getFromDate(), pieChart.getToDate(), true, true);
+        this.pieSelector = new TimeSelectorView(this, pieChart.getFromDate(), pieChart.getToDate());
         pieChartHBox.getChildren().add(pieSelector);
     }
 
     private void loadBarChart () {
         this.barChart = new CustomBarChart(ledger);
         barChartVBox.getChildren().add(barChart);
-        this.barSelector = new TimeSelectorView(this, barChart.getFromDate(), barChart.getToDate(), false, false);
+        this.barSelector = new TimeSelectorView(this, barChart.getFromDate(), barChart.getToDate());
+        barSelector.setWholeButtonVisible(false);
+        barSelector.setCustomRangeButtonVisible(false);
         barChartHBox.getChildren().add(barSelector);
     }
 
     private void loadLineChart () {
         this.lineChart = new CustomLineChart(ledger);
         lineChartVBox.getChildren().add(lineChart);
-        this.lineSelector = new TimeSelectorView(this, lineChart.getFromDate(), lineChart.getToDate(), true, true);
+        this.lineSelector = new TimeSelectorView(this, lineChart.getFromDate(), lineChart.getToDate());
         lineChartHBox.getChildren().add(lineSelector);
     }
 }

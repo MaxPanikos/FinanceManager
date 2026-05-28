@@ -19,6 +19,7 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
         this.toDate = LocalDate.now();
         this.ledger = ledger;
         this.formatter = DateTimeFormatter.ofPattern("d.M. yyyy");
+        setAnimated(false);
         update();
     }
 
@@ -33,6 +34,8 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
 
         XYChart.Series<String, Number> balanceSeries = new XYChart.Series<>();
         balanceSeries.setName("Stav účtu");
+
+        layout();
 
         for (LocalDate date : dates) {
             String formatedDay = date.format(formatter);

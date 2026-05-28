@@ -26,6 +26,7 @@ public class CustomPieChart extends PieChart implements CustomChart {
         this.toDate = LocalDate.now();
         this.ledger = ledger;
         this.category = category;
+        setAnimated(false);
         update();
     }
 
@@ -53,6 +54,8 @@ public class CustomPieChart extends PieChart implements CustomChart {
                 dataMap.get(type).setPieValue(currentAmount + transaction.getAmount());
             }
         }
+
+        layout();
 
         for (PieChart.Data data : dataMap.values()) {
             if (data.getPieValue() > 0.0) {

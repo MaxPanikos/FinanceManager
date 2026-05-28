@@ -1,6 +1,7 @@
 package org.example.financemanager;
 
 import javafx.scene.chart.*;
+import javafx.scene.control.Tooltip;
 import org.w3c.dom.Text;
 
 import java.time.LocalDate;
@@ -50,13 +51,29 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
         XYChart.Series<String, Number> income = new XYChart.Series<>();
         income.setName("Příjmy");
         for (Map.Entry<Month, Double> entry : incomeData.entrySet()) {
-            income.getData().add(new XYChart.Data<>(entry.getKey().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue()));
+            XYChart.Data<String, Number> data = new XYChart.Data<>(entry.getKey().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue());
+            income.getData().add(data);
+            data.nodeProperty().addListener((observable, oldNode, newNode) -> {
+                if (newNode != null) {
+                    Tooltip tooltip = new Tooltip(entry.getValue() + " " + ledger.getCurrency().getSymbol());
+                    tooltip.setShowDelay(javafx.util.Duration.millis(100));
+                    Tooltip.install(newNode, tooltip);
+                }
+            });
         }
 
         XYChart.Series<String, Number> expense = new XYChart.Series<>();
         expense.setName("Výdaje");
         for (Map.Entry<Month, Double> entry : expenseData.entrySet()) {
-            expense.getData().add(new XYChart.Data<>(entry.getKey().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue()));
+            XYChart.Data<String, Number> data = new XYChart.Data<>(entry.getKey().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue());
+            expense.getData().add(data);
+            data.nodeProperty().addListener((observable, oldNode, newNode) -> {
+                if (newNode != null) {
+                    Tooltip tooltip = new Tooltip((entry.getValue() * -1) + " " + ledger.getCurrency().getSymbol());
+                    tooltip.setShowDelay(javafx.util.Duration.millis(100));
+                    Tooltip.install(newNode, tooltip);
+                }
+            });
         }
 
         this.getData().addAll(income, expense);

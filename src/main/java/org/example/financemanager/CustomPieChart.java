@@ -2,12 +2,16 @@ package org.example.financemanager;
 
 import javafx.scene.chart.Chart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.Pane;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class CustomPieChart extends PieChart implements CustomChart {
     private LocalDate fromDate, toDate;
@@ -52,6 +56,13 @@ public class CustomPieChart extends PieChart implements CustomChart {
         for (PieChart.Data data : dataMap.values()) {
             if (data.getPieValue() > 0.0) {
                 this.getData().add(data);
+                data.nodeProperty().addListener((observable, oldNode, newNode) -> {
+                    if (newNode != null) {
+                        Tooltip tooltip = new Tooltip(data.getPieValue() + " " + ledger.getCurrency().getSymbol());
+                        tooltip.setShowDelay(javafx.util.Duration.millis(100));
+                        Tooltip.install(newNode, tooltip);
+                    }
+                });
             }
         }
     }

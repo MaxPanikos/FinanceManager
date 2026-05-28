@@ -42,7 +42,7 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
             data.nodeProperty().addListener((observable, oldNode, newNode) -> {
                 //AI
                 if (newNode != null) {
-                    Tooltip tooltip = new Tooltip(formatedDay + ": " + balance + " Kč");
+                    Tooltip tooltip = new Tooltip(formatedDay + ": " + balance + " " + ledger.getCurrency().getSymbol());
                     tooltip.setShowDelay(javafx.util.Duration.millis(100));
                     Tooltip.install(newNode, tooltip);
                 }

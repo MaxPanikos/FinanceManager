@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<fx:root type="org.example.financemanager.HomepageView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
-    <VBox>
-        <padding >
-            <Insets top="10" left="5" right="5" bottom="10"/>
-        </padding>
+<fx:root type="org.example.financemanager.HomepageView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@page-view.css">
+    <VBox spacing="20.0" styleClass="page">
+        <HBox>
+            <Label text="Domovská stránka" wrapText="true" styleClass="page-title"/>
+        </HBox>
         <FlowPane fx:id="flowPane" hgap="15" vgap="15" VBox.vgrow="ALWAYS">
         </FlowPane>
     </VBox>

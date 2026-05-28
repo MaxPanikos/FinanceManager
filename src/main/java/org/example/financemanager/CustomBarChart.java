@@ -6,6 +6,8 @@ import org.w3c.dom.Text;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.Year;
+import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.*;
 
@@ -31,10 +33,20 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
         } else {
             transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
         }
-        LinkedHashMap<Month, Double> incomeData = new LinkedHashMap<>();
-        LinkedHashMap<Month, Double> expenseData = new LinkedHashMap<>();
+        LinkedHashMap<YearMonth, Double> incomeData = new LinkedHashMap<>();
+        LinkedHashMap<YearMonth, Double> expenseData = new LinkedHashMap<>();
+
+        YearMonth currentMonth = YearMonth.from(fromDate);
+        YearMonth endMonth = YearMonth.from(toDate);
+
+        while (!currentMonth.isAfter(endMonth)) {
+            incomeData.put(currentMonth, 0.0);
+            expenseData.put(currentMonth, 0.0);
+            currentMonth = currentMonth.plusMonths(1);
+        }
+
         for (Transaction transaction : transactions) {
-            Month month = transaction.getDate().toLocalDate().getMonth();
+            YearMonth month = YearMonth.from(transaction.getDate());
             if (transaction.getType().getType().equals("Příjem")) {
                 if (!incomeData.containsKey(month)) {
                     incomeData.put(month, transaction.getAmount());
@@ -54,8 +66,8 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
 
         XYChart.Series<String, Number> income = new XYChart.Series<>();
         income.setName("Příjmy");
-        for (Map.Entry<Month, Double> entry : incomeData.entrySet()) {
-            XYChart.Data<String, Number> data = new XYChart.Data<>(entry.getKey().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue());
+        for (Map.Entry<YearMonth, Double> entry : incomeData.entrySet()) {
+            XYChart.Data<String, Number> data = new XYChart.Data<>(entry.getKey().getMonth().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue());
             income.getData().add(data);
             data.nodeProperty().addListener((observable, oldNode, newNode) -> {
                 if (newNode != null) {
@@ -68,8 +80,8 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
 
         XYChart.Series<String, Number> expense = new XYChart.Series<>();
         expense.setName("Výdaje");
-        for (Map.Entry<Month, Double> entry : expenseData.entrySet()) {
-            XYChart.Data<String, Number> data = new XYChart.Data<>(entry.getKey().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue());
+        for (Map.Entry<YearMonth, Double> entry : expenseData.entrySet()) {
+            XYChart.Data<String, Number> data = new XYChart.Data<>(entry.getKey().getMonth().getDisplayName(TextStyle.FULL_STANDALONE, new Locale("cs", "CZ")), entry.getValue());
             expense.getData().add(data);
             data.nodeProperty().addListener((observable, oldNode, newNode) -> {
                 if (newNode != null) {

@@ -6,13 +6,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="org.example.financemanager.TimeSelectorView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="5">
+<fx:root type="org.example.financemanager.TimeSelectorView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" spacing="5" stylesheets="charts.css">
     <fx:define>
         <ToggleGroup fx:id="group" />
     </fx:define>
-    <ToggleButton fx:id="threeMonthsButton" text="3 měsíce" toggleGroup="$group" onAction="#onButtonClicked"/>
-    <ToggleButton fx:id="halfYearButton" text="Půl rok" toggleGroup="$group" onAction="#onButtonClicked"/>
-    <ToggleButton fx:id="oneYearButton" text="1 rok" toggleGroup="$group" onAction="#onButtonClicked"/>
-    <ToggleButton fx:id="wholeButton" text="Celý" toggleGroup="$group" onAction="#onButtonClicked"/>
-    <ToggleButton fx:id="customRangeButton" text="Vlastní" toggleGroup="$group" onAction="#onButtonClicked"/>
+    <ToggleButton fx:id="threeMonthsButton" text="3 měsíce" toggleGroup="$group" onAction="#onButtonClicked" styleClass="date-button"/>
+    <ToggleButton fx:id="halfYearButton" text="Půl rok" toggleGroup="$group" onAction="#onButtonClicked" styleClass="date-button"/>
+    <ToggleButton fx:id="oneYearButton" text="1 rok" toggleGroup="$group" onAction="#onButtonClicked" styleClass="date-button"/>
+    <ToggleButton fx:id="wholeButton" text="Celý" toggleGroup="$group" onAction="#onButtonClicked" styleClass="date-button"/>
+    <ToggleButton fx:id="customRangeButton" text="Vlastní" toggleGroup="$group" onAction="#onButtonClicked" styleClass="date-button"/>
 </fx:root>

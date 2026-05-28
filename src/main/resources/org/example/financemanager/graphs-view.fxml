@@ -16,33 +16,43 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.FlowPane?>
-<fx:root type="org.example.financemanager.GraphsView" stylesheets="@style.css, @charts.css, @page-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="org.example.financemanager.GraphsView" stylesheets="@style.css,  @charts.css, @page-view.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <VBox spacing="20.0" styleClass="page">
         <HBox spacing="5">
             <Label text="Vizualizace vašich transakcí" wrapText="true" styleClass="page-title"/>
         </HBox>
 
         <FlowPane alignment="CENTER" vgap="10" hgap="15" VBox.vgrow="ALWAYS" styleClass="charts-background">
-            <VBox fx:id="pieChartVBox" styleClass="chart-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <VBox fx:id="pieChartVBox" styleClass="chart-card" spacing="3">
                 <HBox fx:id="pieChartHBox" spacing="10">
-                    <Label text="Struktura příjmů"/>
+                    <Label text="Struktura příjmů" styleClass="chart-title"/>
                     <Region HBox.hgrow="ALWAYS" />
                 </HBox>
+                <Label fx:id="pieChartRange" styleClass="chart-range"/>
             </VBox>
 
-            <VBox fx:id="barChartVBox" styleClass="chart-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <VBox fx:id="pieChartVBox2" styleClass="chart-card" spacing="3">
+                <HBox fx:id="pieChartHBox2" spacing="10">
+                    <Label text="Struktura výdajů" styleClass="chart-title"/>
+                    <Region HBox.hgrow="ALWAYS" />
+                </HBox>
+                <Label fx:id="pieChartRange2"  styleClass="chart-range"/>
+            </VBox>
+
+            <VBox fx:id="barChartVBox" styleClass="chart-card" spacing="3">
                 <HBox fx:id="barChartHBox" spacing="10">
-                    <Label text="Příjmy vs Výdaje"/>
-                    <Label fx:id="rangeLabel" />
+                    <Label text="Příjmy vs Výdaje" styleClass="chart-title"/>
                     <Region HBox.hgrow="ALWAYS" />
                 </HBox>
+                <Label fx:id="barChartRange"  styleClass="chart-range"/>
             </VBox>
 
-            <VBox fx:id="lineChartVBox" styleClass="chart-card" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <VBox fx:id="lineChartVBox" styleClass="chart-card" spacing="3">
                 <HBox fx:id="lineChartHBox" spacing="10">
-                    <Label text="Vývoj celkového zůstatku"/>
+                    <Label text="Vývoj celkového zůstatku" styleClass="chart-title"/>
                     <Region HBox.hgrow="ALWAYS" />
                 </HBox>
+                <Label fx:id="lineChartRange"  styleClass="chart-range"/>
             </VBox>
         </FlowPane>
     </VBox>

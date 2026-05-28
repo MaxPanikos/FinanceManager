@@ -51,7 +51,11 @@ public class CustomPieChart extends PieChart implements CustomChart {
             TransactionTypes type = transaction.getType();
             if (dataMap.containsKey(type)) {
                 double currentAmount = dataMap.get(type).getPieValue();
-                dataMap.get(type).setPieValue(currentAmount + transaction.getAmount());
+                if (category.equals("Příjem")) {
+                    dataMap.get(type).setPieValue(currentAmount + transaction.getAmount());
+                } else if (category.equals("Výdaj")) {
+                    dataMap.get(type).setPieValue(currentAmount + (transaction.getAmount()*-1));
+                }
             }
         }
 

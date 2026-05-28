@@ -13,10 +13,10 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
     private Ledger ledger;
     private DateTimeFormatter formatter;
 
-    public CustomLineChart(LocalDate fromDate, LocalDate toDate, Ledger ledger) {
+    public CustomLineChart(Ledger ledger) {
         super(new CategoryAxis(), new NumberAxis());
-        this.fromDate = fromDate;
-        this.toDate = toDate;
+        this.fromDate = LocalDate.now().minusYears(1);
+        this.toDate = LocalDate.now();
         this.ledger = ledger;
         this.formatter = DateTimeFormatter.ofPattern("d.M. yyyy");
         update();
@@ -58,5 +58,13 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
             dates.add(transaction.getDate().toLocalDate());
         });
         return dates;
+    }
+
+    public LocalDate getFromDate() {
+        return fromDate;
+    }
+
+    public LocalDate getToDate() {
+        return toDate;
     }
 }

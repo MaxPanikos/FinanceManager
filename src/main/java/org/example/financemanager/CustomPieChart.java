@@ -18,10 +18,10 @@ public class CustomPieChart extends PieChart implements CustomChart {
     private Ledger ledger;
     private String category;
 
-    public CustomPieChart(LocalDate startDate, LocalDate endDate, Ledger ledger, String category) {
+    public CustomPieChart(Ledger ledger, String category) {
         super();
-        this.fromDate = startDate;
-        this.toDate = endDate;
+        this.fromDate = LocalDate.now().minusYears(1);
+        this.toDate = LocalDate.now();
         this.ledger = ledger;
         this.category = category;
         update();
@@ -56,6 +56,7 @@ public class CustomPieChart extends PieChart implements CustomChart {
         for (PieChart.Data data : dataMap.values()) {
             if (data.getPieValue() > 0.0) {
                 this.getData().add(data);
+                //TODO (not working)
                 data.nodeProperty().addListener((observable, oldNode, newNode) -> {
                     if (newNode != null) {
                         Tooltip tooltip = new Tooltip(data.getPieValue() + " " + ledger.getCurrency().getSymbol());
@@ -65,5 +66,13 @@ public class CustomPieChart extends PieChart implements CustomChart {
                 });
             }
         }
+    }
+
+    public LocalDate getFromDate() {
+        return fromDate;
+    }
+
+    public LocalDate getToDate() {
+        return toDate;
     }
 }

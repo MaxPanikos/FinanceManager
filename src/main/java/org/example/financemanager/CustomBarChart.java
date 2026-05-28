@@ -13,10 +13,10 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
     private LocalDate fromDate, toDate;
     private Ledger ledger;
 
-    public CustomBarChart(LocalDate fromDate, LocalDate toDate, Ledger ledger) {
+    public CustomBarChart(Ledger ledger) {
         super(new CategoryAxis(), new NumberAxis());
-        this.fromDate = fromDate;
-        this.toDate = toDate;
+        this.fromDate = LocalDate.now().minusYears(1);
+        this.toDate = LocalDate.now();
         this.ledger = ledger;
         update();
     }
@@ -75,7 +75,14 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
                 }
             });
         }
-
         this.getData().addAll(income, expense);
+    }
+
+    public LocalDate getFromDate() {
+        return fromDate;
+    }
+
+    public LocalDate getToDate() {
+        return toDate;
     }
 }

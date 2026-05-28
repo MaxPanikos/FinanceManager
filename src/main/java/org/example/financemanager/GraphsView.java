@@ -2,25 +2,18 @@ package org.example.financemanager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class GraphsView extends Page{
     private Ledger ledger;
-    private LocalDate fromDate, toDate;
 
-    private CustomPieChart categoryPieChart;
-    private CustomBarChart incomeBarChart;
-    private CustomLineChart balanceLineChart;
+    private CustomPieChart pieChart;
+    private CustomBarChart barChart;
+    private CustomLineChart lineChart;
 
     @FXML
     private VBox pieChartVBox, barChartVBox, lineChartVBox;
@@ -45,9 +38,9 @@ public class GraphsView extends Page{
 
     @Override
     public void update() {
-        categoryPieChart.update();
-        incomeBarChart.update();
-        balanceLineChart.update();
+        pieChart.update();
+        barChart.update();
+        lineChart.update();
     }
 
     @FXML
@@ -59,20 +52,20 @@ public class GraphsView extends Page{
 
 
     private void loadPieChart () {
-        this.categoryPieChart = new CustomPieChart(fromDate, toDate, ledger, "Příjem");
-        pieChartVBox.getChildren().add(categoryPieChart);
-        pieChartHBox.getChildren().add(new TimeSelectorView(this));
+        this.pieChart = new CustomPieChart(ledger, "Příjem");
+        pieChartVBox.getChildren().add(pieChart);
+        pieChartHBox.getChildren().add(new TimeSelectorView(this, pieChart.getFromDate(), pieChart.getToDate()));
     }
 
     private void loadBarChart () {
-        this.incomeBarChart = new CustomBarChart(fromDate, toDate, ledger);
-        barChartVBox.getChildren().add(incomeBarChart);
-        barChartHBox.getChildren().add(new TimeSelectorView(this));
+        this.barChart = new CustomBarChart(ledger);
+        barChartVBox.getChildren().add(barChart);
+        barChartHBox.getChildren().add(new TimeSelectorView(this, barChart.getFromDate(), barChart.getToDate()));
     }
 
     private void loadLineChart () {
-        this.balanceLineChart = new CustomLineChart(fromDate, toDate, ledger);
-        lineChartVBox.getChildren().add(balanceLineChart);
-        lineChartHBox.getChildren().add(new TimeSelectorView(this));
+        this.lineChart = new CustomLineChart(ledger);
+        lineChartVBox.getChildren().add(lineChart);
+        lineChartHBox.getChildren().add(new TimeSelectorView(this, lineChart.getFromDate(), lineChart.getToDate()));
     }
 }

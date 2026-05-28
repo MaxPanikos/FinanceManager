@@ -16,18 +16,13 @@ public class TimeSelectorView extends HBox {
     @FXML
     private ToggleGroup group;
     @FXML
-    private ToggleButton oneMonthButton, threeMonthsButton, halfYearButton, oneYearButton, threeYearsButton, customRangeButton;
+    private ToggleButton oneMonthButton, threeMonthsButton, halfYearButton, oneYearButton, customRangeButton;
 
-
-    @FXML
-    private void initialize() {
-    }
-
-    public TimeSelectorView(Page page) {
+    public TimeSelectorView(Page page, LocalDate fromDate, LocalDate toDate) {
         super();
         this.page = page;
-        this.fromDate = LocalDate.now();
-        this.toDate = LocalDate.now();
+        this.fromDate = fromDate;
+        this.toDate = toDate;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("time-selector-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -49,34 +44,29 @@ public class TimeSelectorView extends HBox {
         LocalDate prevFromDate = fromDate;
         LocalDate prevToDate = toDate;
         ToggleButton button = (ToggleButton) event.getSource();
-        if (button.isSelected()) {
-            button.setSelected(true);
-            return;
-        }
+//        if (button.isSelected()) {
+//            button.setSelected(true);
+//            return;
+//        }
         switch (button.getId()) {
             case "oneMonthButton":
                 setSelected(oneMonthButton);
-                fromDate = fromDate.minusMonths(1);
+                fromDate = LocalDate.now().minusMonths(1);
                 toDate = LocalDate.now();
                 break;
             case "threeMonthsButton":
                 setSelected(threeMonthsButton);
-                fromDate = fromDate.minusMonths(3);
+                fromDate = LocalDate.now().minusMonths(3);
                 toDate = LocalDate.now();
                 break;
             case "halfYearButton":
                 setSelected(halfYearButton);
-                fromDate = fromDate.minusMonths(6);
+                fromDate = LocalDate.now().minusMonths(6);
                 toDate = LocalDate.now();
                 break;
             case "oneYearButton":
                 setSelected(oneYearButton);
-                fromDate = fromDate.minusYears(1);
-                toDate = LocalDate.now();
-                break;
-            case "threeYearsButton":
-                setSelected(threeYearsButton);
-                fromDate = fromDate.minusYears(3);
+                fromDate = LocalDate.now().minusYears(1);
                 toDate = LocalDate.now();
                 break;
             case "customRangeButton":
@@ -101,7 +91,7 @@ public class TimeSelectorView extends HBox {
                 break;
         }
         //TODO
-        if (!prevFromDate.isEqual(fromDate) && !prevToDate.isEqual(toDate)) {
+        if ((prevFromDate == null && prevToDate == null) || !prevFromDate.isEqual(fromDate) || !prevToDate.isEqual(toDate)) {
             page.update();
         }
     }

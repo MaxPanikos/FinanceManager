@@ -1,32 +1,55 @@
 .calculator-tile {
-    -fx-background-color: #474747;
-    -fx-border-width: 1;
-    -fx-border-color: #2e2e2e;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
+    -fx-background-color: #2c2c2c;
     -fx-text-fill: white;
     -fx-font-family: "JetBrains Mono Thin";
-    -fx-padding: 5 10 5 10;
-    -fx-effect: dropshadow(gaussian, black, 10, 0.2, 0, 0);
     -fx-min-width: 200;
     -fx-spacing: 5;
+    -fx-background-color: rgba(74, 74, 74, 0.4);
+    -fx-border-color: #2c2c2c;
+    -fx-border-width: 1;
+    -fx-padding: 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, black, 15, 0.5, 0, 0);
+}
+
+.calculator-tile .calculator-title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
 }
 
 .calculate-button {
-    -fx-background-color: #06ae06;
-    -fx-border-color: #05ac05;
+    -fx-background-color: #216e09;
+    -fx-border-color: #147e14;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-font-size: 14;
     -fx-text-fill: white;
     -fx-padding: 5 10 5 10;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, greenyellow, 10, 0.3, 0, 0);
+    -fx-effect: dropshadow(gaussian, #80ba26, 5, 0.2, 0, 0);
 }
 .calculate-button:hover {
-    -fx-scale-x: 1.03;
-    -fx-scale-y: 1.03;
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
 }
 .calculate-button:pressed {
-    -fx-background-color: #029f02;
+    -fx-background-color: #037303;
+}
+
+.calculator-text-field {
+    -fx-background-color: rgba(30, 30, 30, 0.5);
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-prompt-text-fill: #c2c7c8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 4, 0, 0, 2);
+    -fx-max-width: 300;
+}
+.calculator-text-field:focused {
+    -fx-background-color: rgba(55, 55, 55, 0.5);
 }

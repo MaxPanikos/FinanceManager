@@ -2,10 +2,20 @@ package org.example.financemanager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 public class CalculatorView extends Page{
+    @FXML
+    private TextField interestInitialDeposit, interestMonthlyDeposit, interestRate, interestMonths, inflationDeposit, inflationRate, inflationYears, loanLoan, loanRate, loanLength;
+    @FXML
+    private Button interestButton, inflationButton, loanButton;
+
     public CalculatorView(AppView appView) {
         super(appView);
         try {
@@ -14,7 +24,7 @@ public class CalculatorView extends Page{
             fxmlLoader.setController(this);
             fxmlLoader.load();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 

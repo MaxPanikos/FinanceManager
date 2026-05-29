@@ -21,21 +21,28 @@
                 <RowConstraints minHeight="140.0" prefHeight="160.0" vgrow="SOMETIMES" />
             </rowConstraints>
 
-            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                <Label text="Úroková kalkulačka" />
-                <TextField promptText="Počáteční vklad"/>
-                <TextField promptText="Měsíční vklad"/>
-                <TextField promptText="Úroková sazba"/>
-                <TextField promptText="Počet měsíců"/>
-                <Button text="Spočítat" styleClass="calculate-button"/>
+            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="3">
+                <Label text="Úroková kalkulačka" styleClass="calculator-title"/>
+                <TextField fx:id="interestInitialDeposit" promptText="Počáteční vklad" styleClass="calculator-text-field"/>
+                <TextField fx:id="interestMonthlyDeposit" promptText="Měsíční vklad" styleClass="calculator-text-field"/>
+                <TextField fx:id="interestRate" promptText="Úroková sazba" styleClass="calculator-text-field"/>
+                <TextField fx:id="interestMonths" promptText="Počet měsíců" styleClass="calculator-text-field"/>
+                <Button  fx:id="interestButton" text="Spočítat" styleClass="calculate-button"/>
             </VBox>
-            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <Label text="Inflační kalkulačka" />
+            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="3">
+                <Label text="Inflační kalkulačka" styleClass="calculator-title"/>
+                <TextField fx:id="inflationDeposit" promptText="Počáteční vklad" styleClass="calculator-text-field"/>
+                <TextField fx:id="inflationRate" promptText="inflace" styleClass="calculator-text-field"/>
+                <TextField fx:id="inflationYears" promptText="Počet let" styleClass="calculator-text-field"/>
+                <Button  fx:id="inflationButton" text="Spočítat" styleClass="calculate-button"/>
             </VBox>
-            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
-                <Label text="Splátková kalkulačka" />
+            <VBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2" spacing="3">
+                <Label text="Splátková kalkulačka" styleClass="calculator-title"/>
+                <TextField fx:id="loanLoan" promptText="Počáteční vklad" styleClass="calculator-text-field"/>
+                <TextField fx:id="loanRate" promptText="inflace" styleClass="calculator-text-field"/>
+                <TextField fx:id="loanLength" promptText="Počet let" styleClass="calculator-text-field"/>
+                <Button  fx:id="loanButton" text="Spočítat" styleClass="calculate-button"/>
             </VBox>
         </GridPane>
     </VBox>
 </fx:root>
-

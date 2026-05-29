@@ -19,6 +19,16 @@
     -fx-font-size: 20;
 }
 
+.calculator-tile .calculator-label {
+    -fx-text-fill: #d5d5d5;
+    -fx-font-size: 14;
+}
+
+.calculator-tile .response-label {
+    -fx-text-fill: #970000;
+    -fx-font-size: 12;
+}
+
 .calculate-button {
     -fx-background-color: #216e09;
     -fx-border-color: #147e14;

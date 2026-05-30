@@ -55,6 +55,25 @@ public class GraphsView extends Page{
 
     @Override
     public void update () {
+        pieChart.setFromDate(pieSelector.getFromDate());
+        pieChart.setToDate(pieSelector.getToDate());
+        pieChart.update();
+        pieChartRange.setText(pieChart.getFromDate().format(formatter) + " - " + pieChart.getToDate().format(formatter));
+        pieChart2.setFromDate(pieSelector2.getFromDate());
+        pieChart2.setToDate(pieSelector2.getToDate());
+        pieChart2.update();
+        pieChartRange2.setText(pieChart2.getFromDate().format(formatter) + " - " + pieChart2.getToDate().format(formatter));
+        barChart.setFromDate(barSelector.getFromDate());
+        barChart.setToDate(barSelector.getToDate());
+        barChart.update();
+        barChartRange.setText(barChart.getFromDate().format(formatter) + " - " + barChart.getToDate().format(formatter));
+        lineChart.setFromDate(lineSelector.getFromDate());
+        lineChart.setToDate(lineSelector.getToDate());
+        lineChart.update();
+        lineChartRange.setText(lineChart.getFromDate().format(formatter) + " - " + lineChart.getToDate().format(formatter));
+    }
+
+    public void updateByTimeChanger () {
         if (pieSelector != null  && !(pieChart.getFromDate().isEqual(pieSelector.getFromDate()) && pieChart.getToDate().isEqual(pieSelector.getToDate()))) {
             pieChart.setFromDate(pieSelector.getFromDate());
             pieChart.setToDate(pieSelector.getToDate());

@@ -107,7 +107,12 @@ public class TimeSelectorView extends HBox {
                         fromDate = from;
                         toDate = to;
                         appView.hidePopup();
-                        page.update();
+
+                        if (page instanceof GraphsView) {
+                            ((GraphsView) page).updateByTimeChanger();
+                        } else {
+                            page.update();
+                        }
                     }
                 });
                 break;

@@ -35,8 +35,6 @@ public class TransactionView extends Page {
             contentBox.setVisible(false);
             noTxLabel.setVisible(true);
         } else {
-            fromDate = ledger.get(0).getDate().toLocalDate();
-            toDate = ledger.get(ledger.getSize() - 1).getDate().toLocalDate();
             setPage();
         }
     }
@@ -55,6 +53,8 @@ public class TransactionView extends Page {
     }
 
     private void setPage () {
+        fromDate = ledger.get(0).getDate().toLocalDate();
+        toDate = ledger.get(ledger.getSize() - 1).getDate().toLocalDate();
         if (fromDate == null || toDate == null) {
             return;
         }

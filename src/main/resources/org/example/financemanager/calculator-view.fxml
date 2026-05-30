@@ -6,26 +6,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import org.controlsfx.control.ListActionView?>
 <fx:root type="org.example.financemanager.CalculatorView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@calculator-view.css, @page-view.css" styleClass="page">
-    <VBox spacing="10" VBox.vgrow="ALWAYS">
+    <VBox spacing="10" VBox.vgrow="ALWAYS" minHeight="-Infinity">
         <HBox styleClass="header-box">
             <Label text="Kalkulačky" styleClass="page-title"/>
         </HBox>
-        <FlowPane hgap="20" vgap="20" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" alignment="TOP_CENTER">
-            <HBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" spacing="10">
+        <VBox alignment="TOP_CENTER" spacing="15">
+            <HBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="10" minWidth="500">
                 <VBox VBox.vgrow="ALWAYS" spacing="10">
                     <Label text="Úroková kalkulačka" styleClass="calculator-title"/>
                     <GridPane hgap="10" vgap="10">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" />
                             <ColumnConstraints hgrow="ALWAYS" />
+                            <ColumnConstraints hgrow="ALWAYS" />
                         </columnConstraints>
                         <Label text="Počáteční vklad:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <TextField fx:id="interestInitialDeposit" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <Label fx:id="currencyLabel1" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <Label text="Měsíční vklad:" GridPane.columnIndex="0" GridPane.rowIndex="1"  styleClass="calculator-label"/>
                         <TextField fx:id="interestMonthlyDeposit" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label fx:id="currencyLabel2" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="calculator-label"/>
                         <Label text="Úroková sazba:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="calculator-label"/>
                         <TextField fx:id="interestRate" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label text="\%" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="calculator-label"/>
                         <Label text="Počet měsíců:" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="calculator-label"/>
                         <TextField fx:id="interestMonths" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </GridPane>
@@ -34,52 +39,70 @@
                         <Label fx:id="interestResponse" styleClass="response-label"/>
                     </VBox>
                 </VBox>
-                <VBox alignment="CENTER">
-                    <Label fx:id="interestResult"/>
+                <Separator orientation="VERTICAL" styleClass="separator"/>
+                <VBox alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <Label text="Na konci spoření budete mít:" wrapText="true" />
+                    <Label fx:id="interestResult" text="???" wrapText="true" styleClass="result-label"/>
                 </VBox>
             </HBox>
-            <HBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="10">
+            <HBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="10" minWidth="500">
                 <VBox VBox.vgrow="ALWAYS" spacing="10">
                     <Label text="Inflační kalkulačka" styleClass="calculator-title"/>
                     <GridPane hgap="10" vgap="10">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" />
                             <ColumnConstraints hgrow="ALWAYS" />
+                            <ColumnConstraints hgrow="ALWAYS" />
                         </columnConstraints>
                         <Label text="Počáteční vklad:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <TextField fx:id="inflationDeposit" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <Label fx:id="currencyLabel3" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <Label text="Inflace:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="calculator-label"/>
                         <TextField fx:id="inflationRate" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="calculator-label"/>
                         <Label text="Počet let:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="calculator-label"/>
                         <TextField fx:id="inflationYears" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     </GridPane>
                     <VBox alignment="CENTER" spacing="10">
-                        <Button fx:id="inflationButton" text="Spočítat" styleClass="calculate-button"/>
-                        <Label fx:id="inflationResponse" />
+                        <Button fx:id="inflationButton" text="Spočítat" styleClass="calculate-button" onAction="#calculateInflationLeftover"/>
+                        <Label fx:id="inflationResponse" styleClass="response-label"/>
                     </VBox>
                 </VBox>
+                <Separator orientation="VERTICAL" styleClass="separator" />
+                <VBox alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <Label text="Hodnota peněz bude:" wrapText="true" />
+                    <Label fx:id="inflationResult" text="???" wrapText="true" styleClass="result-label"/>
+                </VBox>
             </HBox>
-            <HBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="10">
+            <HBox styleClass="calculator-tile" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" spacing="10" minWidth="500">
                 <VBox VBox.vgrow="ALWAYS" spacing="10">
                     <Label text="Splátková kalkulačka" styleClass="calculator-title"/>
                     <GridPane hgap="10" vgap="10">
                         <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" />
                             <ColumnConstraints hgrow="ALWAYS" />
+                            <ColumnConstraints hgrow="ALWAYS" />
                         </columnConstraints>
                         <Label text="Výše úvěru:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <TextField fx:id="loanLoan" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        <Label fx:id="currencyLabel4" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <Label text="Úroková sazba:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="calculator-label"/>
                         <TextField fx:id="loanRate" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="calculator-label"/>
                         <Label text="Počet let:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="calculator-label"/>
                         <TextField fx:id="loanLength" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     </GridPane>
                     <VBox alignment="CENTER" spacing="10">
-                        <Button fx:id="loanButton" text="Spočítat" styleClass="calculate-button"/>
-                        <Label fx:id="loanResponse" />
+                        <Button fx:id="loanButton" text="Spočítat" styleClass="calculate-button" onAction="#calculateMonthlyLoanPayment"/>
+                        <Label fx:id="loanResponse" styleClass="response-label"/>
                     </VBox>
                 </VBox>
+                <Separator orientation="VERTICAL" styleClass="separator"/>
+                <VBox alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                    <Label text="Vaše měsíční splátka bude:" wrapText="true" />
+                    <Label fx:id="loanResult" text="???" wrapText="true" styleClass="result-label"/>
+                </VBox>
             </HBox>
-        </FlowPane>
+        </VBox>
     </VBox>
 </fx:root>

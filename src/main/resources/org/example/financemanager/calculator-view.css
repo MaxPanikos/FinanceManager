@@ -29,6 +29,13 @@
     -fx-font-size: 12;
 }
 
+.calculator-tile .separator:vertical .line {
+    -fx-padding: 0 10 0 10;
+    -fx-border-style: solid;
+    -fx-border-color: #444444;
+    -fx-border-width: 0 2px 0 0;
+}
+
 .calculate-button {
     -fx-background-color: #216e09;
     -fx-border-color: #147e14;
@@ -62,4 +69,10 @@
 }
 .calculator-text-field:focused {
     -fx-background-color: rgba(55, 55, 55, 0.5);
+}
+
+.calculator-tile .result-label {
+    -fx-text-fill: #18a518;
+    -fx-font-size: 22;
+    -fx-effect: dropshadow(gaussian, rgba(48, 182, 38, 0.5), 1, 0.2, 0, 0);
 }

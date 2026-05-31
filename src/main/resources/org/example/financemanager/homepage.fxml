@@ -14,20 +14,29 @@
             <Label text="Domovská stránka" wrapText="true" styleClass="page-title"/>
         </HBox>
         <FlowPane fx:id="flowPane" hgap="15" vgap="15" VBox.vgrow="ALWAYS">
-            <VBox spacing="5" styleClass="homepage-tile">
+            <VBox spacing="10" styleClass="homepage-tile">
                 <Label text="Statistky" styleClass="title"/>
                 <Region minHeight="5" maxHeight="20" VBox.vgrow="ALWAYS"/>
                 <TextFlow fx:id="incomeTextFlow"/>
                 <TextFlow fx:id="expanseTextFlow"/>
                 <TextFlow fx:id="remainingTextFlow"/>
             </VBox>
-            <VBox spacing="5" styleClass="homepage-tile">
-                <Label text="Přidat rychle transakci" styleClass="title"/>
+            <VBox spacing="10" styleClass="homepage-tile">
+                <Label text="Přidat transakci" styleClass="title"/>
                 <Region minHeight="5" maxHeight="20" VBox.vgrow="ALWAYS"/>
-                <Spinner fx:id="spinner" />
-                <ComboBox fx:id="comboBox"/>
-                <Button text="Přidat" onAction="#addTx" styleClass="button"/>
+                <VBox alignment="CENTER" spacing="10">
+                    <Spinner fx:id="spinner" />
+                    <ComboBox fx:id="comboBox"/>
+                    <Button text="Přidat" onAction="#addTx" styleClass="button"/>
+                </VBox>
                 <Label fx:id="addTxResponseLabel" styleClass="response-label"/>
+            </VBox>
+            <VBox fx:id="chartBox" spacing="5" styleClass="homepage-tile">
+                <Label text="Vizualizace zůstatku" styleClass="title"/>
+            </VBox>
+            <VBox spacing="5" styleClass="homepage-tile">
+                <Label text="Přehled posledních transakcí" styleClass="title"/>
+                <VBox fx:id="txList" styleClass="list"/>
             </VBox>
         </FlowPane>
     </VBox>

@@ -24,13 +24,13 @@
                         </columnConstraints>
                         <Label text="Počáteční vklad:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <TextField fx:id="interestInitialDeposit" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                        <Label fx:id="currencyLabel1" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="calculator-label"/>
+                        <Label fx:id="currencyLabel1" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="calculator-label" textOverrun="CLIP"/>
                         <Label text="Měsíční vklad:" GridPane.columnIndex="0" GridPane.rowIndex="1"  styleClass="calculator-label"/>
                         <TextField fx:id="interestMonthlyDeposit" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <Label fx:id="currencyLabel2" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="calculator-label"/>
+                        <Label fx:id="currencyLabel2" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="calculator-label" textOverrun="CLIP"/>
                         <Label text="Úroková sazba:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="calculator-label"/>
                         <TextField fx:id="interestRate" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <Label text="\%" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="calculator-label"/>
+                        <Label text="\%" GridPane.columnIndex="2" GridPane.rowIndex="2" styleClass="calculator-label" textOverrun="CLIP"/>
                         <Label text="Počet měsíců:" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="calculator-label"/>
                         <TextField fx:id="interestMonths" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                     </GridPane>
@@ -56,10 +56,10 @@
                         </columnConstraints>
                         <Label text="Počáteční vklad:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <TextField fx:id="inflationDeposit" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                        <Label fx:id="currencyLabel3" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="calculator-label"/>
+                        <Label fx:id="currencyLabel3" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="calculator-label" textOverrun="CLIP"/>
                         <Label text="Inflace:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="calculator-label"/>
                         <TextField fx:id="inflationRate" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="calculator-label"/>
+                        <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="calculator-label" textOverrun="CLIP"/>
                         <Label text="Počet let:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="calculator-label"/>
                         <TextField fx:id="inflationYears" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     </GridPane>
@@ -85,10 +85,10 @@
                         </columnConstraints>
                         <Label text="Výše úvěru:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="calculator-label"/>
                         <TextField fx:id="loanLoan" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                        <Label fx:id="currencyLabel4" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="calculator-label"/>
+                        <Label fx:id="currencyLabel4" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="calculator-label" textOverrun="CLIP"/>
                         <Label text="Úroková sazba:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="calculator-label"/>
                         <TextField fx:id="loanRate" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                        <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="calculator-label"/>
+                        <Label text="\%" GridPane.columnIndex="3" GridPane.rowIndex="1" styleClass="calculator-label" textOverrun="CLIP"/>
                         <Label text="Počet let:" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="calculator-label"/>
                         <TextField fx:id="loanLength" styleClass="calculator-text-field" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
                     </GridPane>

@@ -58,7 +58,7 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
      * gets dates for chart (AI USED)
      * @return ArrayList of LocalDates
      */
-    private ArrayList<LocalDate> getDates() {
+    protected ArrayList<LocalDate> getDates() {
         return ledger.getTransactions().stream()
                 .map(transaction -> transaction.getDate().toLocalDate())
                 .filter(date -> {

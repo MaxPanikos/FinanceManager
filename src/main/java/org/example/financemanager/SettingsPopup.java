@@ -10,27 +10,31 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import org.controlsfx.control.SearchableComboBox;
 import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Currency;
 
 public class SettingsPopup extends DefaultPopup {
     private Main main;
     private Profile profile;
 
-    private PauseTransition deleteUserTimer, changeNameTimer;
+    private PauseTransition deleteUserTimer, changeNameTimer, currencyTimer, saveTimer;
 
     @FXML
-    private Button removeProfileButton, areYouSureButton, changeUsernameButton;
+    private Button removeProfileButton, areYouSureButton, changeUsernameButton, changeCurrencyButton, saveButton;
     @FXML
-    private HBox usernameBox;
+    private HBox usernameBox, currencyBox;
     @FXML
-    private Label usernameResponseLabel;
+    private Label usernameResponseLabel, saveLabel;
     @FXML
     private TextField usernameTextField;
+    @FXML
+    private SearchableComboBox<String> currencySearchableBox;
 
     @FXML
     private void initialize() {
@@ -44,6 +48,26 @@ public class SettingsPopup extends DefaultPopup {
             }
             changeNameTimer.playFromStart();
         });
+        currencyBox.setOnMouseExited(event -> {
+            if (currencyTimer == null) {
+                currencyTimer = new PauseTransition(Duration.seconds(5));
+                currencyTimer.setOnFinished(e -> {
+                    currencyBox.setVisible(false);
+                    currencyBox.setManaged(false);
+                    changeCurrencyButton.setVisible(true);
+                });
+            }
+            currencyTimer.playFromStart();
+        });
+
+        String[] currencies = new String[Currency.getAvailableCurrencies().size()];
+        int i = 0;
+        for (Currency currency : Currency.getAvailableCurrencies()) {
+            currencies[i] = currency.getCurrencyCode();
+            i++;
+        }
+        currencySearchableBox.getItems().addAll(currencies);
+        currencySearchableBox.setValue("CZK");
     }
 
     public SettingsPopup(AppView appView, Main main) {
@@ -102,8 +126,18 @@ public class SettingsPopup extends DefaultPopup {
     private void saveProfile () {
         try {
             FileManager.save(profile, FileManager.profilesPath);
+            saveButton.setVisible(false);
+            saveLabel.setVisible(true);
+            if (saveTimer == null) {
+                saveTimer = new PauseTransition(Duration.seconds(3));
+                saveTimer.setOnFinished(e -> {
+                    saveButton.setVisible(true);
+                    saveLabel.setVisible(false);
+                });
+            }
+            saveTimer.playFromStart();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.err.println(e.getMessage());
         }
     }
 
@@ -161,5 +195,22 @@ public class SettingsPopup extends DefaultPopup {
         } else {
             usernameResponseLabel.setText("Nastala neočekávaná chyba");
         }
+    }
+
+    @FXML
+    private void changeCurrencyButton () {
+        changeCurrencyButton.setVisible(false);
+        currencyBox.setManaged(true);
+        currencyBox.setVisible(true);
+    }
+    @FXML
+    private void changeCurrency () {
+        String currencyCode = currencySearchableBox.getValue();
+        if (currencyCode == null || currencyCode.isBlank()) {
+            return;
+        }
+        profile.getLedger().setCurrency(Currency.getInstance(currencyCode));
+        FileManager.save(profile, FileManager.profilesPath);
+        appView.update();
     }
 }

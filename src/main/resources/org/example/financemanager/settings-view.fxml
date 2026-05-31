@@ -7,18 +7,29 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.text.Text?>
-<fx:root type="org.example.financemanager.SettingsPopup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" minWidth="250" maxWidth="500" maxHeight="350" stylesheets="@defaultpopupstyle.css, @settingsview.css" styleClass="default-popup">
+<?import org.controlsfx.control.SearchableComboBox?>
+<fx:root type="org.example.financemanager.SettingsPopup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" minWidth="250" maxWidth="500" maxHeight="350" stylesheets="@defaultpopupstyle.css, @settingsview.css" styleClass="default-popup, settings-view">
     <Label text="Nastavení" styleClass="popup-title" />
     <StackPane alignment="CENTER_LEFT">
         <Button fx:id="changeUsernameButton" text="Přejmenovat profil" onAction="#changeButtonToTextField" styleClass="settings-button"/>
         <HBox fx:id="usernameBox" visible="false" spacing="10" alignment="CENTER_LEFT">
             <TextField fx:id="usernameTextField" promptText="Zadejte nové jméno"/>
-            <Button text="Ok" styleClass="settings-button" minWidth="35" onAction="#changeUsername"/>
+            <Button text="OK" styleClass="settings-button" minWidth="35" onAction="#changeUsername"/>
             <Label fx:id="usernameResponseLabel" styleClass="response-label" wrapText="true"/>
         </HBox>
     </StackPane>
+    <StackPane alignment="CENTER_LEFT">
+        <Button fx:id="changeCurrencyButton" text="Změnit měnu" onAction="#changeCurrencyButton" styleClass="settings-button"/>
+        <HBox fx:id="currencyBox" visible="false" spacing="10" alignment="CENTER_LEFT">
+            <SearchableComboBox fx:id="currencySearchableBox" />
+            <Button text="OK" onAction="#changeCurrency" styleClass="settings-button" />
+        </HBox>
+    </StackPane>
     <Button text="Vybrat profilovou fotku" onAction="#chooseProfilePicture" styleClass="settings-button"/>
-    <Button text="Uložit účet" onAction="#saveProfile" styleClass="settings-button"/>
+    <StackPane alignment="CENTER_LEFT">
+        <Button fx:id="saveButton" text="Uložit účet" onAction="#saveProfile" styleClass="settings-button"/>
+        <Label fx:id="saveLabel" text="Uloženo!" styleClass="settings-label" visible="false"/>
+    </StackPane>
     <Separator styleClass="settings-separator"/>
     <StackPane alignment="CENTER_LEFT">
         <Button fx:id="removeProfileButton" text="Smazat účet" onAction="#areYouSure" styleClass="settings-button"/>

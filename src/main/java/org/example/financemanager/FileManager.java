@@ -146,6 +146,12 @@ public class FileManager {
         }
     }
 
+    /**
+     * removes profiles profile picture
+     * @param UUID name of the file
+     * @param directoryPath path to directory with pictures
+     * @return true if no exception occurred
+     */
     public static boolean removeProfilePicture (String UUID, String directoryPath) {
         Path path = Paths.get(directoryPath, UUID);
         try {

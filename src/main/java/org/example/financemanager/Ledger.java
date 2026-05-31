@@ -217,6 +217,10 @@ public class Ledger implements Serializable {
         }
     }
 
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
     @Override
     public String toString() {
         return transactions.toString();

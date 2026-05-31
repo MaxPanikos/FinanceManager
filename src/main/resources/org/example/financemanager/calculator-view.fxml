@@ -70,7 +70,7 @@
                 </VBox>
                 <Separator orientation="VERTICAL" styleClass="separator" />
                 <VBox alignment="CENTER" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                    <Label text="Hodnota peněz bude:" wrapText="true" />
+                    <Label text="Hodnota vašich peněz bude:" wrapText="true" />
                     <Label fx:id="inflationResult" text="???" wrapText="true" styleClass="result-label"/>
                 </VBox>
             </HBox>

@@ -53,11 +53,7 @@ public class CalculatorView extends Page{
     public CalculatorView(AppView appView) {
         super(appView);
         this.currencySymbol = appView.getProfile().getLedger().getCurrency().getSymbol();
-        //AI
-        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
-        symbols.setGroupingSeparator(' ');
-        symbols.setDecimalSeparator(',');
-        this.df = new DecimalFormat("#,##0.00", symbols);
+        this.df = appView.getFormat();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("calculator-view.fxml"));
             fxmlLoader.setRoot(this);

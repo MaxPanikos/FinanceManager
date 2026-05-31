@@ -16,10 +16,13 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 
 public class AppView extends StackPane {
     private Profile profile;
     private Main main;
+    private DecimalFormat df;
 
     @FXML
     private StackPane overlayPane, popupPane, contentPane;
@@ -35,7 +38,7 @@ public class AppView extends StackPane {
     @FXML
     public void initialize () {
         usernameLabel.setText(profile.getUsername());
-        balanceLabel.setText("Zůstatek: " + profile.getLedger().getBalance() + " " + profile.getLedger().getCurrency().getSymbol());
+        balanceLabel.setText("Zůstatek: " + df.format(profile.getLedger().getBalance()) + " " + profile.getLedger().getCurrency().getSymbol());
         sidebar.prefWidthProperty().bind(this.widthProperty().multiply(0.20));
         updateProfilePicture();
         userImage.setEffect(new DropShadow(10, Color.BLACK));
@@ -85,6 +88,11 @@ public class AppView extends StackPane {
     public AppView(Profile profile, Main main) {
         this.profile = profile;
         this.main = main;
+        //AI
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setGroupingSeparator(' ');
+        symbols.setDecimalSeparator(',');
+        this.df = new DecimalFormat("#,##0.00", symbols);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -137,8 +145,12 @@ public class AppView extends StackPane {
     }
 
     public void update() {
-        balanceLabel.setText("Zůstatek: " + profile.getLedger().getBalance() + " " + profile.getLedger().getCurrency().getSymbol());
+        balanceLabel.setText("Zůstatek: " + df.format(profile.getLedger().getBalance()) + " " + profile.getLedger().getCurrency().getSymbol());
         Page page = (Page) contentPane.getChildren().getLast();
         page.update();
+    }
+
+    public DecimalFormat getFormat() {
+        return df;
     }
 }

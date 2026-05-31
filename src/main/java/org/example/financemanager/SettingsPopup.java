@@ -40,7 +40,7 @@ public class SettingsPopup extends DefaultPopup {
     @FXML
     private void saveProfile () {
         try {
-            FileManager.save(appView.getProfile(), FileManager.profilesPath);
+            FileManager.save(profile, FileManager.profilesPath);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

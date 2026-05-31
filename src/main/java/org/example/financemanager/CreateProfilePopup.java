@@ -63,11 +63,7 @@ public class CreateProfilePopup extends VBox {
             return;
         }
         Profile p = new Profile(username, currency);
-        try {
-            FileManager.save(p, FileManager.profilesPath);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+        FileManager.save(p, FileManager.profilesPath);
         page.login(p);
     }
     @FXML

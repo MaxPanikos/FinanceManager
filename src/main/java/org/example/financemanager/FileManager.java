@@ -11,7 +11,7 @@ public class FileManager {
     public static final String profilesPath = "profiles";
     public static final String profilePicturesPath= "profilePictures/";
 
-    public static void save (Profile profile, String directoryPath) throws Exception {
+    public static void save(Profile profile, String directoryPath) {
         try {
             File directory = new File(directoryPath);
             if (!directory.exists()) {
@@ -24,7 +24,7 @@ public class FileManager {
             out.flush();
             out.close();
         } catch (Exception e) {
-            throw new Exception("Unexpected exception! ");
+            System.err.println(e.getCause().toString() + " " + e.getMessage());
         }
     }
 
@@ -96,5 +96,24 @@ public class FileManager {
             return file;
         }
         return null;
+    }
+
+    public static void saveProfiles (ArrayList<Profile> profiles, String directoryPath) {
+        try {
+            File directory = new File(directoryPath);
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+
+            for (Profile profile : profiles) {
+                File file = new File(directory, profile.getUsername());
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
+                out.writeObject(profile);
+                out.flush();
+                out.close();
+            }
+        } catch (IOException e) {
+            System.err.println(e.getCause().toString() + " " + e.getMessage());
+        }
     }
 }

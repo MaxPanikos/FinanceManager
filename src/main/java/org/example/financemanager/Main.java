@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class Main extends Application {
 //        FileManager.save(new Profile("amongus", "CZK"), FileManager.profilesPath);
 //        FileManager.save(new Profile("doktorsusik", "CZK"), FileManager.profilesPath);
 
-        System.out.println(Currency.getAvailableCurrencies());
+
         setPane(new ProfileChooserView(this));
 
         primaryStage.setMinWidth(300);

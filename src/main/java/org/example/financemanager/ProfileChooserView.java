@@ -11,7 +11,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class ProfileChooserView extends StackPane {
     @FXML
     public void initialize() {
         try {
-            profiles = FileManager.loadProfiles(FileManager.profilesPath);
+            this.profiles = FileManager.loadProfiles(FileManager.profilesPath);
             for (Profile profile : profiles) {
                 profilesPane.getChildren().add(new ProfileCell(profile, this));
             }

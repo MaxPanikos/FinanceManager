@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
@@ -21,12 +23,14 @@ public class HomepageView extends Page {
     private Currency currency;
     private String currentMonth;
 
+    private Text incomeText2, expenseText2, remainingText2;
+
     @FXML
     private FlowPane flowPane;
     @FXML
-    private VBox balanceTile;
+    private TextFlow incomeTextFlow, expanseTextFlow, remainingTextFlow;
     @FXML
-    private Label incomeLabel, expenseLabel, remainingLabel, addTxResponseLabel;
+    private Label addTxResponseLabel;
     @FXML
     private Spinner<Double> spinner;
     @FXML
@@ -62,7 +66,23 @@ public class HomepageView extends Page {
 
     @Override
     public void update() {
-        //TODO
+        LocalDateTime to = LocalDate.now().atStartOfDay();
+        LocalDateTime from = to.withDayOfMonth(1);
+        to = LocalDate.now().atTime(LocalTime.MAX);
+        ArrayList<Transaction> transactions = appView.getProfile().getLedger().getTransactionsInRange(from, to);
+        double income = 0;
+        double expense = 0;
+        for (Transaction tx : transactions) {
+            if (tx.getAmount() > 0) {
+                income += tx.getAmount();
+            } else {
+                expense += tx.getAmount()*-1;
+            }
+        }
+        double remaining = income - expense;
+        incomeText2.setText(df.format(income));
+        expenseText2.setText(df.format(expense));
+        remainingText2.setText(df.format(remaining));
     }
 
     public HomepageView(AppView appView) {
@@ -96,9 +116,35 @@ public class HomepageView extends Page {
         }
         double remaining = income - expense;
 
-        incomeLabel.setText("Příjem za " + currentMonth + ": " + df.format(income) + " " + currency.getSymbol());
-        expenseLabel.setText("Výdaje za " + currentMonth + ": " + df.format(expense) + " " + currency.getSymbol());
-        remainingLabel.setText("Za " + currentMonth + " zůstalo: " + df.format(remaining) + " " + currency.getSymbol());
+        String defaultStyle = "-fx-font-size: 16; -fx-fill: whitesmoke; -fx-font-weight: bold";
+
+        Text incomeText1 = new Text("Příjem za " + currentMonth + ": ");
+        incomeText1.setStyle(defaultStyle);
+        incomeText2 = new Text(df.format(income));
+        incomeText2.setStyle("-fx-font-size: 16; -fx-fill: #5cbc5c; -fx-font-weight: bold");
+        Text incomeText3 = new Text(" " + currency.getSymbol());
+        incomeText3.setStyle(defaultStyle);
+        incomeTextFlow.getChildren().addAll(incomeText1, incomeText2, incomeText3);
+
+        Text expanseText1 = new Text("Výdaje za " + currentMonth + ": ");
+        expanseText1.setStyle(defaultStyle);
+        expenseText2 = new Text(df.format(expense));
+        expenseText2.setStyle("-fx-font-size: 16; -fx-fill: #bf6666; -fx-font-weight: bold");
+        Text expanseText3 = new Text(" " + currency.getSymbol());
+        expanseText3.setStyle(defaultStyle);
+        expanseTextFlow.getChildren().addAll(expanseText1, expenseText2, expanseText3);
+
+        Text remainingText1 = new Text("Za " + currentMonth + " zůstalo: ");
+        remainingText1.setStyle(defaultStyle);
+        remainingText2 = new Text(df.format(remaining));
+        if (remaining >= 0) {
+            remainingText2.setStyle("-fx-font-size: 16; -fx-fill: #5cbc5c; -fx-font-weight: bold");
+        } else {
+            remainingText2.setStyle("-fx-font-size: 16; -fx-fill: #bf6666; -fx-font-weight: bold");
+        }
+        Text remainingText3 = new Text(" " + currency.getSymbol());
+        remainingText3.setStyle(defaultStyle);
+        remainingTextFlow.getChildren().addAll(remainingText1, remainingText2, remainingText3);
     }
     private void updateCategory (boolean isExpense) {
         String type = isExpense ? "Výdaj" : "Příjem";

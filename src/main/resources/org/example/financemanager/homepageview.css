@@ -1,0 +1,38 @@
+.homepage-tile {
+    -fx-background-color: #2c2c2c;
+    -fx-text-fill: white;
+    -fx-spacing: 5;
+    -fx-background-color: rgba(74, 74, 74, 0.4);
+    -fx-border-color: #2c2c2c;
+    -fx-border-width: 1;
+    -fx-padding: 5 10 5 10;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, black, 15, 0.5, 0, 0);
+}
+
+.homepage-tile .title {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 26;
+    -fx-font-family: Corbel;
+}
+.homepage-tile .description {
+    -fx-text-fill: whitesmoke;
+    -fx-font-size: 16;
+}
+
+.homepage-tile .button {
+    -fx-background-color: #515151;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-background-radius: 10;
+    -fx-padding: 5 10 5 10;
+    -fx-cursor: hand;
+}
+
+.homepage-tile .response-label {
+    -fx-text-fill: #bc0000;
+    -fx-font-size: 16;
+}

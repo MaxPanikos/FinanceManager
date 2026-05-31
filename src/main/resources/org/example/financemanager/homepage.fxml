@@ -7,23 +7,27 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.geometry.Insets?>
-<fx:root type="org.example.financemanager.HomepageView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@page-view.css">
+<?import javafx.scene.text.TextFlow?>
+<fx:root type="org.example.financemanager.HomepageView" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" stylesheets="@page-view.css, @homepageview.css">
     <VBox spacing="20.0" styleClass="page">
         <HBox>
             <Label text="Domovská stránka" wrapText="true" styleClass="page-title"/>
         </HBox>
         <FlowPane fx:id="flowPane" hgap="15" vgap="15" VBox.vgrow="ALWAYS">
-            <VBox fx:id="balanceTile" >
-                <Label fx:id="incomeLabel"/>
-                <Label fx:id="expenseLabel"/>
-                <Label fx:id="remainingLabel"/>
+            <VBox spacing="5" styleClass="homepage-tile">
+                <Label text="Statistky" styleClass="title"/>
+                <Region minHeight="5" maxHeight="20" VBox.vgrow="ALWAYS"/>
+                <TextFlow fx:id="incomeTextFlow"/>
+                <TextFlow fx:id="expanseTextFlow"/>
+                <TextFlow fx:id="remainingTextFlow"/>
             </VBox>
-            <VBox>
-                <Label text="Přidat rychle transakci"/>
+            <VBox spacing="5" styleClass="homepage-tile">
+                <Label text="Přidat rychle transakci" styleClass="title"/>
+                <Region minHeight="5" maxHeight="20" VBox.vgrow="ALWAYS"/>
                 <Spinner fx:id="spinner" />
                 <ComboBox fx:id="comboBox"/>
-                <Button text="Přidat" onAction="#addTx"/>
-                <Label fx:id="addTxResponseLabel"/>
+                <Button text="Přidat" onAction="#addTx" styleClass="button"/>
+                <Label fx:id="addTxResponseLabel" styleClass="response-label"/>
             </VBox>
         </FlowPane>
     </VBox>

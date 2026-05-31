@@ -172,6 +172,7 @@ public class AppView extends StackPane {
      */
     public void update() {
         balanceLabel.setText("Zůstatek: " + df.format(profile.getLedger().getBalance()) + " " + profile.getLedger().getCurrency().getSymbol());
+        todayBalanceLabel.setText("Zůstatek (dnes): " + df.format(profile.getLedger().getFloorBalance(LocalDate.now())) + " " + profile.getLedger().getCurrency().getSymbol());
         Page page = (Page) contentPane.getChildren().getLast();
         page.update();
     }

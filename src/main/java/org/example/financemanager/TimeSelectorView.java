@@ -81,6 +81,9 @@ public class TimeSelectorView extends HBox {
         LocalDate prevFromDate = fromDate;
         LocalDate prevToDate = toDate;
         ToggleButton button = (ToggleButton) event.getSource();
+        if (page.getAppView().getProfile().getLedger().getSize() == 0) {
+            return;
+        }
         switch (button.getId()) {
             case "threeMonthsButton":
                 setSelected(threeMonthsButton);

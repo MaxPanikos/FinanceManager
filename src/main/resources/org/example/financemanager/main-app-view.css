@@ -12,6 +12,11 @@
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-weight: bold;
 }
+.main-root .sub-label {
+    -fx-text-fill: #aeaeae;
+    -fx-font-size: 14;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
 
 .topbar {
     -fx-spacing: 10;

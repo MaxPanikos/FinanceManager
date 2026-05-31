@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 
 public class AppView extends StackPane {
     private Profile profile;
@@ -27,7 +28,7 @@ public class AppView extends StackPane {
     @FXML
     private StackPane overlayPane, popupPane, contentPane;
     @FXML
-    private Label usernameLabel, balanceLabel;
+    private Label usernameLabel, balanceLabel, todayBalanceLabel;
     @FXML
     private Button settingsButton, addTxButton;
     @FXML
@@ -39,6 +40,7 @@ public class AppView extends StackPane {
     public void initialize () {
         usernameLabel.setText(profile.getUsername());
         balanceLabel.setText("Zůstatek: " + df.format(profile.getLedger().getBalance()) + " " + profile.getLedger().getCurrency().getSymbol());
+        todayBalanceLabel.setText("Zůstatek (dnes): " + df.format(profile.getLedger().getFloorBalance(LocalDate.now())) + " " + profile.getLedger().getCurrency().getSymbol());
         sidebar.prefWidthProperty().bind(this.widthProperty().multiply(0.20));
         updateProfilePicture();
         userImage.setEffect(new DropShadow(10, Color.BLACK));

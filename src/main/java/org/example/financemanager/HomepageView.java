@@ -4,17 +4,28 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.chart.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+
+import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Currency;
 
 public class HomepageView extends Page {
+    private DecimalFormat df;
+    private Currency currency;
+
     @FXML
     private FlowPane flowPane;
 
     @FXML
     public void initialize () {
-        flowPane.getChildren().addAll(createPieChartPanel("Výdaje podle kategorií"), createBarChartPanel("Měsíční přehled"));
+        flowPane.getChildren().add(balanceTile());
     }
 
     @Override
@@ -24,6 +35,8 @@ public class HomepageView extends Page {
 
     public HomepageView(AppView appView) {
         super(appView);
+        this.df = appView.getFormat();
+        this.currency = appView.getProfile().getLedger().getCurrency();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
             fxmlLoader.setController(this);
@@ -34,33 +47,26 @@ public class HomepageView extends Page {
         }
     }
 
-    private VBox createPieChartPanel(String title) {
-        PieChart pieChart = new PieChart();
-        pieChart.getData().add(new PieChart.Data("Jídlo", 3000));
-        pieChart.getData().add(new PieChart.Data("Bydlení", 12000));
-        pieChart.getData().add(new PieChart.Data("Zábava", 1500));
+    private VBox balanceTile () {
+        LocalDateTime to = LocalDate.now().atStartOfDay();
+        LocalDateTime from = to.withDayOfMonth(1);
+        ArrayList<Transaction> transactions = appView.getProfile().getLedger().getTransactionsInRange(from, to);
+        double income = 0;
+        double expense = 0;
+        for (Transaction tx : transactions) {
+            if (tx.getAmount() > 0) {
+                income += tx.getAmount();
+            } else {
+                expense += tx.getAmount()*-1;
+            }
+        }
+        double remaining = income - expense;
 
-        pieChart.setTitle(title);
-        pieChart.setPrefSize(300, 300);
-
-        VBox card = new VBox(pieChart);
-        card.setStyle("-fx-background-color: white; -fx-border-color: #ddd; -fx-padding: 10;");
-        return card;
-    }
-    private VBox createBarChartPanel(String title) {
-        CategoryAxis xAxis = new CategoryAxis();
-        NumberAxis yAxis = new NumberAxis();
-        BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("2024");
-        series.getData().add(new XYChart.Data<>("Leden", 20000));
-        series.getData().add(new XYChart.Data<>("Únor", 18000));
-
-        barChart.getData().add(series);
-        barChart.setTitle(title);
-        barChart.setPrefSize(300, 300);
-
-        return new VBox(barChart);
+        VBox vBox = new VBox();
+        Label incomeLabel = new Label("Příjem tento měsíc: " + df.format(income) + " " + currency.getSymbol());
+        Label expenseLabel = new Label("Výdaje tento měsíc: " + df.format(expense) + " " + currency.getSymbol());
+        Label remainingLabel = new Label("Zbývá: " + df.format(remaining) + " " + currency.getSymbol());
+        vBox.getChildren().addAll(incomeLabel, expenseLabel, remainingLabel);
+        return vBox;
     }
 }

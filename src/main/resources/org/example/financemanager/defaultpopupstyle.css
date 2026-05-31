@@ -2,9 +2,9 @@
     -fx-padding: 10;
     -fx-alignment: top-left;
     -fx-spacing: 10;
-    -fx-background-color: rgb(50, 50, 50);
-    -fx-border-width: 3;
-    -fx-border-color: #272727;
+    -fx-background-color: rgb(32, 32, 32);
+    -fx-border-width: 1;
+    -fx-border-color: #434343;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
 }

@@ -1,8 +1,11 @@
 package org.example.financemanager;
 
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +15,11 @@ import java.nio.file.Path;
 public class SettingsPopup extends DefaultPopup {
     private Main main;
     private Profile profile;
+
+    private PauseTransition timer;
+
+    @FXML
+    private Button removeProfileButton, areYouSureButton;
 
     public SettingsPopup(AppView appView, Main main) {
         super(appView);
@@ -25,6 +33,21 @@ public class SettingsPopup extends DefaultPopup {
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    @FXML
+    private void areYouSure () {
+        removeProfileButton.setVisible(false);
+        areYouSureButton.setVisible(true);
+
+        if (timer == null) {
+            timer = new PauseTransition(Duration.seconds(5));
+            timer.setOnFinished(event -> {
+                removeProfileButton.setVisible(true);
+                areYouSureButton.setVisible(false);
+            });
+        }
+        timer.playFromStart();
     }
 
     @FXML
@@ -49,7 +72,7 @@ public class SettingsPopup extends DefaultPopup {
     @FXML
     private void chooseProfilePicture () {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pictures", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".png, .jpg, .jpeg", "*.png", "*.jpg", "*.jpeg"));
         fileChooser.setTitle("Choose profile picture");
         File selectedFile = fileChooser.showOpenDialog(this.getScene().getWindow());
         if (selectedFile != null) {
@@ -68,9 +91,5 @@ public class SettingsPopup extends DefaultPopup {
                 e.printStackTrace();
             }
         }
-    }
-
-    @FXML
-    private void saveSettings() {
     }
 }

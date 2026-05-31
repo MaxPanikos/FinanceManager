@@ -6,15 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root type="org.example.financemanager.SettingsPopup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" minWidth="250" maxWidth="350" maxHeight="350" stylesheets="@defaultpopupstyle.css" styleClass="default-popup">
+<fx:root type="org.example.financemanager.SettingsPopup" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" minWidth="250" maxWidth="350" maxHeight="350" stylesheets="@defaultpopupstyle.css, @settingsview.css" styleClass="default-popup">
     <Label text="Nastavení" styleClass="popup-title" />
-    <Button text="Vybrat profilovou fotku" onAction="#chooseProfilePicture" />
-    <Button text="Uložit" onAction="#saveProfile" />
-    <Button text="Smazat účet" onAction="#removeAccount" />
-    <Button text="Odhlásit se" onAction="#logout" />
+    <Button text="Vybrat profilovou fotku" onAction="#chooseProfilePicture" styleClass="settings-button"/>
+    <Button text="Uložit účet" onAction="#saveProfile" styleClass="settings-button"/>
+    <Separator styleClass="settings-separator"/>
+    <StackPane alignment="CENTER_LEFT">
+        <Button fx:id="removeProfileButton" text="Smazat účet" onAction="#areYouSure" styleClass="settings-button"/>
+        <Button fx:id="areYouSureButton" text="Opravdu?" onAction="#removeAccount" styleClass="settings-button" visible="false"/>
+    </StackPane>
+    <Button text="Odhlásit se" onAction="#logout" styleClass="settings-button"/>
     <Region VBox.vgrow="ALWAYS" />
     <HBox spacing="5" alignment="BOTTOM_RIGHT">
         <Button text="Zrušit" onAction="#closePopup" styleClass="close-button"/>
-        <Button text="Uložit" onAction="#saveSettings" styleClass="apply-button"/>
     </HBox>
 </fx:root>

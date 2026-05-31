@@ -1,0 +1,24 @@
+.settings-button {
+    -fx-padding: 3 7 3 7;
+    -fx-text-fill: white;
+    -fx-background-color: #515151;
+    -fx-background-radius: 5;
+    -fx-border-color: transparent;
+    -fx-border-radius: 5;
+    -fx-font-size: 14;
+    -fx-cursor: hand;
+}
+.settings-button:hover {
+    -fx-background-color: #636363;
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+.settings-button:pressed {
+    -fx-border-color: rgba(57, 57, 57, 0.6);
+}
+
+.settings-separator:horizontal .line {
+    -fx-border-style: solid;
+    -fx-border-color: #434343;
+    -fx-border-width: 0 0 1.5 0;
+}

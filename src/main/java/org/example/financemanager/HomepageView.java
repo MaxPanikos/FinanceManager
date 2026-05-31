@@ -69,4 +69,9 @@ public class HomepageView extends Page {
         vBox.getChildren().addAll(incomeLabel, expenseLabel, remainingLabel);
         return vBox;
     }
+
+    private VBox quickAddTx () {
+        VBox vBox = new VBox();
+        return vBox;
+    }
 }

@@ -28,5 +28,5 @@
     <Label fx:id="typeLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="tx-type" />
     <Label fx:id="amountLabel" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="tx-amount" />
     <Label fx:id="dateLabel" GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="tx-date" />
-    <Button fx:id="moreButton" text="⋮" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="tx-more-button"/>
+    <Button fx:id="moreButton" text="⋮" GridPane.columnIndex="4" GridPane.rowIndex="0" styleClass="tx-more-button" onAction="#clickedOnMore"/>
 </fx:root>

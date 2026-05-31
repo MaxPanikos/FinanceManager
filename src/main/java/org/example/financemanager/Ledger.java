@@ -32,12 +32,13 @@ public class Ledger implements Serializable {
                 }
                 transactions.add(index, transaction);
                 balance += transaction.getAmount();
-                return true;
             } else {
                 transactions.add(-index - 1, transaction);
                 balance += transaction.getAmount();
-                return true;
             }
+            LocalDate localDate = transaction.getDate().toLocalDate();
+            addToDayBalance(transaction.getAmount(), localDate);
+            return true;
         } catch (Exception e) {
             return false;
         }
@@ -98,6 +99,7 @@ public class Ledger implements Serializable {
             if (transaction == null) {
                 return false;
             }
+            balance -= transaction.getAmount();
             removeFromDayBalance(transaction.getAmount(), transaction.getDate().toLocalDate());
             return true;
         } catch (Exception e) {
@@ -162,27 +164,25 @@ public class Ledger implements Serializable {
         return false;
     }
 
-    private void addToDayBalance(double balance, LocalDate date) {
+    private void addToDayBalance(double amount, LocalDate date) {
         if (dayBalance.containsKey(date)) {
-            dayBalance.put(date, balance);
+            dayBalance.put(date, dayBalance.get(date) + amount);
         } else {
-            dayBalance.put(date, getFloorBalance(date) + balance);
+            dayBalance.put(date, getFloorBalance(date) + amount);
         }
         Map<LocalDate, Double> future = dayBalance.tailMap(date, false);
         for (Map.Entry<LocalDate, Double> entry : future.entrySet()) {
-            entry.setValue(entry.getValue() + balance);
+            entry.setValue(entry.getValue() + amount);
         }
     }
 
-    private void removeFromDayBalance(double balance, LocalDate date) {
+    private void removeFromDayBalance(double amount, LocalDate date) {
         if (dayBalance.containsKey(date)) {
-            dayBalance.put(date, balance);
-        } else {
-            dayBalance.put(date, getFloorBalance(date) - balance);
+            dayBalance.put(date, dayBalance.get(date) - amount);
         }
         Map<LocalDate, Double> future = dayBalance.tailMap(date, false);
         for (Map.Entry<LocalDate, Double> entry : future.entrySet()) {
-            entry.setValue(entry.getValue() - balance);
+            entry.setValue(entry.getValue() - amount);
         }
     }
 

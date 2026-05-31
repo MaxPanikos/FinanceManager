@@ -2,11 +2,12 @@ package org.example.financemanager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Cell;
-import javafx.scene.control.Label;
+import javafx.geometry.Side;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 import java.time.format.DateTimeFormatter;
 
@@ -14,6 +15,8 @@ public class TransactionCell extends GridPane {
     private int index;
     private Transaction transaction;
     private Ledger ledger;
+    private Page page;
+
     @FXML
     private Label indexLabel, typeLabel, amountLabel, dateLabel;
     @FXML
@@ -21,7 +24,7 @@ public class TransactionCell extends GridPane {
 
     @FXML
     public void initialize() {
-        indexLabel.setText(index + "");
+        indexLabel.setText(index+1 + "");
         typeLabel.setText(transaction.getType().getLabel());
         amountLabel.setText(transaction.getAmount() + " " + ledger.getCurrency().getSymbol());
         dateLabel.setText(transaction.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
@@ -33,10 +36,11 @@ public class TransactionCell extends GridPane {
         }
     }
 
-    public TransactionCell(Transaction transaction, Ledger ledger, int index) {
+    public TransactionCell(Transaction transaction, Page page, Ledger ledger, int index) {
         this.transaction = transaction;
         this.index = index;
         this.ledger = ledger;
+        this.page = page;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("transaction-cell.fxml"));
             fxmlLoader.setRoot(this);
@@ -45,5 +49,23 @@ public class TransactionCell extends GridPane {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void clickedOnMore () {
+        ContextMenu popup = new ContextMenu();
+        popup.getStyleClass().add("popup");
+        MenuItem button = new MenuItem("Smazat");
+        button.setOnAction(event -> {
+            deleteTransaction();
+            popup.hide();
+        });
+        popup.getItems().add(button);
+        popup.show(moreButton, Side.TOP, popup.getWidth(), -moreButton.getHeight()/2);
+    }
+
+    private void deleteTransaction() {
+        ledger.remove(index);
+        page.getAppView().update();
     }
 }

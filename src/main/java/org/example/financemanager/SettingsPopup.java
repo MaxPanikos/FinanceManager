@@ -4,8 +4,13 @@ import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,10 +21,30 @@ public class SettingsPopup extends DefaultPopup {
     private Main main;
     private Profile profile;
 
-    private PauseTransition timer;
+    private PauseTransition deleteUserTimer, changeNameTimer;
 
     @FXML
-    private Button removeProfileButton, areYouSureButton;
+    private Button removeProfileButton, areYouSureButton, changeUsernameButton;
+    @FXML
+    private HBox usernameBox;
+    @FXML
+    private Label usernameResponseLabel;
+    @FXML
+    private TextField usernameTextField;
+
+    @FXML
+    private void initialize() {
+        usernameBox.setOnMouseExited(event -> {
+            if (changeNameTimer == null) {
+                changeNameTimer = new PauseTransition(Duration.seconds(5));
+                changeNameTimer.setOnFinished(e -> {
+                    usernameBox.setVisible(false);
+                    changeUsernameButton.setVisible(true);
+                });
+            }
+            changeNameTimer.playFromStart();
+        });
+    }
 
     public SettingsPopup(AppView appView, Main main) {
         super(appView);
@@ -43,14 +68,14 @@ public class SettingsPopup extends DefaultPopup {
         removeProfileButton.setVisible(false);
         areYouSureButton.setVisible(true);
 
-        if (timer == null) {
-            timer = new PauseTransition(Duration.seconds(5));
-            timer.setOnFinished(event -> {
+        if (deleteUserTimer == null) {
+            deleteUserTimer = new PauseTransition(Duration.seconds(5));
+            deleteUserTimer.setOnFinished(event -> {
                 removeProfileButton.setVisible(true);
                 areYouSureButton.setVisible(false);
             });
         }
-        timer.playFromStart();
+        deleteUserTimer.playFromStart();
     }
 
     /**
@@ -58,7 +83,7 @@ public class SettingsPopup extends DefaultPopup {
      */
     @FXML
     private void removeAccount() {
-        FileManager.removeProfile(appView.getProfile().getUsername(), FileManager.profilesPath);
+        FileManager.removeProfile(appView.getProfile(), FileManager.profilesPath, FileManager.profilePicturesPath);
         main.setPane(new ProfileChooserView(main));
     }
 
@@ -106,6 +131,35 @@ public class SettingsPopup extends DefaultPopup {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @FXML
+    private void changeButtonToTextField () {
+        changeUsernameButton.setVisible(false);
+        usernameBox.setVisible(true);
+    }
+
+    @FXML
+    private void changeUsername () {
+        String oldUsername = profile.getUsername();
+        String newUsername = usernameTextField.getText();
+        if (newUsername == null || newUsername.isBlank()) {
+            usernameResponseLabel.setText("Vyplňte textové pole");
+            return;
+        }
+        if (newUsername.length() > 16) {
+            usernameResponseLabel.setText("Uživatelské jméno je moc dlouhé");
+            return;
+        }
+        boolean status = FileManager.changeUsername(oldUsername, newUsername, FileManager.profilesPath);
+        if (status) {
+            profile.setUsername(newUsername);
+            FileManager.save(profile, FileManager.profilesPath);
+            appView.update();
+            appView.hidePopup();
+        } else {
+            usernameResponseLabel.setText("Nastala neočekávaná chyba");
         }
     }
 }

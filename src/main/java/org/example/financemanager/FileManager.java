@@ -5,6 +5,7 @@ import java.io.*;
 import java.net.URI;
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.util.Stack;
 import java.util.UUID;
 
 public class FileManager {
@@ -80,14 +81,19 @@ public class FileManager {
 
     /**
      * removes profile
-     * @param username username of profile you want to remove
+     * @param profile profile you want to remove
      * @param directoryPath path to where the profiles are located
+     * @param profilePicturesPath path to where the profile pictures are located
      * @return
      */
-    public static boolean removeProfile (String username, String directoryPath) {
+    public static boolean removeProfile (Profile profile, String directoryPath, String profilePicturesPath) {
         try {
-            Path path = Paths.get(directoryPath, username);
-            return Files.deleteIfExists(path);
+            Path path = Paths.get(directoryPath, profile.getUsername());
+            boolean deleted = Files.deleteIfExists(path);
+            if (deleted) {
+                return removeProfilePicture(profile.getImagePath(), profilePicturesPath);
+            }
+            return false;
         } catch (IOException e) {
             return false;
         }
@@ -113,5 +119,41 @@ public class FileManager {
         Files.copy(profilePicture.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
 
         return newFileName;
+    }
+
+    /**
+     * replaces users username
+     * @param oldUsername old username
+     * @param newUsername new username
+     * @param directoryPath path of directory
+     * @return true if no exception occurred
+     */
+    public static boolean changeUsername (String oldUsername, String newUsername, String directoryPath) {
+        Path oldPath = Paths.get(directoryPath, oldUsername);
+        Path newPath = Paths.get(directoryPath, newUsername);
+        if (!Files.exists(oldPath)) {
+            return false;
+        }
+        if (Files.exists(newPath)) {
+            return false;
+        }
+        try {
+            Files.move(oldPath, newPath);
+            return true;
+        } catch (Exception e) {
+            System.err.println(e.getCause().toString() + " " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean removeProfilePicture (String UUID, String directoryPath) {
+        Path path = Paths.get(directoryPath, UUID);
+        try {
+            Files.deleteIfExists(path);
+            return true;
+        } catch (IOException e) {
+            System.err.println(e.getCause().toString() + " " + e.getMessage());
+            return false;
+        }
     }
 }

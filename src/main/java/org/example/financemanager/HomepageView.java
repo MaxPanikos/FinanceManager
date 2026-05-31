@@ -41,7 +41,7 @@ public class HomepageView extends Page {
     @FXML
     private ComboBox<TransactionTypes> comboBox;
     @FXML
-    private VBox chartBox, txList;
+    private VBox chartBox, txList, transactionBox;
 
     @FXML
     public void initialize () {
@@ -232,7 +232,12 @@ public class HomepageView extends Page {
         Ledger ledger = appView.getProfile().getLedger();
         ArrayList<Transaction> lastTen = new ArrayList<>();
         if (ledger.getSize() == 0) {
+            transactionBox.setVisible(false);
+            transactionBox.setManaged(false);
             return;
+        } else {
+            transactionBox.setVisible(true);
+            transactionBox.setManaged(true);
         }
         for (int i = ledger.getSize()-1; i > ledger.getSize()-11; i--) {
             lastTen.add(ledger.get(i));

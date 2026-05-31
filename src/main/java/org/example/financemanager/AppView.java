@@ -171,6 +171,7 @@ public class AppView extends StackPane {
      * updates main view and any open page
      */
     public void update() {
+        usernameLabel.setText(profile.getUsername());
         balanceLabel.setText("Zůstatek: " + df.format(profile.getLedger().getBalance()) + " " + profile.getLedger().getCurrency().getSymbol());
         todayBalanceLabel.setText("Zůstatek (dnes): " + df.format(profile.getLedger().getFloorBalance(LocalDate.now())) + " " + profile.getLedger().getCurrency().getSymbol());
         Page page = (Page) contentPane.getChildren().getLast();

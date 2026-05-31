@@ -34,7 +34,7 @@
             <VBox fx:id="chartBox" spacing="5" styleClass="homepage-tile">
                 <Label text="Vizualizace zůstatku" styleClass="title"/>
             </VBox>
-            <VBox spacing="5" styleClass="homepage-tile">
+            <VBox fx:id="transactionBox" spacing="5" styleClass="homepage-tile">
                 <Label text="Přehled posledních transakcí" styleClass="title"/>
                 <VBox fx:id="txList" styleClass="list"/>
             </VBox>

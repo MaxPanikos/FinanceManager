@@ -20,6 +20,10 @@ public class Profile implements Serializable {
         this.imagePath = imagePath;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getUsername() {
         return username;
     }

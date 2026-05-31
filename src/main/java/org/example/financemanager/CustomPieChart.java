@@ -10,6 +10,7 @@ import javafx.scene.layout.Pane;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class CustomPieChart extends PieChart implements CustomChart {
         if (fromDate == null || toDate == null) {
             transactions = ledger.getTransactions();
         } else {
-            transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
+            transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), LocalDate.now().atTime(LocalTime.MAX));
         }
 
         HashMap<TransactionTypes, PieChart.Data> dataMap = new HashMap<>();

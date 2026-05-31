@@ -88,7 +88,7 @@ public class SettingsPopup extends DefaultPopup {
     @FXML
     private void chooseProfilePicture () {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".png, .jpg, .jpeg", "*.png", "*.jpg", "*.jpeg"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(".png .jpg .jpeg", "*.png", "*.jpg", "*.jpeg"));
         fileChooser.setTitle("Choose profile picture");
         File selectedFile = fileChooser.showOpenDialog(this.getScene().getWindow());
         if (selectedFile != null) {

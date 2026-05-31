@@ -19,7 +19,11 @@
                 <Label fx:id="remainingLabel"/>
             </VBox>
             <VBox>
-
+                <Label text="Přidat rychle transakci"/>
+                <Spinner fx:id="spinner" />
+                <ComboBox fx:id="comboBox"/>
+                <Button text="Přidat" onAction="#addTx"/>
+                <Label fx:id="addTxResponseLabel"/>
             </VBox>
         </FlowPane>
     </VBox>

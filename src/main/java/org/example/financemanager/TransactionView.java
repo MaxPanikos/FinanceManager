@@ -35,6 +35,8 @@ public class TransactionView extends Page {
             contentBox.setVisible(false);
             noTxLabel.setVisible(true);
         } else {
+            fromDate = ledger.get(0).getDate().toLocalDate();
+            toDate = ledger.get(ledger.getSize() - 1).getDate().toLocalDate();
             setPage();
         }
     }
@@ -64,8 +66,6 @@ public class TransactionView extends Page {
             contentBox.setVisible(true);
             noTxLabel.setVisible(false);
         }
-        fromDate = ledger.get(0).getDate().toLocalDate();
-        toDate = ledger.get(ledger.getSize() - 1).getDate().toLocalDate();
         if (fromDate == null || toDate == null) {
             return;
         }
@@ -73,7 +73,7 @@ public class TransactionView extends Page {
         String lastDate = toDate.format(DateTimeFormatter.ofPattern("d. M. yyyy"));
         rangeLabel.setText(firstDate + " - " + lastDate);
         txList.getChildren().clear();
-        ArrayList<Transaction> transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
+        ArrayList<Transaction> transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atTime(LocalTime.MAX));
         int i = 0;
         for (Transaction tx : transactions) {
             TransactionCell cell = new TransactionCell(tx, this, ledger, i);

@@ -4,10 +4,7 @@ import javafx.scene.chart.*;
 import javafx.scene.control.Tooltip;
 import org.w3c.dom.Text;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.Year;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.format.TextStyle;
 import java.util.*;
 
@@ -29,9 +26,9 @@ public class CustomBarChart extends BarChart<String, Number> implements CustomCh
         this.getData().clear();
         ArrayList<Transaction> transactions;
         if (fromDate == null || toDate == null) {
-            transactions = ledger.getTransactionsInRange(LocalDate.now().atStartOfDay().minusYears(1), LocalDate.now().atStartOfDay());
+            transactions = ledger.getTransactionsInRange(LocalDate.now().atStartOfDay().minusYears(1), LocalDate.now().atTime(LocalTime.MAX));
         } else {
-            transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), toDate.atStartOfDay());
+            transactions = ledger.getTransactionsInRange(fromDate.atStartOfDay(), LocalDate.now().atTime(LocalTime.MAX));
         }
         LinkedHashMap<YearMonth, Double> incomeData = new LinkedHashMap<>();
         LinkedHashMap<YearMonth, Double> expenseData = new LinkedHashMap<>();

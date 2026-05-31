@@ -17,6 +17,8 @@ public class TransactionCell extends GridPane {
     private Ledger ledger;
     private Page page;
 
+    private ContextMenu popup;
+
     @FXML
     private Label indexLabel, typeLabel, amountLabel, dateLabel;
     @FXML
@@ -41,6 +43,7 @@ public class TransactionCell extends GridPane {
         this.index = index;
         this.ledger = ledger;
         this.page = page;
+        this.popup = new ContextMenu();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("transaction-cell.fxml"));
             fxmlLoader.setRoot(this);
@@ -51,19 +54,28 @@ public class TransactionCell extends GridPane {
         }
     }
 
+    /**
+     * shows popup
+     */
     @FXML
     private void clickedOnMore () {
-        ContextMenu popup = new ContextMenu();
+        if (popup.isShowing()) {
+            popup.hide();
+        }
         popup.getStyleClass().add("popup");
+        popup.getItems().clear();
         MenuItem button = new MenuItem("Smazat");
         button.setOnAction(event -> {
             deleteTransaction();
             popup.hide();
         });
         popup.getItems().add(button);
-        popup.show(moreButton, Side.TOP, popup.getWidth(), -moreButton.getHeight()/2);
+        popup.show(moreButton, Side.TOP, 0, 0);
     }
 
+    /**
+     * removes transaction
+     */
     private void deleteTransaction() {
         ledger.remove(index);
         page.getAppView().update();

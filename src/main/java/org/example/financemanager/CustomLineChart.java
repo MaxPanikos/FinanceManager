@@ -54,7 +54,10 @@ public class CustomLineChart extends LineChart<String, Number> implements Custom
         this.getData().add(balanceSeries);
     }
 
-    //AI
+    /**
+     * gets dates for chart (AI USED)
+     * @return ArrayList of LocalDates
+     */
     private ArrayList<LocalDate> getDates() {
         return ledger.getTransactions().stream()
                 .map(transaction -> transaction.getDate().toLocalDate())

@@ -34,6 +34,11 @@ public class TimeSelectorView extends HBox {
         }
     }
 
+    /**
+     * sets button visibility
+     * @param button button you want to show/hide
+     * @param visible true for showing false for hiding
+     */
     private void setButtonVisibility(ToggleButton button, boolean visible) {
         if (button != null) {
             button.setVisible(visible);
@@ -67,6 +72,10 @@ public class TimeSelectorView extends HBox {
         }
     }
 
+    /**
+     * decide which button was pressed and do its action
+     * @param event
+     */
     @FXML
     private void onButtonClicked(ActionEvent event) {
         LocalDate prevFromDate = fromDate;
@@ -95,7 +104,7 @@ public class TimeSelectorView extends HBox {
                 break;
             case "customRangeButton":
                 setSelected(customRangeButton);
-                page.getAppView().showPopup(new DateRangePopup(page.getAppView(), page){
+                page.getAppView().showPopup(new DateRangePopup(page.getAppView()){
                     @Override
                     public void save (DatePicker fromPicker, DatePicker toPicker, Label responseLabel) {
                         LocalDate from = fromPicker.getValue();

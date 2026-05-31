@@ -20,6 +20,11 @@ public class Ledger implements Serializable {
         this.dayBalance = new TreeMap<>();
     }
 
+    /**
+     * adds transaction with duplicity check
+     * @param transaction transation you want to add
+     * @return false if the transaction was not added
+     */
     public boolean addWithDuplicityCheck (Transaction transaction) {
         try {
             if (transaction.getType().getType().equals("Výdaj") && transaction.getAmount() >= 0.0) {
@@ -44,6 +49,11 @@ public class Ledger implements Serializable {
         }
     }
 
+    /**
+     * add transaction
+     * @param transaction
+     * @return false if exception occurred
+     */
     public boolean add (Transaction transaction) {
         try {
             if (transaction.getType().getType().equals("Výdaj") && transaction.getAmount() >= 0.0) {
@@ -65,6 +75,12 @@ public class Ledger implements Serializable {
         }
     }
 
+    /**
+     * returns transactions only in date range
+     * @param start first date
+     * @param end last date
+     * @return ArrayList of Transactions
+     */
     public ArrayList<Transaction> getTransactionsInRange (LocalDateTime start, LocalDateTime end) {
         if (transactions.isEmpty()) {
             return new ArrayList<>();
@@ -93,6 +109,11 @@ public class Ledger implements Serializable {
         return inRangeTransactions;
     }
 
+    /**
+     * removes transaction
+     * @param index index of transaction you want to remove
+     * @return true if it was removed
+     */
     public boolean remove (int index) {
         try {
             Transaction transaction = transactions.remove(index);
@@ -127,6 +148,11 @@ public class Ledger implements Serializable {
         return transactions;
     }
 
+    /**
+     * return balance on some date or the closest before
+     * @param date
+     * @return
+     */
     public double getFloorBalance (LocalDate date) {
         if (dayBalance.containsKey(date)) {
             return dayBalance.get(date);
@@ -140,18 +166,13 @@ public class Ledger implements Serializable {
             return 0;
         }
     }
-    public double getCeilingBalance (LocalDate date) {
-        if (dayBalance.containsKey(date)) {
-            return dayBalance.get(date);
-        } else {
-            Double balance = dayBalance.ceilingEntry(date).getValue();
-            if (balance != null) {
-                return balance;
-            }
-            return getFloorBalance(date);
-        }
-    }
 
+    /**
+     * checks if this transaction is duplicated
+     * @param foundIndex index of transaction
+     * @param newTx new transaction
+     * @return return true if they are similar
+     */
     private boolean isDuplicate(int foundIndex, Transaction newTx) {
         Transaction existing = transactions.get(foundIndex);
         if (existing.equals(newTx) && existing.getAmount() == newTx.getAmount()) return true;
@@ -164,6 +185,11 @@ public class Ledger implements Serializable {
         return false;
     }
 
+    /**
+     * adds amount to day balance
+     * @param amount amount you want to add
+     * @param date date of the day
+     */
     private void addToDayBalance(double amount, LocalDate date) {
         if (dayBalance.containsKey(date)) {
             dayBalance.put(date, dayBalance.get(date) + amount);
@@ -176,6 +202,11 @@ public class Ledger implements Serializable {
         }
     }
 
+    /**
+     * removes amount from day balance
+     * @param amount amount you want to remove
+     * @param date from when you want to remove the amount
+     */
     private void removeFromDayBalance(double amount, LocalDate date) {
         if (dayBalance.containsKey(date)) {
             dayBalance.put(date, dayBalance.get(date) - amount);

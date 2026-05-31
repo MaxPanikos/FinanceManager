@@ -21,6 +21,9 @@ public class AddProfileCell extends VBox {
         }
     }
 
+    /**
+     * displays popup for creating profile
+     */
     @FXML
     protected void createProfile () {
         page.setPopupPane(new CreateProfilePopup(page));

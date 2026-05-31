@@ -15,6 +15,14 @@ import java.util.Currency;
 
 public class Main extends Application {
     private StackPane root;
+
+    /**
+     * @param primaryStage the primary stage for this application, onto which
+     * the application scene can be set.
+     * Applications may create other stages, if needed, but they will not be
+     * primary stages.
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.root = new StackPane();
@@ -45,6 +53,10 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * displays page
+     * @param pane page you want to display
+     */
     public void setPane(Pane pane) {
         this.root.getChildren().clear();
         this.root.getChildren().add(pane);

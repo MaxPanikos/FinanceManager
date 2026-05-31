@@ -103,12 +103,20 @@ public class AppView extends StackPane {
         }
     }
 
+    /**
+     * shows any popup extending from DefaultPopup
+     * @param popup - popup you want to display
+     */
     public void showPopup (DefaultPopup popup) {
         this.popupPane.getChildren().clear();
         this.popupPane.getChildren().add(popup);
         this.overlayPane.setVisible(true);
         this.popupPane.setVisible(true);
     }
+
+    /**
+     * hides visible popup
+     */
     @FXML
     public void hidePopup () {
         this.popupPane.getChildren().clear();
@@ -116,16 +124,26 @@ public class AppView extends StackPane {
         this.popupPane.setVisible(false);
     }
 
+    /**
+     * shows any page extended from Page
+     * @param page - page you want to show
+     */
     public void setPage (Page page) {
         this.contentPane.getChildren().clear();
         this.contentPane.getChildren().add(page);
     }
 
+    /**
+     * shows add transaction popup
+     */
     @FXML
     public void addTransaction () {
         showPopup(new AddTransactionView(this));
     }
 
+    /**
+     * shows settings popup
+     */
     @FXML
     private void openSettings () {
         showPopup(new SettingsPopup(this, main));
@@ -135,6 +153,9 @@ public class AppView extends StackPane {
         return profile;
     }
 
+    /**
+     * updates profile picture on main view
+     */
     public void updateProfilePicture () {
         if (profile.getImagePath() != null && Files.exists(Path.of(FileManager.profilePicturesPath + profile.getImagePath()))) {
             File file = new File(FileManager.profilePicturesPath + profile.getImagePath());
@@ -144,6 +165,9 @@ public class AppView extends StackPane {
         }
     }
 
+    /**
+     * updates main view and any open page
+     */
     public void update() {
         balanceLabel.setText("Zůstatek: " + df.format(profile.getLedger().getBalance()) + " " + profile.getLedger().getCurrency().getSymbol());
         Page page = (Page) contentPane.getChildren().getLast();

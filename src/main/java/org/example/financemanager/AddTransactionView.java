@@ -11,7 +11,9 @@ import org.controlsfx.control.ToggleSwitch;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class AddTransactionView extends DefaultPopup {
@@ -68,9 +70,13 @@ public class AddTransactionView extends DefaultPopup {
 
         typeComboBox.setConverter(new StringConverter<TransactionTypes>() {
             @Override
-            public String toString(TransactionTypes t) { return (t == null) ? "" : t.getLabel(); }
+            public String toString(TransactionTypes t) {
+                return (t == null) ? "" : t.getLabel();
+            }
             @Override
-            public TransactionTypes fromString(String s) { return null; }
+            public TransactionTypes fromString(String s) {
+                return null;
+            }
         });
 
         typeSwitch.selectedProperty().addListener((obs, oldVal, newVal) -> {
@@ -91,16 +97,22 @@ public class AddTransactionView extends DefaultPopup {
         }
     }
 
-    //AI
+    /**
+     * updates category for transaction (AI USED)
+     * @param isExpense if its expense - true or income - false
+     */
     private void updateCategory (boolean isExpense) {
         String type = isExpense ? "Výdaj" : "Příjem";
-        var filtred = Arrays.stream(TransactionTypes.values()).filter(t -> t.getType().equals(type)).collect(Collectors.toList());
+        List<TransactionTypes> filtred = Arrays.stream(TransactionTypes.values()).filter(t -> t.getType().equals(type)).collect(Collectors.toList());
         typeComboBox.setItems(FXCollections.observableArrayList(filtred));
         if (!filtred.isEmpty()) {
             typeComboBox.getSelectionModel().selectFirst();
         }
     }
 
+    /**
+     * checks user typed information and creates transaction
+     */
     @FXML
     protected void addTx () {
         try {

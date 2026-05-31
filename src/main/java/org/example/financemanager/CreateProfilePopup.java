@@ -45,6 +45,9 @@ public class CreateProfilePopup extends VBox {
         }
     }
 
+    /**
+     * checks user inputs and creates profile
+     */
     @FXML
     protected void createProfile () {
         String username = usernameField.getText();
@@ -66,6 +69,10 @@ public class CreateProfilePopup extends VBox {
         FileManager.save(p, FileManager.profilesPath);
         page.login(p);
     }
+
+    /**
+     * closes this popup
+     */
     @FXML
     protected void closePopup () {
         page.closePopup();

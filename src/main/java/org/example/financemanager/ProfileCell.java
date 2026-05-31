@@ -59,6 +59,9 @@ public class ProfileCell extends VBox {
         }
     }
 
+    /**
+     * log in clicked profile
+     */
     @FXML
     private void clickedOnProfile () {
         page.login(profile);

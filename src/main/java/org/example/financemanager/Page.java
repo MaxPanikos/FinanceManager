@@ -13,5 +13,8 @@ public abstract class Page extends StackPane {
         return appView;
     }
 
+    /**
+     * call this method to update page content
+     */
     public abstract void update();
 }

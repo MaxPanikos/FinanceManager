@@ -43,6 +43,10 @@ public class ProfileChooserView extends StackPane {
         }
     }
 
+    /**
+     *log in profile that user clicked
+     * @param p
+     */
     public void login (Profile p) {
         main.setPane(new AppView(p, main));
     }
@@ -60,6 +64,10 @@ public class ProfileChooserView extends StackPane {
         }
     }
 
+    /**
+     * shows any popup
+     * @param popup
+     */
     public void setPopupPane (Pane popup) {
         overlay.setVisible(true);
         popupPane.getChildren().clear();
@@ -67,6 +75,9 @@ public class ProfileChooserView extends StackPane {
         popupPane.setVisible(true);
     }
 
+    /**
+     * closes popup
+     */
     public void closePopup () {
         popupPane.getChildren().clear();
         overlay.setVisible(false);

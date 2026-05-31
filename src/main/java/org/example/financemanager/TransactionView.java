@@ -52,6 +52,9 @@ public class TransactionView extends Page {
         }
     }
 
+    /**
+     * loads page content
+     */
     private void setPage () {
         if (ledger.getSize() == 0) {
             contentBox.setVisible(false);
@@ -79,6 +82,11 @@ public class TransactionView extends Page {
         }
     }
 
+    /**
+     * sets range in which transactions are displayed
+     * @param start
+     * @param end
+     */
     protected void setRange (LocalDate start, LocalDate end) {
         if (start.isAfter(end)) {
             return;
@@ -88,9 +96,12 @@ public class TransactionView extends Page {
         Platform.runLater(() -> setPage());
     }
 
+    /**
+     * shows range picker popup
+     */
     @FXML
     private void rangePicker () {
-        appView.showPopup(new DateRangePopup(appView, this){
+        appView.showPopup(new DateRangePopup(appView){
             @Override
             public void save (DatePicker fromPicker, DatePicker toPicker, Label responseLabel) {
                 LocalDate from = fromPicker.getValue();

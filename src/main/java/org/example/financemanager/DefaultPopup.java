@@ -9,6 +9,9 @@ public abstract class DefaultPopup extends VBox {
         this.appView = appView;
     }
 
+    /**
+     * fxml call method for closing popups
+     */
     @FXML
     public void closePopup() {
         appView.hidePopup();

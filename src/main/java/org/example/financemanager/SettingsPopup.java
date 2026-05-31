@@ -35,6 +35,9 @@ public class SettingsPopup extends DefaultPopup {
         }
     }
 
+    /**
+     * makes sure that user want to remove profile
+     */
     @FXML
     private void areYouSure () {
         removeProfileButton.setVisible(false);
@@ -50,16 +53,26 @@ public class SettingsPopup extends DefaultPopup {
         timer.playFromStart();
     }
 
+    /**
+     * removes profile
+     */
     @FXML
     private void removeAccount() {
         FileManager.removeProfile(appView.getProfile().getUsername(), FileManager.profilesPath);
         main.setPane(new ProfileChooserView(main));
     }
+
+    /**
+     * log out user
+     */
     @FXML
     private void logout () {
         main.setPane(new ProfileChooserView(main));
     }
 
+    /**
+     * saves profile
+     */
     @FXML
     private void saveProfile () {
         try {
@@ -69,6 +82,9 @@ public class SettingsPopup extends DefaultPopup {
         }
     }
 
+    /**
+     * open file chooser and saves picture
+     */
     @FXML
     private void chooseProfilePicture () {
         FileChooser fileChooser = new FileChooser();

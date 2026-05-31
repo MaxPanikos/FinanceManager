@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class DateRangePopup extends DefaultPopup {
-    private Page page;
     @FXML
     private DatePicker fromPicker, toPicker;
     @FXML
@@ -23,9 +22,8 @@ public class DateRangePopup extends DefaultPopup {
         this.toPicker.setValue(LocalDate.now());
     }
 
-    public DateRangePopup(AppView appView, Page page) {
+    public DateRangePopup(AppView appView) {
         super(appView);
-        this.page = page;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("date-range-view.fxml"));
             fxmlLoader.setRoot(this);
@@ -36,11 +34,21 @@ public class DateRangePopup extends DefaultPopup {
         }
     }
 
+
+    /**
+     * fxml call method only
+     */
     @FXML
     private void saveSettings () {
         save(fromPicker, toPicker, responseLabel);
     }
 
+    /**
+     * saves amd passes picked date range
+     * @param fromPicker from which date
+     * @param toPicker to which date
+     * @param responseLabel response label for errors
+     */
     public void save (DatePicker fromPicker, DatePicker toPicker, Label responseLabel) {
         LocalDate from = fromPicker.getValue();
         LocalDate to = toPicker.getValue();

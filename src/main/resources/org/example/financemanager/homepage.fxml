@@ -13,6 +13,14 @@
             <Label text="Domovská stránka" wrapText="true" styleClass="page-title"/>
         </HBox>
         <FlowPane fx:id="flowPane" hgap="15" vgap="15" VBox.vgrow="ALWAYS">
+            <VBox fx:id="balanceTile" >
+                <Label fx:id="incomeLabel"/>
+                <Label fx:id="expenseLabel"/>
+                <Label fx:id="remainingLabel"/>
+            </VBox>
+            <VBox>
+
+            </VBox>
         </FlowPane>
     </VBox>
 </fx:root>

@@ -74,6 +74,9 @@ public class GraphsView extends Page{
         lineChartRange.setText(lineChart.getFromDate().format(formatter) + " - " + lineChart.getToDate().format(formatter));
     }
 
+    /**
+     * if time changer updates this method is called
+     */
     public void updateByTimeChanger () {
         if (pieSelector != null  && !(pieChart.getFromDate().isEqual(pieSelector.getFromDate()) && pieChart.getToDate().isEqual(pieSelector.getToDate()))) {
             pieChart.setFromDate(pieSelector.getFromDate());
@@ -101,6 +104,9 @@ public class GraphsView extends Page{
         }
     }
 
+    /**
+     * sets pie chart
+     */
     private void loadPieChart () {
         this.pieChart = new CustomPieChart(ledger, "Příjem");
         pieChartVBox.getChildren().add(pieChart);
@@ -108,6 +114,10 @@ public class GraphsView extends Page{
         pieChartHBox.getChildren().add(pieSelector);
         pieChartRange.setText(pieChart.getFromDate().format(formatter) + " - " + pieChart.getToDate().format(formatter));
     }
+
+    /**
+     * sets pie chart 2
+     */
     private void loadPieChart2 () {
         this.pieChart2 = new CustomPieChart(ledger, "Výdaj");
         pieChartVBox2.getChildren().add(pieChart2);
@@ -116,6 +126,9 @@ public class GraphsView extends Page{
         pieChartRange2.setText(pieChart2.getFromDate().format(formatter) + " - " + pieChart2.getToDate().format(formatter));
     }
 
+    /**
+     * sets bar chart
+     */
     private void loadBarChart () {
         this.barChart = new CustomBarChart(ledger);
         barChartVBox.getChildren().add(barChart);
@@ -126,6 +139,9 @@ public class GraphsView extends Page{
         barChartRange.setText(barChart.getFromDate().format(formatter) + " - " + barChart.getToDate().format(formatter));
     }
 
+    /**
+     * sets line chart
+     */
     private void loadLineChart () {
         this.lineChart = new CustomLineChart(ledger);
         lineChartVBox.getChildren().add(lineChart);

@@ -1,31 +1,36 @@
 package org.example.financemanager;
 
-import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.chart.*;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Currency;
+import java.time.format.TextStyle;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 public class HomepageView extends Page {
     private DecimalFormat df;
     private Currency currency;
+    private String currentMonth;
 
     @FXML
     private FlowPane flowPane;
+    @FXML
+    private VBox balanceTile;
+    @FXML
+    private Label incomeLabel, expenseLabel, remainingLabel;
 
     @FXML
     public void initialize () {
-        flowPane.getChildren().add(balanceTile());
+        setBalanceTile();
+        setQuickAddTx();
     }
 
     @Override
@@ -37,6 +42,7 @@ public class HomepageView extends Page {
         super(appView);
         this.df = appView.getFormat();
         this.currency = appView.getProfile().getLedger().getCurrency();
+        this.currentMonth = LocalDate.now().getMonth().getDisplayName(TextStyle.FULL_STANDALONE, Locale.forLanguageTag("cs-CZ"));
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("homepage.fxml"));
             fxmlLoader.setController(this);
@@ -47,7 +53,7 @@ public class HomepageView extends Page {
         }
     }
 
-    private VBox balanceTile () {
+    private void setBalanceTile () {
         LocalDateTime to = LocalDate.now().atStartOfDay();
         LocalDateTime from = to.withDayOfMonth(1);
         ArrayList<Transaction> transactions = appView.getProfile().getLedger().getTransactionsInRange(from, to);
@@ -62,16 +68,42 @@ public class HomepageView extends Page {
         }
         double remaining = income - expense;
 
-        VBox vBox = new VBox();
-        Label incomeLabel = new Label("Příjem tento měsíc: " + df.format(income) + " " + currency.getSymbol());
-        Label expenseLabel = new Label("Výdaje tento měsíc: " + df.format(expense) + " " + currency.getSymbol());
-        Label remainingLabel = new Label("Zbývá: " + df.format(remaining) + " " + currency.getSymbol());
-        vBox.getChildren().addAll(incomeLabel, expenseLabel, remainingLabel);
-        return vBox;
+        incomeLabel.setText("Příjem za " + currentMonth + ": " + df.format(income) + " " + currency.getSymbol());
+        expenseLabel.setText("Výdaje za " + currentMonth + ": " + df.format(expense) + " " + currency.getSymbol());
+        remainingLabel.setText("Tento měsíc zůstalo: " + df.format(remaining) + " " + currency.getSymbol());
     }
 
-    private VBox quickAddTx () {
-        VBox vBox = new VBox();
-        return vBox;
+    private void setQuickAddTx () {
+        AtomicBoolean isIncome = new AtomicBoolean(false);
+        Spinner<Double> spinner = new Spinner<>(-1_000_000_000.0, 1_000_000_000, 0.0, 100.0);
+        spinner.setEditable(true);
+        TextField editor = spinner.getEditor();
+        editor.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("-?([0-9]*[\\.,]?[0-9]*)")) {
+                if (editor.getText().startsWith("-")) {
+                    isIncome.set(false);
+                } else {
+                    isIncome.set(true);
+                }
+                return change;
+            }
+            return null;
+        }));
+        editor.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.contains(",")) {
+                editor.setText(newVal.replace(",", "."));
+            }
+        });
+
+        ComboBox<TransactionTypes> comboBox = new ComboBox<>();
     }
+//    private void updateCategory (boolean isExpense) {
+//        String type = isExpense ? "Výdaj" : "Příjem";
+//        List<TransactionTypes> filtred = Arrays.stream(TransactionTypes.values()).filter(t -> t.getType().equals(type)).collect(Collectors.toList());
+//        comboBox.setItems(FXCollections.observableArrayList(filtred));
+//        if (!filtred.isEmpty()) {
+//            typeComboBox.getSelectionModel().selectFirst();
+//        }
+//    }
 }

@@ -69,6 +69,9 @@ public class CalculatorView extends Page{
         //nothing
     }
 
+    /**
+     * checks user inputs and calculates compound interest and displays it
+     */
     @FXML
     private void calculateCompoundInterest () {
         if (interestInitialDeposit.getText().isBlank() || interestMonthlyDeposit.getText().isBlank() || interestRate.getText().isBlank() || interestMonths.getText().isBlank()) {
@@ -89,6 +92,9 @@ public class CalculatorView extends Page{
         }
     }
 
+    /**
+     * checks user inputs and calculates inflation leftover and displays it
+     */
     @FXML
     private void calculateInflationLeftover () {
         if (inflationDeposit.getText().isBlank() || inflationRate.getText().isBlank() || inflationYears.getText().isBlank()) {
@@ -108,6 +114,9 @@ public class CalculatorView extends Page{
         }
     }
 
+    /**
+     * checks user inputs and calculates monthly loan payment and displays it
+     */
     @FXML
     private void calculateMonthlyLoanPayment () {
         if (loanLoan.getText().isBlank() || loanRate.getText().isBlank() || loanLength.getText().isBlank()) {
@@ -127,6 +136,14 @@ public class CalculatorView extends Page{
         }
     }
 
+    /**
+     * calculates compound interest
+     * @param initialDeposit
+     * @param monthlyDeposit
+     * @param annualInterestRate
+     * @param months
+     * @return
+     */
     private double coupoundInterest (double initialDeposit, double monthlyDeposit, double annualInterestRate, int months) {
         double monthlyRate = (annualInterestRate / 100) / 12;
         if (monthlyRate == 0) {
@@ -150,12 +167,23 @@ public class CalculatorView extends Page{
         return loan * (numerator / denominator);
     }
 
+    /**
+     * calculates purchasing power
+     * @param current
+     * @param yearlyInterestRate
+     * @param years
+     * @return
+     */
     private double calculatePurchasingPower (double current, double yearlyInterestRate, int years) {
         double rate = yearlyInterestRate / 100;
         return current * Math.pow(1 - rate, years);
     }
 
-    //AI
+    /**
+     * sets available text field only for positive decimal numbers (AI USED)
+     * @param textField text field you want to modify
+     * @param maxValue maximal value that is allowed in that text field
+     */
     public void positiveDoubleTextField(TextField textField, double maxValue) {
         UnaryOperator<TextFormatter.Change> filter = change -> {
             if (change.getText().contains(",")) {
@@ -182,6 +210,11 @@ public class CalculatorView extends Page{
         textField.setTextFormatter(new TextFormatter<>(filter));
     }
 
+    /**
+     * sets available text field only for positive whole numbers (AI USED)
+     * @param textField text field you want to modify
+     * @param maxValue maximal value that is allowed in that text field
+     */
     public void positiveIntTextField(TextField textField, int maxValue) {
         UnaryOperator<TextFormatter.Change> filter = change -> {
             String newText = change.getControlNewText();
